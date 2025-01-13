@@ -1,0 +1,36 @@
+{
+  "name": "readbook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "next": "14.1.4",
+    "prettier": "^3.4.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-fullpage": "^0.1.19",
+    "react-icons": "^5.4.0",
+    "react-indiana-drag-scroll": "^2.2.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/xml2js": "^0.4.14",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.4",
+    "i": "^0.3.7",
+    "npm": "^11.0.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
