@@ -21,9 +21,6 @@
     text-wrap: balance;
   }
 }
-body{
-  background-color: #f3f3f3;
-}
 input{
   border: none;
   outline: none;

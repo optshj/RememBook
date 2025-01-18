@@ -6,9 +6,13 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl"
 
 export default function ScrollWrapper({ children }: { children: React.ReactNode }) {
     const scrollRef = useRef<HTMLElement>(null)
-    const handleScroll = (direction: "left" | "right") => {
+    /*
+     * @param direction: boolean
+     * @description: direction == false -> left, direction == true -> right
+     */
+    const handleScroll = (direction: boolean) => {
         if (scrollRef.current) {
-            const scrollAmount = direction === "left" ? -1060 : 1060
+            const scrollAmount = direction === false ? -1060 : 1060
             scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
         }
     }
@@ -38,12 +42,12 @@ export default function ScrollWrapper({ children }: { children: React.ReactNode 
     return (
         <>
             <button
-                onClick={() => handleScroll("left")}
+                onClick={() => handleScroll(false)}
                 className={`absolute z-10 p-2 -translate-y-1/2 border-2 rounded-full -left-14 top-1/2 ${isAtStart ? "text-main-gray cursor-default" : "text-black"}`}>
                 <SlArrowLeft size={16} />
             </button>
             <button
-                onClick={() => handleScroll("right")}
+                onClick={() => handleScroll(true)}
                 className={`absolute z-10 p-2 -translate-y-1/2 border-2 rounded-full -right-14 top-1/2 ${isAtEnd ? "text-main-gray cursor-default" : "text-black"}`}>
                 <SlArrowRight size={16} />
             </button>

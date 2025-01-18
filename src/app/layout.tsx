@@ -4,11 +4,11 @@ import "./globals.css"
 import Header from "@/components/Header/Header"
 import React from "react"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
 export const metadata: Metadata = {
-    title: "RememBook",
-    description: ""
+    title: "리멤북",
+    description: "리멤북으로 읽은 책을 기록해 보세요"
 }
 
 export default function RootLayout({ children, modal }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
@@ -16,7 +16,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
         <html lang="en">
             <body className={inter.className}>
                 <Header />
-                <div className="pt-16">
+                <div className="max-w-5xl pt-24 m-auto ">
                     {children}
                     {modal}
                 </div>

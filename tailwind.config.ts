@@ -5,12 +5,14 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                "main-blue": "#45ACF5",
                 "bg-gray": "#F3F3F3",
                 "main-gray": "#A6A6A6",
-                "main-blue-dark": "#2B8CCC",
                 "bg-gray-dark": "#DADADA",
                 "main-gray-dark": "#7F7F7F",
+
+                cream: "#f0e9df",
+                mocha: "#a57865",
+                moonbeam: "#d1c8bf",
 
                 "button-black": "#404040",
                 yellow: "#FFD76D"
