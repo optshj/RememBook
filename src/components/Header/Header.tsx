@@ -20,9 +20,7 @@ export default async function Header() {
                     </Link>
                     <Searchbar />
                 </div>
-                <div className="flex gap-2">
-                    <Login />
-                </div>
+                {/* <Login /> */}
             </div>
         </div>
     )

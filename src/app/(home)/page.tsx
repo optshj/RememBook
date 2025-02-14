@@ -11,7 +11,7 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
     const code = searchParams.code
     return (
         <div>
-            <KakaoAuthHandler code={code} />
+            {/* <KakaoAuthHandler code={code} /> */}
             <MainItemList queryType="Bestseller" title="베스트셀러!" />
             <MainItemList queryType="ItemNewSpecial" title="주목할만한 신간" />
             <MainItemList queryType="BlogBest" title="블로그 베스트" />
