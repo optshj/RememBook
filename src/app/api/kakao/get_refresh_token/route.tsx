@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
         const refreshToken = cookies().get("refresh_token")
 
         if (!refreshToken) {
-            return NextResponse.json({ error: "Refresh token not found" }, { status: 400 })
+            return NextResponse.json({ error: "Refresh token not found" }, { status: 200 })
         }
 
         return NextResponse.json({ refresh_token: refreshToken.value }, { status: 200 })
