@@ -16,9 +16,6 @@ const nextConfig = {
         })
         return config
     },
-    env: {
-        NEXT_PUBLIC_ALADIN_TTB_KEY: process.env.NEXT_PUBLIC_ALADIN_TTB_KEY
-    },
     images: {
         domains: ["image.aladin.co.kr"]
     }

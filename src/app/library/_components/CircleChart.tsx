@@ -17,7 +17,7 @@ export default function CircleChart() {
     }
     return (
         <div className="flex flex-col flex-1 h-72">
-            <TitleText>{"선호하는 장르"}</TitleText>
+            <TitleText>{"선호하는 장르🔍"}</TitleText>
             <ResponsiveCirclePacking
                 data={data}
                 id="name"

@@ -15,7 +15,8 @@ const config: Config = {
                 moonbeam: "#d1c8bf",
 
                 "button-black": "#404040",
-                yellow: "#FFD76D"
+                yellow: "#FFD76D",
+                kakao: "#FEE500"
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -3,7 +3,7 @@ import TitleText from "./TitleText"
 export default function BarChart() {
     return (
         <div className="flex flex-col">
-            <TitleText>{"최근 독서기록🧾"}</TitleText>
+            <TitleText>{"독서 리포트📈"}</TitleText>
             <div className="flex flex-col gap-6 mt-4">
                 <Item />
                 <Item />

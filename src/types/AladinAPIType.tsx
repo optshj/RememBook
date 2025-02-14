@@ -1,4 +1,4 @@
-interface BookType {
+export interface BookType {
     itemId: string
     title: string
     link: string
@@ -20,7 +20,7 @@ interface BookType {
     bookinfo: BookInfo
 }
 
-interface BookInfo {
+export interface BookInfo {
     subTitle: string
     originalTitle: string
     itemPage: number
@@ -30,10 +30,8 @@ interface BookInfo {
     ebookList: string[]
 }
 
-interface Author {
+export interface Author {
     authorType: string
     authorid: string
     desc: string
 }
-
-export type { BookType, BookInfo, Author }

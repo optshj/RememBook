@@ -1,11 +1,8 @@
 import Image from "next/image"
 
-import { FaStar } from "react-icons/fa6"
-
-import StateButton from "@/components/Button/StateButton"
-import CommonButton from "@/components/Button/CommonButton"
-import BackButton from "@/components/Button/BackButton"
 import Modal from "@/components/Modal/Modal"
+import TextArea from "./_components/TextArea"
+import BookDetails from "./_components/BookDetails"
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     const isbn13 = searchParams.isbn13
@@ -43,11 +40,10 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                     <div className="relative w-48 h-72 flex-shrink-0">
                         <Image className="rounded-lg" src={book.cover} alt="책이미지" priority fill sizes="20vw" />
                     </div>
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col justify-center gap-2">
                         <div className="text-xl font-bold text-black whitespace-normal">{book.title.split("-")[0]}</div>
                         <div className="text-sm font-semibold text-main-gray">{book.author || "저자 미상"}</div>
-                        <div className="text-sm text-main-gray"></div>
-                        <div className="text-sm text-main-gray">
+                        <div className="text-sm text-main-gray font-semibold">
                             {category.map((item: string, index: number) => (
                                 <span key={index}>
                                     {item}
@@ -55,22 +51,10 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                                 </span>
                             ))}
                         </div>
-                        <div className="flex flex-col gap-1">
-                            <div className="flex items-center gap-1 text-sm font-semibold text-main-gray">
-                                {"나의평가"}
-                                <FaStar className="text-yellow" />
-                                <div className="text-yellow">{"3.9"}</div>
-                            </div>
-                            <div className="text-sm font-semibold text-main-gray">{"읽은 기간 2024.12.27 ~ 2024.12.31"}</div>
-                            <StateButton />
-                        </div>
+                        <BookDetails isbn13={isbn13} />
                     </div>
                 </div>
-                <textarea className="w-full p-4 text-left text-black align-top rounded-lg resize-none bg-bg-gray h-60" placeholder="독후감을 작성해주세요" />
-                <div className="flex justify-center gap-2">
-                    <CommonButton>{"저장하기"}</CommonButton>
-                    <BackButton color="main-gray">{"닫기"}</BackButton>
-                </div>
+                <TextArea isbn13={isbn13} />
             </div>
         </Modal>
     )

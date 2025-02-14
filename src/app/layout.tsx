@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/Header/Header"
 import React from "react"
+import Providers from "@/store/Provider"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -15,11 +16,13 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
     return (
         <html lang="en">
             <body className={inter.className}>
-                <Header />
-                <div className="max-w-5xl pt-24 m-auto ">
-                    {children}
-                    {modal}
-                </div>
+                <Providers>
+                    <Header />
+                    <div className="max-w-5xl pt-24 m-auto ">
+                        {children}
+                        {modal}
+                    </div>
+                </Providers>
             </body>
         </html>
     )

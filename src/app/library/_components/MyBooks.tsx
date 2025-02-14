@@ -1,16 +1,27 @@
+"use client"
+import { useState } from "react"
 import Image from "next/image"
 
 import TitleText from "./TitleText"
 
 export default function MyBooks() {
+    const [state, setState] = useState(0)
     return (
         <div className="flex flex-col flex-1 gap-6">
             <div className="flex items-end gap-6">
-                <TitleText>{"내기 저장한 책📚"}</TitleText>
-                <button className="text-lg font-semibold text-mocha">{"전체"}</button>
-                <button className="text-lg font-semibold text-main-gray">{"읽는중"}</button>
-                <button className="text-lg font-semibold text-main-gray">{"시작전"}</button>
-                <button className="text-lg font-semibold text-main-gray">{"완료"}</button>
+                <TitleText>{"내가 저장한 책📚"}</TitleText>
+                <button className={`text-lg font-semibold ${state == 0 ? "text-mocha" : "text-main-gray"}`} onClick={() => setState(0)}>
+                    {"전체"}
+                </button>
+                <button className={`text-lg font-semibold ${state == 1 ? "text-mocha" : "text-main-gray"}`} onClick={() => setState(1)}>
+                    {"읽는중"}
+                </button>
+                <button className={`text-lg font-semibold ${state == 2 ? "text-mocha" : "text-main-gray"}`} onClick={() => setState(2)}>
+                    {"시작전"}
+                </button>
+                <button className={`text-lg font-semibold ${state == 3 ? "text-mocha" : "text-main-gray"}`} onClick={() => setState(3)}>
+                    {"완료"}
+                </button>
             </div>
             <div className="grid grid-cols-4">
                 <Item />

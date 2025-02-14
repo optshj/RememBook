@@ -2,8 +2,9 @@ import Link from "next/link"
 
 import Logo from "@/../public/svg/logo.svg"
 import Searchbar from "./Serachbar"
+import Login from "./Login"
 
-export default function Header() {
+export default async function Header() {
     return (
         <div className="bg-white shadow-sm fixed z-50 w-full">
             <div className="flex items-center justify-between max-w-5xl m-auto">
@@ -20,8 +21,7 @@ export default function Header() {
                     <Searchbar />
                 </div>
                 <div className="flex gap-2">
-                    <div className="w-8 h-8 rounded-full bg-cream"></div>
-                    <div className="mx-2 p-0.5 text-sm text-main-gray rounded-lg border-2 border-solid cursor-pointer flex items-center">{"로그아웃"}</div>
+                    <Login />
                 </div>
             </div>
         </div>
