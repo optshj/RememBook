@@ -13,13 +13,13 @@ export default function KakaoAuthHandler({ code }: { code?: string }) {
         try {
             let newAccessToken = null
             // get refreshToken from cookie
-            const refreshToken = await fetch("http://localhost:3000/api/kakao/get_refresh_token", {
+            const refreshToken = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kakao/get_refresh_token`, {
                 method: "GET"
             }).then(res => res.json())
 
             // if refreshToken is valid, request new accessToken
             if (refreshToken.value) {
-                const data = await fetch("http://localhost:3000/api/kakao/refresh_access_token", {
+                const data = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kakao/refresh_access_token`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -32,7 +32,7 @@ export default function KakaoAuthHandler({ code }: { code?: string }) {
                     dispatch(setAccessToken(data.access_token))
                 }
             } else if (code) {
-                const data = await fetch("http://localhost:3000/api/kakao/callback", {
+                const data = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kakao/callback`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -53,7 +53,7 @@ export default function KakaoAuthHandler({ code }: { code?: string }) {
     }
     const fetchUserData = async (token: string) => {
         try {
-            const userRes = await fetch("http://localhost:3000/api/kakao/getuser", {
+            const userRes = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kakao/getuser`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },

@@ -6,7 +6,7 @@ import { useAppSelector } from "@/store/Store"
 export default function Login() {
     const userData = useAppSelector(state => state.userData.userData)
     const handleLogout = async () => {
-        await fetch("http://localhost:3000/api/kakao/logout", {
+        await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/kakao/logout`, {
             method: "GET",
             credentials: "include"
         })
