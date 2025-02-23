@@ -33,7 +33,7 @@ export default function TextArea({ isbn13 }: TextAreaProps) {
             </div>
 
             <textarea
-                className="w-full p-4 text-left text-black align-top rounded-lg resize-none bg-bg-gray h-60"
+                className="w-full p-4 text-left text-black align-top rounded-lg resize-none bg-zinc-100 h-60"
                 placeholder="독후감을 작성해주세요. (500자 이내)"
                 spellCheck={false}
                 value={text}

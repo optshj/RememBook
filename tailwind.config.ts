@@ -5,7 +5,6 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                "bg-gray": "#F3F3F3",
                 "main-gray": "#A6A6A6",
                 "bg-gray-dark": "#DADADA",
                 "main-gray-dark": "#7F7F7F",

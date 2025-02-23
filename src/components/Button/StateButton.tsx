@@ -10,7 +10,7 @@ import { useState } from "react"
  * <StateButton state={0} />
  */
 interface StateButtonProps {
-    state?: 0 | 1 | 2
+    state?: number
     className?: string
     onClick?: () => void
 }
@@ -47,8 +47,8 @@ export default function StateButton({ state = 0, className = "", onClick }: Stat
     const { backgroundColor, circleColor, text } = getStatusProps()
     return (
         <button className={`flex items-center gap-1 px-1 py-0.5 rounded-md w-fit ${className}`} style={{ backgroundColor }} onClick={onClick}>
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: circleColor }}></div>
-            <div className="text-xs font-semibold">{text}</div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: circleColor }} />
+            <div className="text-xs font-semibold text-black">{text}</div>
         </button>
     )
 }

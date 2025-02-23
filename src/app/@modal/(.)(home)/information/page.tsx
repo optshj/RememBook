@@ -30,12 +30,18 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
 
         book = parsedData.item[0]
     } catch (error) {
-        return <div>데이터를 불러오는 중 문제가 발생했습니다.</div>
+        return (
+            <Modal>
+                <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <div className="font-semibold">{"데이터를 불러오는 중 문제가 발생했습니다."}</div>
+                </div>
+            </Modal>
+        )
     }
     const category = book.categoryName.split(">")
     return (
         <Modal>
-            <div className="flex flex-col gap-6 p-8 bg-white border-b-2 rounded-lg shadow-lg w-[700px]">
+            <div className="flex flex-col gap-6 p-8 bg-white rounded-lg shadow-lg w-[700px]">
                 <div className="flex gap-6 pb-6 border-b-2">
                     <div className="relative w-48 h-72 flex-shrink-0">
                         <Image className="rounded-lg" src={book.cover} alt="책이미지" priority fill sizes="20vw" />
