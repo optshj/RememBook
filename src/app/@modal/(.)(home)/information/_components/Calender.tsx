@@ -16,7 +16,6 @@ export default function Calender({ className }: CalenderProps) {
     const endCurrentMonth = endOfMonth(currentDate)
     const startOfFirstWeek = startOfWeek(startCurrentMonth, { weekStartsOn: 0 })
     const endOfLastWeek = addDays(endOfWeek(endCurrentMonth, { weekStartsOn: 0 }), 7)
-
     const days = eachDayOfInterval({
         start: startOfFirstWeek,
         end: endOfLastWeek
@@ -28,11 +27,6 @@ export default function Calender({ className }: CalenderProps) {
         day: format(day, "dd"),
         dayIndexOfWeek: getDay(day)
     }))
-
-    const [isEnded, setIsEnded] = useState(false)
-    const [startDate, setStartDate] = useState<string>(daysInMonth[0].date)
-    const [endDate, setEndDate] = useState<string | null>(daysInMonth[0].date)
-
     const handleDate = (month: number) => {
         if (month == 1) {
             setCurrentDate(subMonths(currentDate, 1)) // prev month
@@ -41,16 +35,30 @@ export default function Calender({ className }: CalenderProps) {
         }
     }
 
+    const [isEnded, setIsEnded] = useState(false)
+    const [selectedDates, setSelectedDates] = useState<string[]>([format(new Date(), "yyyy-MM-dd"), format(new Date(), "yyyy-MM-dd")])
+    const [startDate, setStartDate] = useState<string>(selectedDates[0])
+    const [endDate, setEndDate] = useState<string>(selectedDates[1])
     const handleDateClick = (date: string) => {
         if (isEnded) {
-            if (!startDate || date < startDate) {
-                setStartDate(date)
-            } else {
-                setEndDate(date)
-            }
+            setSelectedDates(prev => {
+                if (prev.length === 2) {
+                    const end = prev[1]
+                    const newEndDate = new Date(end)
+                    const clickedDate = new Date(date)
+
+                    if (clickedDate < newEndDate) {
+                        setStartDate(date)
+                        setEndDate(end)
+                    } else {
+                        setStartDate(end)
+                        setEndDate(date)
+                    }
+                }
+                return [prev[1], date]
+            })
         } else {
-            setStartDate(date)
-            setEndDate(null)
+            setSelectedDates([date, date])
         }
     }
     return (
@@ -86,11 +94,8 @@ export default function Calender({ className }: CalenderProps) {
                 </div>
                 <div className="grid grid-cols-[repeat(7,auto)] justify-items-center">
                     {daysInMonth.map((date, index) => {
-                        const isStartDate = new Date(date.date).getTime() === new Date(startDate).getTime()
-                        const isEndDate = endDate && new Date(date.date).getTime() === new Date(endDate).getTime()
                         const isInRange =
                             isEnded &&
-                            endDate &&
                             new Date(date.date).getTime() > new Date(startDate).getTime() &&
                             new Date(date.date).getTime() < new Date(endDate).getTime()
                         return (
@@ -98,7 +103,7 @@ export default function Calender({ className }: CalenderProps) {
                                 key={index}
                                 className={`text-black rounded-md w-9 h-8 flex items-center justify-center border-2 border-transparent cursor-pointer hover:border-blue-500 
                                     ${isInRange && "bg-blue-200 rounded-none"}
-                                    ${isStartDate || isEndDate ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
+                                    ${date.date === selectedDates[0] || date.date === selectedDates[1] ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
                                         ${currentMonth != parseInt(date.month) && "text-main-gray"} 
                                         `}
                                 onClick={() => {
@@ -116,7 +121,6 @@ export default function Calender({ className }: CalenderProps) {
                     className=" p-1 m-1 pl-2 rounded-lg flex items-center justify-between hover:bg-zinc-100 active:bg-zinc-200"
                     onClick={() => {
                         setIsEnded(prev => !prev)
-                        setEndDate(startDate)
                     }}>
                     {"종료일"}
                     <ToggleButton state={isEnded} />
