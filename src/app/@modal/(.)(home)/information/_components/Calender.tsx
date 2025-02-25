@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, Dispatch, SetStateAction } from "react"
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, format, getDay, subMonths, addMonths, addDays } from "date-fns"
 
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md"
@@ -7,8 +7,11 @@ import ToggleButton from "@/components/Button/ToggleButton"
 
 interface CalenderProps {
     className?: string
+    setDate: Dispatch<SetStateAction<string>>
 }
-export default function Calender({ className }: CalenderProps) {
+export default function Calender({ className, setDate }: CalenderProps) {
+    const dateformat = "yyyy.MM.dd"
+
     const [currentDate, setCurrentDate] = useState(new Date())
     const currentMonth = currentDate.getMonth() + 1
     const weeks = ["일", "월", "화", "수", "목", "금", "토"]
@@ -20,8 +23,9 @@ export default function Calender({ className }: CalenderProps) {
         start: startOfFirstWeek,
         end: endOfLastWeek
     })
+
     const daysInMonth = days.map(day => ({
-        date: format(day, "yyyy-MM-dd"),
+        date: format(day, dateformat),
         year: format(day, "yyyy"),
         month: format(day, "MM"),
         day: format(day, "dd"),
@@ -36,9 +40,10 @@ export default function Calender({ className }: CalenderProps) {
     }
 
     const [isEnded, setIsEnded] = useState(false)
-    const [selectedDates, setSelectedDates] = useState<string[]>([format(new Date(), "yyyy-MM-dd"), format(new Date(), "yyyy-MM-dd")])
+    const [selectedDates, setSelectedDates] = useState<string[]>(["", format(new Date(), dateformat)])
     const [startDate, setStartDate] = useState<string>(selectedDates[0])
-    const [endDate, setEndDate] = useState<string>(selectedDates[1])
+    const [endDate, setEndDate] = useState<string>(selectedDates[0])
+    setDate(isEnded ? `${startDate} ~ ${endDate}` : `${startDate}`)
     const handleDateClick = (date: string) => {
         if (isEnded) {
             setSelectedDates(prev => {
@@ -58,11 +63,13 @@ export default function Calender({ className }: CalenderProps) {
                 return [prev[1], date]
             })
         } else {
+            setStartDate(date)
+            setEndDate(date)
             setSelectedDates([date, date])
         }
     }
     return (
-        <div className={`bg-white shadow-lg rounded-md font-normal text-black ${className}`}>
+        <div className={`absolute z-50 bg-white shadow-lg rounded-md font-normal text-black ${className}`}>
             <div className="p-2">
                 {isEnded ? (
                     <div className="flex flex-row justify-center gap-2 mb-2">
@@ -103,7 +110,7 @@ export default function Calender({ className }: CalenderProps) {
                                 key={index}
                                 className={`text-black rounded-md w-9 h-8 flex items-center justify-center border-2 border-transparent cursor-pointer hover:border-blue-500 
                                     ${isInRange && "bg-blue-200 rounded-none"}
-                                    ${date.date === selectedDates[0] || date.date === selectedDates[1] ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
+                                    ${date.date === selectedDates[0] || (isEnded && date.date === selectedDates[1]) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
                                         ${currentMonth != parseInt(date.month) && "text-main-gray"} 
                                         `}
                                 onClick={() => {
@@ -126,7 +133,7 @@ export default function Calender({ className }: CalenderProps) {
                     <ToggleButton state={isEnded} />
                 </div>
             </div>
-            <div className="border-t cursor-pointer">
+            <div className="border-t cursor-pointer" onClick={() => setDate("")}>
                 <div className="p-1 m-1 pl-2 rounded-lg hover:bg-zinc-100 active:bg-zinc-200">{"삭제"}</div>
             </div>
         </div>
