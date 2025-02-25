@@ -13,7 +13,7 @@ interface BookDetailsProps {
 export default function BookDetails({ isbn13 }: BookDetailsProps) {
     const [state, setState] = useState(0)
     const [date, setDate] = useState("")
-    const [rating, setRating] = useState(0.0)
+    const [rating, setRating] = useState(0)
 
     const [ratingOpen, setRatingOpen] = useState(false)
     const [calenderOpen, setCalenderOpen] = useState(false)
@@ -25,6 +25,7 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
+            localStorage.setItem(isbn13, JSON.stringify({ rating, date, state }))
             const target = event.target as Node | null
 
             if (ratingRef.current && !ratingRef.current.contains(target)) setRatingOpen(false)
@@ -35,7 +36,17 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [date])
+    }, [rating, date, state, isbn13])
+
+    useEffect(() => {
+        const localBookData = localStorage.getItem(isbn13)
+        if (localBookData) {
+            const { rating, date, state } = JSON.parse(localBookData)
+            setRating(rating)
+            setDate(date)
+            setState(state)
+        }
+    }, [isbn13])
 
     return (
         <div className="flex flex-row text-sm font-semibold text-main-gray z-50">
@@ -53,14 +64,22 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
                         <FaStar />
                         {rating}
                     </div>
-                    <Rating setRating={setRating} className={`transition-all duration-300 ${ratingOpen ? "opacity-100 visible" : "opacity-0 invisible"}`} />
+                    <Rating
+                        rating={rating}
+                        setRating={setRating}
+                        className={`transition-all duration-300 ${ratingOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                    />
                 </div>
                 {/* calender select */}
                 <div className={`relative ${calenderOpen ? "shadow-lg" : ""}`} ref={calenderRef}>
                     <div className="p-1 rounded-md cursor-pointer hover:bg-zinc-100" onClick={() => setCalenderOpen(prev => !prev)}>
                         {date || "비어있음"}
                     </div>
-                    <Calender setDate={setDate} className={`transition-all duration-300 ${calenderOpen ? "opacity-100 visible" : "opacity-0 invisible"} `} />
+                    <Calender
+                        date={date}
+                        setDate={setDate}
+                        className={`transition-all duration-300 ${calenderOpen ? "opacity-100 visible" : "opacity-0 invisible"} `}
+                    />
                 </div>
                 {/* state select */}
                 <div className={`relative ${stateOpen ? "shadow-lg" : ""}`}>

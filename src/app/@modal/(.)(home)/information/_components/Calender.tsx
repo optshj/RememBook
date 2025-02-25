@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from "react"
+import { useState, Dispatch, SetStateAction, useEffect } from "react"
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, format, getDay, subMonths, addMonths, addDays } from "date-fns"
 
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md"
@@ -7,12 +7,13 @@ import ToggleButton from "@/components/Button/ToggleButton"
 
 interface CalenderProps {
     className?: string
+    date: string
     setDate: Dispatch<SetStateAction<string>>
 }
-export default function Calender({ className, setDate }: CalenderProps) {
+export default function Calender({ className, date, setDate }: CalenderProps) {
     const dateformat = "yyyy.MM.dd"
 
-    const [currentDate, setCurrentDate] = useState(new Date())
+    const [currentDate, setCurrentDate] = useState<Date>(new Date())
     const currentMonth = currentDate.getMonth() + 1
     const weeks = ["일", "월", "화", "수", "목", "금", "토"]
     const startCurrentMonth = startOfMonth(currentDate)
@@ -32,41 +33,50 @@ export default function Calender({ className, setDate }: CalenderProps) {
         dayIndexOfWeek: getDay(day)
     }))
     const handleDate = (month: number) => {
-        if (month == 1) {
-            setCurrentDate(subMonths(currentDate, 1)) // prev month
-        } else if (month == -1) {
-            setCurrentDate(addMonths(currentDate, 1)) // next month
-        }
+        //prev month
+        if (month == 1) setCurrentDate(subMonths(currentDate, 1))
+        //next month
+        else if (month == -1) setCurrentDate(addMonths(currentDate, 1))
     }
 
     const [isEnded, setIsEnded] = useState(false)
-    const [selectedDates, setSelectedDates] = useState<string[]>(["", format(new Date(), dateformat)])
-    const [startDate, setStartDate] = useState<string>(selectedDates[0])
-    const [endDate, setEndDate] = useState<string>(selectedDates[0])
-    setDate(isEnded ? `${startDate} ~ ${endDate}` : `${startDate}`)
-    const handleDateClick = (date: string) => {
-        if (isEnded) {
-            setSelectedDates(prev => {
-                if (prev.length === 2) {
-                    const end = prev[1]
-                    const newEndDate = new Date(end)
-                    const clickedDate = new Date(date)
+    const [prev, setPrev] = useState<string>(format(currentDate, dateformat))
+    const [startDate, setStartDate] = useState<string>(format(currentDate, dateformat))
+    const [endDate, setEndDate] = useState<string>(format(currentDate, dateformat))
 
-                    if (clickedDate < newEndDate) {
-                        setStartDate(date)
-                        setEndDate(end)
-                    } else {
-                        setStartDate(end)
-                        setEndDate(date)
-                    }
-                }
-                return [prev[1], date]
-            })
+    useEffect(() => {
+        if (!date) return
+        const dateList = date.split(" ~ ")
+        setCurrentDate(new Date(dateList[0]))
+        setIsEnded(dateList.length > 1)
+        setPrev(dateList[0])
+        setStartDate(dateList[0])
+        setEndDate(dateList.length > 1 ? dateList[1] : date)
+    }, [date])
+
+    const handleDateClick = (date: string) => {
+        let dateText
+        if (isEnded) {
+            const end = prev
+            const newEndDate = new Date(end)
+            const clickedDate = new Date(date)
+
+            if (clickedDate < newEndDate) {
+                setStartDate(date)
+                setEndDate(end)
+                dateText = `${date} ~ ${end}`
+            } else {
+                setStartDate(end)
+                setEndDate(date)
+                dateText = `${end} ~ ${date}`
+            }
+            setPrev(date)
         } else {
             setStartDate(date)
             setEndDate(date)
-            setSelectedDates([date, date])
+            dateText = date
         }
+        setDate(dateText)
     }
     return (
         <div className={`absolute z-50 bg-white shadow-lg rounded-md font-normal text-black ${className}`}>
@@ -110,7 +120,7 @@ export default function Calender({ className, setDate }: CalenderProps) {
                                 key={index}
                                 className={`text-black rounded-md w-9 h-8 flex items-center justify-center border-2 border-transparent cursor-pointer hover:border-blue-500 
                                     ${isInRange && "bg-blue-200 rounded-none"}
-                                    ${date.date === selectedDates[0] || (isEnded && date.date === selectedDates[1]) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
+                                    ${date.date === startDate || (isEnded && date.date === endDate) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} 
                                         ${currentMonth != parseInt(date.month) && "text-main-gray"} 
                                         `}
                                 onClick={() => {
