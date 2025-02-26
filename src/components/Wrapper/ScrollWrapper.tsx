@@ -51,7 +51,7 @@ export default function ScrollWrapper({ children }: { children: React.ReactNode 
                 className={`absolute z-10 p-2 -translate-y-1/2 border-2 rounded-full -right-14 top-1/2 ${isAtEnd ? "text-main-gray cursor-default" : "text-black"}`}>
                 <SlArrowRight size={16} />
             </button>
-            <ScrollContainer innerRef={scrollRef} className="flex overflow-x-auto gap-8">
+            <ScrollContainer innerRef={scrollRef} className="flex overflow-x-auto gap-4">
                 {children}
             </ScrollContainer>
         </>
