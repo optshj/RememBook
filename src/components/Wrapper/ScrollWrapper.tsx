@@ -6,13 +6,14 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl"
 
 export default function ScrollWrapper({ children }: { children: React.ReactNode }) {
     const scrollRef = useRef<HTMLElement>(null)
+    const size = (192 + 16) * 5 // (imgWidth + gap) * itemNum
     /*
      * @param direction: boolean
      * @description: direction == false -> left, direction == true -> right
      */
     const handleScroll = (direction: boolean) => {
         if (scrollRef.current) {
-            const scrollAmount = direction === false ? -1060 : 1060
+            const scrollAmount = direction === false ? -size : size
             scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
         }
     }

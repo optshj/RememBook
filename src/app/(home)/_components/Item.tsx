@@ -1,26 +1,24 @@
 "use client"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 import { BookType } from "@/types/AladinAPIType"
 
 import StateButton from "@/components/Button/StateButton"
 import BookReportButton from "@/components/Button/BookReportButton"
-import { useEffect, useState } from "react"
 
 export default function Item({ book }: { book: BookType }) {
     const category = book.categoryName
     const categoryArray = category.split(">")
-    const [state, setState] = useState(0)
+    const [state, setState] = useState<number>(0)
 
     useEffect(() => {
         const localBookData = localStorage.getItem(book.isbn13)
-        console.log(localBookData)
         if (localBookData) {
-            const { rating, date, state } = JSON.parse(localBookData).state
-            setState(state)
+            const { state } = JSON.parse(localBookData)
+            setState(parseInt(state))
         }
     }, [])
-
     return (
         <li className="relative flex flex-col">
             <div className="relative w-48 h-72 group">

@@ -37,9 +37,9 @@ export default function StateButton({ state = 0, className = "", onClick }: Stat
                 }
             default:
                 return {
-                    backgroundColor: "#F5F5F5",
-                    circleColor: "#A0A0A0",
-                    text: "알 수 없음"
+                    backgroundColor: "#EFDBDD",
+                    circleColor: "#D3706D",
+                    text: "시작 전"
                 }
         }
     }

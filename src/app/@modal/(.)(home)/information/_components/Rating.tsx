@@ -1,3 +1,4 @@
+import Tooltip from "@/components/Tooltip/Tooltip"
 import { useRef } from "react"
 import { FaStar } from "react-icons/fa6"
 
@@ -16,19 +17,21 @@ export default function Rating({ className, rating, setRating }: RatingProp) {
         const { left } = containerRef.current.getBoundingClientRect()
         const clickX = event.clientX - left
         const starWidth = containerRef.current.clientWidth / 5
-        let rating = Math.min(5, Math.max(0, (clickX / starWidth) * 2))
-        rating = Math.floor(rating) % 2 === 0 ? Math.floor(rating) / 2 : Math.floor(rating) / 2 + 0.5
+        const newRating = Math.min(5, Math.max(1, Math.ceil(clickX / starWidth)))
 
-        setRating(rating)
+        setRating(newRating)
     }
 
     return (
         <div ref={containerRef} className={`absolute z-50 bg-white shadow-lg rounded-md font-normal cursor-pointer ${className}`} onClick={handleClick}>
             <div className="flex flex-row p-2">
-                {[0, 1, 2, 3, 4].map(i => (
-                    <FaStar key={i} className={`${i < rating && "text-yellow "}`} />
+                {[1, 2, 3, 4, 5].map(i => (
+                    <Tooltip key={i} content={i.toString()}>
+                        <FaStar key={i} className={`${i < rating + 1 && "text-yellow "}`} />
+                    </Tooltip>
                 ))}
             </div>
         </div>
     )
 }
+;``

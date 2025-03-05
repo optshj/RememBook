@@ -2,7 +2,6 @@ import Link from "next/link"
 
 import Logo from "@/../public/svg/logo.svg"
 import Searchbar from "./Serachbar"
-import Login from "./Login"
 
 export default async function Header() {
     return (

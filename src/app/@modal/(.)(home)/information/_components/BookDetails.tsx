@@ -25,13 +25,23 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            localStorage.setItem(isbn13, JSON.stringify({ rating, date, state }))
+            const localBookData = localStorage.getItem(isbn13)
+            const bookData = localBookData ? JSON.parse(localBookData) : {}
+            const newBookData = {
+                ...bookData,
+                rating,
+                date,
+                state
+            }
+            localStorage.setItem(isbn13, JSON.stringify(newBookData))
+
             const target = event.target as Node | null
 
             if (ratingRef.current && !ratingRef.current.contains(target)) setRatingOpen(false)
             if (calenderRef.current && !calenderRef.current.contains(target)) setCalenderOpen(false)
             if (stateRef.current && !stateRef.current.contains(target)) setStateOpen(false)
         }
+
         document.addEventListener("mousedown", handleClickOutside)
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
@@ -62,7 +72,7 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
                 <div className={`relative rounded-lg ${ratingOpen ? "shadow-lg" : ""}`} ref={ratingRef} onClick={() => setRatingOpen(prev => !prev)}>
                     <div className="text-yellow flex gap-1 items-center p-1 rounded-md cursor-pointer hover:bg-zinc-100">
                         <FaStar />
-                        {rating}
+                        {rating || "비어있음"}
                     </div>
                     <Rating
                         rating={rating}

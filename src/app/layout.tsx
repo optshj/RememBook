@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+
 import Header from "@/components/Header/Header"
 import React from "react"
 import Providers from "@/store/Provider"
@@ -18,7 +19,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
             <body className={inter.className}>
                 <Providers>
                     <Header />
-                    <div className="max-w-5xl pt-24 m-auto ">
+                    <div className="max-w-5xl pt-24 m-auto">
                         {children}
                         {modal}
                     </div>

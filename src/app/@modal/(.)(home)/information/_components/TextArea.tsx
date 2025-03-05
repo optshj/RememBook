@@ -13,14 +13,22 @@ export default function TextArea({ isbn13 }: TextAreaProps) {
     const [text, setText] = useState("")
 
     useEffect(() => {
-        const localBookData = localStorage.getItem(isbn13 + "text")
-        setText(localBookData ? localBookData : "")
+        const localBookData = localStorage.getItem(isbn13)
+        if (localBookData) {
+            const parsedData = JSON.parse(localBookData)
+            setText(parsedData.text || "")
+        }
     }, [isbn13])
 
     const handleSave = () => {
-        localStorage.setItem(isbn13 + "text", text)
+        const localBookData = localStorage.getItem(isbn13)
+        const bookData = localBookData ? JSON.parse(localBookData) : {}
+        const newBookData = {
+            ...bookData,
+            text
+        }
+        localStorage.setItem(isbn13, JSON.stringify(newBookData))
         setIsSaved(true)
-        setTimeout(() => setIsSaved(false), 2000)
     }
 
     return (

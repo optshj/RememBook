@@ -6,6 +6,9 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
     const closeModal = () => {
         router.back()
+        setTimeout(() => {
+            router.refresh()
+        }, 100)
     }
     const stopPropagation = (e: React.MouseEvent) => {
         e.stopPropagation()

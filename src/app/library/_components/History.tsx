@@ -1,25 +1,28 @@
-import TitleText from "./TitleText"
+import { CombinedBookType } from "@/types/BookType"
 
-export default function History() {
+import TitleText from "@/components/Text/TitleText"
+
+export default function History({ bookList }: { bookList: CombinedBookType[] }) {
     return (
         <div className="flex flex-col gap-6">
             <TitleText>{"최근 독서기록🧾"}</TitleText>
             <ul className="flex flex-col gap-3">
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
+                {bookList.map(item => (
+                    <Item key={item.isbn13} book={item} />
+                ))}
             </ul>
         </div>
     )
 }
-function Item() {
+function Item({ book }: { book: CombinedBookType }) {
     return (
         <li className="flex flex-col">
-            <div className="text-xl font-bold">{"채식주의자"}</div>
-            <div className="font-semibold text-main-gray">{"2025.01.18"}</div>
+            {book && (
+                <>
+                    <div className="text-xl font-bold">{book.title}</div>
+                    <div className="font-semibold text-main-gray">{book.date}</div>
+                </>
+            )}
         </li>
     )
 }

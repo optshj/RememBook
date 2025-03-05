@@ -1,9 +1,10 @@
-"use client"
 import { ResponsiveCirclePacking } from "@nivo/circle-packing"
 
-import TitleText from "./TitleText"
+import TitleText from "@/components/Text/TitleText"
 
-export default function CircleChart() {
+import { CombinedBookType } from "@/types/BookType"
+
+export default function CircleChart({ bookList }: { bookList: CombinedBookType[] }) {
     const data = {
         name: "Books",
         color: "#d9d9d9",
