@@ -17,7 +17,7 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
         ]
     }
     return (
-        <div className="flex flex-col flex-1 h-72">
+        <div className="flex h-72 flex-1 flex-col">
             <TitleText>{"선호하는 장르🔍"}</TitleText>
             <ResponsiveCirclePacking
                 data={data}

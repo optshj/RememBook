@@ -27,7 +27,7 @@ export default function BarChart({ bookList }: { bookList: CombinedBookType[] })
     return (
         <div className="flex flex-col">
             <TitleText>{"독서 리포트📈"}</TitleText>
-            <div className="flex flex-col gap-6 mt-4">
+            <div className="mt-4 flex flex-col gap-6">
                 {monthPercentages.map((percentage, index) => (
                     <Item
                         key={index}
@@ -44,8 +44,8 @@ export default function BarChart({ bookList }: { bookList: CombinedBookType[] })
 function Item({ month, percentage, count }: { month: number; percentage: number; count: number }) {
     return (
         <div className="flex flex-row gap-4">
-            <div className="text-lg font-bold w-12 text-right">{`${month}월`}</div>
-            <div className="h-6 bg-gray-300 rounded-lg w-96">
+            <div className="w-12 text-right text-lg font-bold">{`${month}월`}</div>
+            <div className="h-6 w-96 rounded-lg bg-gray-300">
                 <div
                     className="h-full rounded-lg"
                     style={{

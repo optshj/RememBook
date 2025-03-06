@@ -44,15 +44,15 @@ export default function ScrollWrapper({ children }: { children: React.ReactNode 
         <>
             <button
                 onClick={() => handleScroll(false)}
-                className={`absolute z-10 p-2 -translate-y-1/2 border-2 rounded-full -left-14 top-1/2 ${isAtStart ? "text-main-gray cursor-default" : "text-black"}`}>
+                className={`absolute -left-14 top-1/2 z-10 -translate-y-1/2 rounded-full border-2 p-2 ${isAtStart ? "cursor-default text-main-gray" : "text-black"}`}>
                 <SlArrowLeft size={16} />
             </button>
             <button
                 onClick={() => handleScroll(true)}
-                className={`absolute z-10 p-2 -translate-y-1/2 border-2 rounded-full -right-14 top-1/2 ${isAtEnd ? "text-main-gray cursor-default" : "text-black"}`}>
+                className={`absolute -right-14 top-1/2 z-10 -translate-y-1/2 rounded-full border-2 p-2 ${isAtEnd ? "cursor-default text-main-gray" : "text-black"}`}>
                 <SlArrowRight size={16} />
             </button>
-            <ScrollContainer innerRef={scrollRef} className="flex overflow-x-auto gap-4">
+            <ScrollContainer innerRef={scrollRef} className="flex gap-4 overflow-x-auto">
                 {children}
             </ScrollContainer>
         </>

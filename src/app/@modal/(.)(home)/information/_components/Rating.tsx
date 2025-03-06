@@ -23,11 +23,11 @@ export default function Rating({ className, rating, setRating }: RatingProp) {
     }
 
     return (
-        <div ref={containerRef} className={`absolute z-50 bg-white shadow-lg rounded-md font-normal cursor-pointer ${className}`} onClick={handleClick}>
+        <div ref={containerRef} className={`absolute z-50 cursor-pointer rounded-md bg-white font-normal shadow-lg ${className}`} onClick={handleClick}>
             <div className="flex flex-row p-2">
                 {[1, 2, 3, 4, 5].map(i => (
                     <Tooltip key={i} content={i.toString()}>
-                        <FaStar key={i} className={`${i < rating + 1 && "text-yellow "}`} />
+                        <FaStar key={i} className={`${i < rating + 1 && "text-yellow"}`} />
                     </Tooltip>
                 ))}
             </div>

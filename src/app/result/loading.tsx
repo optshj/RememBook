@@ -2,23 +2,23 @@ export default function Loading() {
     return (
         <div className="flex flex-col gap-2">
             {[0, 1, 2].map(i => (
-                <div key={i} className="flex border-b-2 gap-2">
-                    <div className="flex gap-6 pb-6 border-b-2 animate-pulse">
-                        <div className="w-48 h-72 m-4 bg-gray-200 rounded-lg"></div>
+                <div key={i} className="flex gap-2 border-b-2">
+                    <div className="flex animate-pulse gap-6 border-b-2 pb-6">
+                        <div className="m-4 h-72 w-48 rounded-lg bg-gray-200"></div>
                         <div className="flex flex-col justify-center gap-2">
-                            <div className="w-32 mt-2 h-8 bg-gray-200 rounded" />
-                            <div className="w-36 mt-2 h-4 bg-gray-200 rounded" />
-                            <div className="w-48 mt-2 h-4 bg-gray-200 rounded" />
+                            <div className="mt-2 h-8 w-32 rounded bg-gray-200" />
+                            <div className="mt-2 h-4 w-36 rounded bg-gray-200" />
+                            <div className="mt-2 h-4 w-48 rounded bg-gray-200" />
                             <div>
-                                <div className="w-48 mt-2 h-6 bg-gray-200 rounded" />
-                                <div className="w-48 mt-2 h-6 bg-gray-200 rounded" />
-                                <div className="w-48 mt-2 h-6 bg-gray-200 rounded" />
+                                <div className="mt-2 h-6 w-48 rounded bg-gray-200" />
+                                <div className="mt-2 h-6 w-48 rounded bg-gray-200" />
+                                <div className="mt-2 h-6 w-48 rounded bg-gray-200" />
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-5 ml-auto justify-center mr-5">
-                        <div className="w-40 h-10 bg-gray-200 rounded-lg"></div>
-                        <div className="w-40 h-10 bg-gray-200 rounded-lg"></div>
+                    <div className="ml-auto mr-5 flex flex-col justify-center gap-5">
+                        <div className="h-10 w-40 rounded-lg bg-gray-200"></div>
+                        <div className="h-10 w-40 rounded-lg bg-gray-200"></div>
                     </div>
                 </div>
             ))}

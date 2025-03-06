@@ -84,7 +84,7 @@ export default function Library() {
 
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex flex-row justify-between gap-4 items-center">
+            <div className="flex flex-row items-center justify-between gap-4">
                 <CircleChart bookList={combinedList} />
                 <BarChart bookList={combinedList} />
             </div>

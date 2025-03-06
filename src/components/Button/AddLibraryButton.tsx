@@ -7,7 +7,7 @@ interface SearchItemButtonProps {
 }
 export default function AddLibraryButton({ onClick, children }: SearchItemButtonProps) {
     return (
-        <button className="flex w-40 h-10 bg-mocha rounded-lg items-center justify-center text-white gap-2 font-semibold">
+        <button className="flex h-10 w-40 items-center justify-center gap-2 rounded-lg bg-mocha font-semibold text-white">
             <BiSolidBookAlt />
             {children}
         </button>

@@ -19,7 +19,7 @@ export default async function Result({ searchParams }: { searchParams: { [key: s
         books = parsedData.item
     } catch (error) {
         return (
-            <div className="w-full mt-10 flex flex-col items-center justify-center font-semibold text-xl gap-1">
+            <div className="mt-10 flex w-full flex-col items-center justify-center gap-1 text-xl font-semibold">
                 {"데이터를 불러오는 중 문제가 발생했습니다."}
             </div>
         )

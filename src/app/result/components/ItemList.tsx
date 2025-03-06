@@ -49,8 +49,8 @@ export default function ItemList({ books }: { books: BookType[] }) {
             {items.map((book: BookType) => (
                 <Item book={book} key={book.isbn13} />
             ))}
-            <div ref={observerRef} className="h-10 w-full flex items-center justify-center">
-                {loading && <div className="font-semibold text-lg">{"로딩중"}</div>}
+            <div ref={observerRef} className="flex h-10 w-full items-center justify-center">
+                {loading && <div className="text-lg font-semibold">{"로딩중"}</div>}
             </div>
         </div>
     )
@@ -72,33 +72,33 @@ function Item({ book }: { book: BookType }) {
     }, [book.isbn13])
 
     return (
-        <div className="flex border-b-2 gap-2">
-            <div className="w-48 h-72 relative m-4 rounded-lg">
+        <div className="flex gap-2 border-b-2">
+            <div className="relative m-4 h-72 w-48 rounded-lg">
                 <Image src={book.cover} alt={book.title} className="rounded-lg" quality={100} sizes="20vw" fill={true} />
             </div>
-            <div className="flex flex-col my-10 gap-2">
-                <div className="font-bold text-black text-lg">{book.title.split("-")[0]}</div>
+            <div className="my-10 flex flex-col gap-2">
+                <div className="text-lg font-bold text-black">{book.title.split("-")[0]}</div>
                 <div className="font-semibold text-main-gray">{book.author}</div>
                 <div className="font-semibold text-main-gray">{book.categoryName}</div>
                 <div className="flex flex-row font-semibold text-main-gray">
-                    <div className="flex flex-col mr-2">
+                    <div className="mr-2 flex flex-col">
                         {["나의평가", "읽은기간", "상태"].map(label => (
                             <div key={label} className="py-1">
                                 {label}
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col ">
-                        <div className="text-yellow flex gap-1 items-center p-1 ">
+                    <div className="flex flex-col">
+                        <div className="flex items-center gap-1 p-1 text-yellow">
                             <FaStar />
                             {rating || "비어있음"}
                         </div>
-                        <div className="p-1 ">{date || "비어있음"}</div>
+                        <div className="p-1">{date || "비어있음"}</div>
                         <StateButton state={state} className="mx-1 my-2" />
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-5 ml-auto justify-center mr-5">
+            <div className="ml-auto mr-5 flex flex-col justify-center gap-5">
                 <AddLibraryButton>{"내 서재에 담기"}</AddLibraryButton>
                 <BookReportButton isbn13={book.isbn13} large={true} />
             </div>

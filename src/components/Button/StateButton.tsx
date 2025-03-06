@@ -46,8 +46,8 @@ export default function StateButton({ state = 0, className = "", onClick }: Stat
 
     const { backgroundColor, circleColor, text } = getStatusProps()
     return (
-        <button className={`flex items-center gap-1 px-1 py-0.5 rounded-md w-fit ${className}`} style={{ backgroundColor }} onClick={onClick}>
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: circleColor }} />
+        <button className={`flex w-fit items-center gap-1 rounded-md px-1 py-0.5 ${className}`} style={{ backgroundColor }} onClick={onClick}>
+            <div className="h-3 w-3 rounded-full" style={{ backgroundColor: circleColor }} />
             <div className="text-xs font-semibold text-black">{text}</div>
         </button>
     )

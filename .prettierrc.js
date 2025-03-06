@@ -11,5 +11,6 @@ module.exports = {
     bracketSameLine: true,
     parser: "typescript",
     singleAttributePerLine: false,
-    trailingComma: "none"
+    trailingComma: "none",
+    plugins: ["prettier-plugin-tailwindcss"]
 }

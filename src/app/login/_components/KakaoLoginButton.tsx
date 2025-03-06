@@ -5,7 +5,7 @@ export default async function KakaoLoginButton() {
 
     return (
         <Link href={link}>
-            <button className="bg-kakao px-32 py-4 font-bold rounded-lg text-lg mt-6 text-">{"카카오로 로그인"}</button>
+            <button className="text- mt-6 rounded-lg bg-kakao px-32 py-4 text-lg font-bold">{"카카오로 로그인"}</button>
         </Link>
     )
 }

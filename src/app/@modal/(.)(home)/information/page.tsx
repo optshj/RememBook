@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
     } catch (error) {
         return (
             <Modal>
-                <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="rounded-lg bg-white p-8 shadow-lg">
                     <div className="font-semibold">{"데이터를 불러오는 중 문제가 발생했습니다."}</div>
                 </div>
             </Modal>
@@ -35,15 +35,15 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
     return (
         <Suspense fallback={<Loading />}>
             <Modal>
-                <div className="flex flex-col gap-6 p-8 bg-white rounded-lg shadow-lg w-[700px]">
-                    <div className="flex gap-6 pb-6 border-b-2">
-                        <div className="relative w-48 h-72 flex-shrink-0">
+                <div className="flex w-[700px] flex-col gap-6 rounded-lg bg-white p-8 shadow-lg">
+                    <div className="flex gap-6 border-b-2 pb-6">
+                        <div className="relative h-72 w-48 flex-shrink-0">
                             <Image className="rounded-lg" src={book.cover} alt="책이미지" priority fill sizes="20vw" />
                         </div>
                         <div className="flex flex-col justify-center gap-2">
-                            <div className="text-xl font-bold text-black whitespace-normal">{book.title.split("-")[0]}</div>
+                            <div className="whitespace-normal text-xl font-bold text-black">{book.title.split("-")[0]}</div>
                             <div className="text-sm font-semibold text-main-gray">{book.author || "저자 미상"}</div>
-                            <div className="text-sm text-main-gray font-semibold">
+                            <div className="text-sm font-semibold text-main-gray">
                                 {category.map((item: string, index: number) => (
                                     <span key={index}>
                                         {item}

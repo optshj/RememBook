@@ -12,9 +12,9 @@ interface ToggleButtonProps {
 export default function ToggleButton({ className, onClick, state }: ToggleButtonProps) {
     return (
         <button
-            className={`flex  w-10 items-center rounded-xl p-0.5 transition-all ${state ? "bg-blue-500" : "bg-zinc-400 hover:bg-zinc-500 "} ${className}`}
+            className={`flex w-10 items-center rounded-xl p-0.5 transition-all ${state ? "bg-blue-500" : "bg-zinc-400 hover:bg-zinc-500"} ${className}`}
             onClick={onClick}>
-            <div className={`w-4 h-4 rounded-full bg-white transition-all duration-300 ${state && "translate-x-5"}`}></div>
+            <div className={`h-4 w-4 rounded-full bg-white transition-all duration-300 ${state && "translate-x-5"}`}></div>
         </button>
     )
 }

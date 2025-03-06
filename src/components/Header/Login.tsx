@@ -19,12 +19,12 @@ export default function Login() {
                 <div className="flex items-center">
                     <div className="mx-2 p-0.5 text-sm">{userData.properties.nickname}님</div>
                     <Link href={"/"} onClick={handleLogout} replace prefetch={false}>
-                        <div className="mx-2 px-1 py-0.5 text-sm rounded-lg border-2 border-solid cursor-pointer flex items-center">{"로그아웃"}</div>
+                        <div className="mx-2 flex cursor-pointer items-center rounded-lg border-2 border-solid px-1 py-0.5 text-sm">{"로그아웃"}</div>
                     </Link>
                 </div>
             ) : (
                 <Link href={"/login"}>
-                    <div className="mx-2 px-1 py-0.5 text-sm rounded-lg border-2 border-solid cursor-pointer flex items-center">{"로그인"}</div>
+                    <div className="mx-2 flex cursor-pointer items-center rounded-lg border-2 border-solid px-1 py-0.5 text-sm">{"로그인"}</div>
                 </Link>
             )}
         </>

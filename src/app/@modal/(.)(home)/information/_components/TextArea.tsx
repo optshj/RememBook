@@ -34,20 +34,20 @@ export default function TextArea({ isbn13 }: TextAreaProps) {
     return (
         <div className="relative">
             <div
-                className={`absolute bottom-1/2 left-1/2 transform -translate-x-1/2 font-bold bg-mocha text-white text-sm px-4 py-2 rounded-lg transition-all duration-500 pointer-events-none ${
-                    isSaved ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                className={`pointer-events-none absolute bottom-1/2 left-1/2 -translate-x-1/2 transform rounded-lg bg-mocha px-4 py-2 text-sm font-bold text-white transition-all duration-500 ${
+                    isSaved ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                 }`}>
                 {"저장되었습니다!"}
             </div>
 
             <textarea
-                className="w-full p-4 text-left text-black align-top rounded-lg resize-none bg-zinc-100 h-60"
+                className="h-60 w-full resize-none rounded-lg bg-zinc-100 p-4 text-left align-top text-black"
                 placeholder="독후감을 작성해주세요. (500자 이내)"
                 spellCheck={false}
                 value={text}
                 onChange={e => setText(e.target.value)}
             />
-            <div className="flex justify-center gap-2 mt-2">
+            <div className="mt-2 flex justify-center gap-2">
                 <CommonButton onClick={handleSave}>{"저장하기"}</CommonButton>
                 <BackButton color="main-gray">{"닫기"}</BackButton>
             </div>
