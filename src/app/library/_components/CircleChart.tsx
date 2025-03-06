@@ -6,7 +6,7 @@ import { CombinedBookType } from "@/types/BookType"
 
 export default function CircleChart({ bookList }: { bookList: CombinedBookType[] }) {
     const data = {
-        name: "Books",
+        name: "genre",
         color: "#d9d9d9",
         children: [
             { name: "소설", loc: 120, color: "#74b9ff" },
@@ -18,7 +18,7 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
     }
     return (
         <div className="flex h-72 flex-1 flex-col">
-            <TitleText>{"선호하는 장르🔍"}</TitleText>
+            <TitleText className="mb-4">{"선호하는 장르🔍"}</TitleText>
             <ResponsiveCirclePacking
                 data={data}
                 id="name"

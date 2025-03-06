@@ -8,6 +8,7 @@ import BarChart from "./_components/BarChart"
 
 import { BookType } from "@/types/AladinAPIType"
 import { LocalBookType, CombinedBookType } from "@/types/BookType"
+import Loading from "./loading"
 
 export default function Library() {
     const [localList, setLocalList] = useState<LocalBookType[]>([])
@@ -83,15 +84,18 @@ export default function Library() {
     }, [localList, bookList])
 
     return (
-        <div className="flex flex-col gap-6">
-            <div className="flex flex-row items-center justify-between gap-4">
-                <CircleChart bookList={combinedList} />
-                <BarChart bookList={combinedList} />
+        <>
+            <div className="flex flex-col gap-6">
+                <div className="flex flex-row items-center justify-between gap-4">
+                    <CircleChart bookList={combinedList} />
+                    <BarChart bookList={combinedList} />
+                </div>
+                <div className="flex flex-row justify-between gap-4">
+                    <MyBooks bookList={combinedList} />
+                    <History bookList={combinedList} />
+                </div>
             </div>
-            <div className="flex flex-row justify-between gap-4">
-                <MyBooks bookList={combinedList} />
-                <History bookList={combinedList} />
-            </div>
-        </div>
+            <Loading />
+        </>
     )
 }

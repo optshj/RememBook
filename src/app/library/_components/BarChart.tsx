@@ -3,7 +3,7 @@ import { CombinedBookType } from "@/types/BookType"
 import TitleText from "@/components/Text/TitleText"
 
 export default function BarChart({ bookList }: { bookList: CombinedBookType[] }) {
-    const date = new Date()
+    const date = new Date("2021-12-01")
     const currentMonth = date.getMonth()
     const currentYear = date.getFullYear()
 
@@ -43,9 +43,9 @@ export default function BarChart({ bookList }: { bookList: CombinedBookType[] })
 
 function Item({ month, percentage, count }: { month: number; percentage: number; count: number }) {
     return (
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-2">
             <div className="w-12 text-right text-lg font-bold">{`${month}월`}</div>
-            <div className="h-6 w-96 rounded-lg bg-gray-300">
+            <div className="h-6 w-72 rounded-lg bg-gray-300">
                 <div
                     className="h-full rounded-lg"
                     style={{
@@ -53,7 +53,7 @@ function Item({ month, percentage, count }: { month: number; percentage: number;
                         backgroundColor: "#8B5E3C"
                     }}></div>
             </div>
-            <div className="text-lg font-bold text-main-gray">{`${count}권`}</div>
+            <div className="w-8 text-right text-lg font-bold text-main-gray">{`${count}권`}</div>
         </div>
     )
 }

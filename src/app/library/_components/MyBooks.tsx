@@ -25,19 +25,17 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
                     {"완료"}
                 </button>
             </div>
-            <Suspense fallback={<div>{"로딩 중..."}</div>}>
-                {bookList.length === 0 ? (
-                    <div className="m-auto text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
-                ) : (
-                    <div className="grid grid-cols-4">
-                        {bookList
-                            .filter(item => state === 0 || item.state === state)
-                            .map(item => (
-                                <Item key={item.isbn13} data={item} />
-                            ))}
-                    </div>
-                )}
-            </Suspense>
+            {bookList.length === 0 ? (
+                <div className="m-auto text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
+            ) : (
+                <div className="grid grid-cols-4">
+                    {bookList
+                        .filter(item => state === 0 || item.state === state)
+                        .map(item => (
+                            <Item key={item.isbn13} data={item} />
+                        ))}
+                </div>
+            )}
         </div>
     )
 }
