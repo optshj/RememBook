@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import MyBooks from "./_components/MyBooks"
 import CircleChart from "./_components/CircleChart"
@@ -84,7 +84,7 @@ export default function Library() {
     }, [localList, bookList])
 
     return (
-        <>
+        <Suspense fallback={<Loading />}>
             <div className="flex flex-col gap-6">
                 <div className="flex flex-row items-center justify-between gap-4">
                     <CircleChart bookList={combinedList} />
@@ -95,7 +95,6 @@ export default function Library() {
                     <History bookList={combinedList} />
                 </div>
             </div>
-            <Loading />
-        </>
+        </Suspense>
     )
 }

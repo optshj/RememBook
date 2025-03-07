@@ -3,7 +3,7 @@ import { CombinedBookType } from "@/types/BookType"
 import TitleText from "@/components/Text/TitleText"
 
 export default function BarChart({ bookList }: { bookList: CombinedBookType[] }) {
-    const date = new Date("2021-12-01")
+    const date = new Date()
     const currentMonth = date.getMonth()
     const currentYear = date.getFullYear()
 
