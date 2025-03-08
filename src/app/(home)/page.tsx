@@ -5,8 +5,8 @@ import { BookType } from "@/types/AladinAPIType"
 import KakaoAuthHandler from "./_components/KakaoAuthHandler"
 import Loading from "./loading"
 import Item from "./_components/Item"
-import ScrollWrapper from "@/components/Wrapper/ScrollWrapper"
-import TitleText from "@/components/Text/TitleText"
+import ScrollWrapper from "@/app/_components/Wrapper/ScrollWrapper"
+import TitleText from "@/app/_components/Text/TitleText"
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     const code = searchParams.code

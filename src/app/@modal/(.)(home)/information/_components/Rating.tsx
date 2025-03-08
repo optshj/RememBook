@@ -1,4 +1,4 @@
-import Tooltip from "@/components/Tooltip/Tooltip"
+import Tooltip from "@/app/_components/Tooltip/Tooltip"
 import { useRef } from "react"
 import { FaStar } from "react-icons/fa6"
 

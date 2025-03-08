@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-import Header from "@/components/Header/Header"
+import Header from "@/app/_components/Header/Header"
 import React from "react"
 import Providers from "@/store/Provider"
 

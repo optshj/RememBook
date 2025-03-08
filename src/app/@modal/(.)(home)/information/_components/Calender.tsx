@@ -3,7 +3,7 @@ import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, fo
 
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md"
 
-import ToggleButton from "@/components/Button/ToggleButton"
+import ToggleButton from "@/app/_components/Button/ToggleButton"
 
 interface CalenderProps {
     className?: string

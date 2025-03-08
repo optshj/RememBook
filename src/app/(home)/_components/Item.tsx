@@ -4,8 +4,8 @@ import Image from "next/image"
 
 import { BookType } from "@/types/AladinAPIType"
 
-import StateButton from "@/components/Button/StateButton"
-import BookReportButton from "@/components/Button/BookReportButton"
+import StateButton from "@/app/_components/Button/StateButton"
+import BookReportButton from "@/app/_components/Button/BookReportButton"
 
 export default function Item({ book }: { book: BookType }) {
     const category = book.categoryName

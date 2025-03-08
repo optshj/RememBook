@@ -20,6 +20,23 @@ const config: Config = {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
+            },
+            keyframes: {
+                ripple: {
+                    "0%": {
+                        width: "0px",
+                        height: "0px",
+                        opacity: "0.6"
+                    },
+                    "100%": {
+                        width: "400px",
+                        height: "400px",
+                        opacity: "0"
+                    }
+                }
+            },
+            animation: {
+                ripple: "ripple 0.6s ease-out"
             }
         }
     },

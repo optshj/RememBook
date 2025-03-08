@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import Image from "next/image"
 
 import Loading from "./loading"
-import Modal from "@/components/Modal/Modal"
+import Modal from "@/app/_components/Modal/Modal"
 import TextArea from "./_components/TextArea"
 import BookDetails from "./_components/BookDetails"
 

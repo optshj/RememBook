@@ -6,9 +6,9 @@ import { BookType } from "@/types/AladinAPIType"
 
 import { FaStar } from "react-icons/fa6"
 
-import StateButton from "@/components/Button/StateButton"
-import AddLibraryButton from "@/components/Button/AddLibraryButton"
-import BookReportButton from "@/components/Button/BookReportButton"
+import StateButton from "@/app/_components/Button/StateButton"
+import AddLibraryButton from "@/app/_components/Button/AddLibraryButton"
+import BookReportButton from "@/app/_components/Button/BookReportButton"
 
 export default function ItemList({ books }: { books: BookType[] }) {
     const [items, setItems] = useState<BookType[]>(books.slice(0, 10))
@@ -59,7 +59,7 @@ export default function ItemList({ books }: { books: BookType[] }) {
 function Item({ book }: { book: BookType }) {
     const [state, setState] = useState(0)
     const [date, setDate] = useState("")
-    const [rating, setRating] = useState()
+    const [rating, setRating] = useState(0)
 
     useEffect(() => {
         const localBookData = localStorage.getItem(book.isbn13)
@@ -70,7 +70,12 @@ function Item({ book }: { book: BookType }) {
             setState(state)
         }
     }, [book.isbn13])
-
+    const addLibrary = () => {
+        const localBookData = localStorage.getItem(book.isbn13)
+        if (!localBookData) {
+            localStorage.setItem(book.isbn13, JSON.stringify({ rating: 0, date: "", state: 0, text: "" }))
+        }
+    }
     return (
         <div className="flex gap-2 border-b-2">
             <div className="relative m-4 h-72 w-48 rounded-lg">
@@ -99,7 +104,7 @@ function Item({ book }: { book: BookType }) {
                 </div>
             </div>
             <div className="ml-auto mr-5 flex flex-col justify-center gap-5">
-                <AddLibraryButton>{"내 서재에 담기"}</AddLibraryButton>
+                <AddLibraryButton onClick={addLibrary} />
                 <BookReportButton isbn13={book.isbn13} large={true} />
             </div>
         </div>

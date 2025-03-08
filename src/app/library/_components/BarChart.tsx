@@ -1,6 +1,6 @@
 import { CombinedBookType } from "@/types/BookType"
 
-import TitleText from "@/components/Text/TitleText"
+import TitleText from "@/app/_components/Text/TitleText"
 
 export default function BarChart({ bookList }: { bookList: CombinedBookType[] }) {
     const date = new Date()

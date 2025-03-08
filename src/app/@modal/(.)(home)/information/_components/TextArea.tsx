@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
 
-import CommonButton from "@/components/Button/CommonButton"
-import BackButton from "@/components/Button/BackButton"
+import CommonButton from "@/app/_components/Button/CommonButton"
+import BackButton from "@/app/_components/Button/BackButton"
 
 interface TextAreaProps {
     isbn13: string

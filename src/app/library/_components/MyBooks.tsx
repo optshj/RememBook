@@ -3,9 +3,9 @@ import Image from "next/image"
 
 import { CombinedBookType } from "@/types/BookType"
 
-import TitleText from "@/components/Text/TitleText"
-import StateButton from "@/components/Button/StateButton"
-import BookReportButton from "@/components/Button/BookReportButton"
+import TitleText from "@/app/_components/Text/TitleText"
+import StateButton from "@/app/_components/Button/StateButton"
+import BookReportButton from "@/app/_components/Button/BookReportButton"
 
 export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) {
     const [state, setState] = useState(3)

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react"
 
 import { FaStar } from "react-icons/fa6"
 
-import StateButton from "@/components/Button/StateButton"
+import StateButton from "@/app/_components/Button/StateButton"
 import Calender from "./Calender"
 import Rating from "./Rating"
 

@@ -1,6 +1,6 @@
 import { ResponsiveCirclePacking } from "@nivo/circle-packing"
 
-import TitleText from "@/components/Text/TitleText"
+import TitleText from "@/app/_components/Text/TitleText"
 
 import { CombinedBookType } from "@/types/BookType"
 
