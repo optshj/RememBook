@@ -16,18 +16,22 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
             <MainItemList queryType="Bestseller" title="베스트셀러! 👍" />
             <MainItemList queryType="ItemNewSpecial" title="주목할만한 신간 🔍" />
             <MainItemList queryType="BlogBest" title="블로그 베스트" />
-            <div>{"내 서재에 있는 책`"}</div>
+            <MainItemList queryType="BlogBest" title="블로그 베스트" />
         </Suspense>
     )
 }
-
-async function MainItemList({ title, queryType }: { title: string; queryType: string }) {
+interface MainItemListProps {
+    title: string
+    queryType: string
+    category?: number
+}
+async function MainItemList({ title, queryType, category = 0 }: MainItemListProps) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ queryType }),
+        body: JSON.stringify({ queryType, category }),
         cache: "no-store"
     })
     const data = await response.json()

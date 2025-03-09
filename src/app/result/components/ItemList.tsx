@@ -5,6 +5,7 @@ import Image from "next/image"
 import { BookType } from "@/types/AladinAPIType"
 
 import { FaStar } from "react-icons/fa6"
+import { AiOutlineLoading } from "react-icons/ai"
 
 import StateButton from "@/app/_components/Button/StateButton"
 import AddLibraryButton from "@/app/_components/Button/AddLibraryButton"
@@ -39,7 +40,6 @@ export default function ItemList({ books }: { books: BookType[] }) {
             },
             { threshold: 1.0 }
         )
-
         if (observerRef.current) observer.observe(observerRef.current)
         return () => observer.disconnect()
     }, [fetchMoreBooks])
@@ -49,8 +49,8 @@ export default function ItemList({ books }: { books: BookType[] }) {
             {items.map((book: BookType) => (
                 <Item book={book} key={book.isbn13} />
             ))}
-            <div ref={observerRef} className="flex h-10 w-full items-center justify-center">
-                {loading && <div className="text-lg font-semibold">{"로딩중"}</div>}
+            <div ref={observerRef} className="flex h-20 w-full items-center justify-center">
+                {loading && <AiOutlineLoading className="h-12 w-12 animate-spin text-gray-200" />}
             </div>
         </div>
     )
@@ -78,7 +78,7 @@ function Item({ book }: { book: BookType }) {
     }
     return (
         <div className="flex gap-2 border-b-2">
-            <div className="relative m-4 h-72 w-48 rounded-lg">
+            <div className="relative m-4 h-72 w-48 flex-shrink-0 rounded-lg">
                 <Image src={book.cover} alt={book.title} className="rounded-lg" quality={100} sizes="20vw" fill={true} />
             </div>
             <div className="my-10 flex flex-col gap-2">

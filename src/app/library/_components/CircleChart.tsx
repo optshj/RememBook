@@ -8,9 +8,12 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
     const categoryCount: Record<string, number> = {}
 
     bookList.forEach(book => {
-        book.categoryName.split(">").forEach(category => {
-            categoryCount[category] = (categoryCount[category] || 0) + 1
-        })
+        book.categoryName
+            .split(">")
+            .slice(1) // Remove the first element which is "localbook"
+            .forEach(category => {
+                categoryCount[category] = (categoryCount[category] || 0) + 1
+            })
     })
 
     const topCategories = Object.entries(categoryCount)

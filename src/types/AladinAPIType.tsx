@@ -35,3 +35,7 @@ export interface Author {
     authorid: string
     desc: string
 }
+export interface CategoryType {
+    categoryId: string
+    categoryName: string
+}
