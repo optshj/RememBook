@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react"
 
-import { useAppDispatch, useAppSelector } from "@/store/Store"
+import { useAppDispatch, useAppSelector } from "@/store/Provider"
 import { setAccessToken } from "@/store/module/accessToken"
 import { setUserData } from "@/store/module/KakaoUserData"
 

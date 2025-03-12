@@ -6,4 +6,5 @@ export interface LocalBookType {
     rating: number
     date: string
 }
+
 export interface CombinedBookType extends LocalBookType, BookType {}

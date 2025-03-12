@@ -5,7 +5,6 @@ interface TooltipProps {
     children: React.ReactNode
     content: string
 }
-
 export default function Tooltip({ children, content }: TooltipProps) {
     const [visible, setVisible] = useState(false)
 

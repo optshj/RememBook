@@ -8,9 +8,15 @@ export default function History({ bookList }: { bookList: CombinedBookType[] }) 
         <div className="flex w-60 flex-col gap-6">
             <TitleText>{"최근 독서기록🧾"}</TitleText>
             <ul className="flex flex-col gap-3">
-                {sortedBookList.map(item => (
-                    <Item key={item.isbn13} book={item} />
-                ))}
+                {sortedBookList.length === 0 ? (
+                    <div className="m-auto text-center text-xl font-semibold text-main-gray">
+                        {"아직 기록이 없네요!"}
+                        <br />
+                        {"지금부터 시작해보세요!"}
+                    </div>
+                ) : (
+                    sortedBookList.map(item => <Item key={item.isbn13} book={item} />)
+                )}
             </ul>
         </div>
     )

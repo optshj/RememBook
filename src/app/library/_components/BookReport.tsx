@@ -2,7 +2,7 @@ import { CombinedBookType } from "@/types/BookType"
 
 import TitleText from "@/app/_components/Text/TitleText"
 
-export default function BarChart({ bookList }: { bookList: CombinedBookType[] }) {
+export default function BookReport({ bookList }: { bookList: CombinedBookType[] }) {
     const date = new Date()
     const currentMonth = date.getMonth()
     const currentYear = date.getFullYear()
@@ -11,7 +11,8 @@ export default function BarChart({ bookList }: { bookList: CombinedBookType[] })
     threeMonthsAgo.setMonth(currentMonth - 3)
     const monthCount = [0, 0, 0]
     bookList.forEach(item => {
-        const bookDate = new Date(item.date)
+        const date = item.date.split("~")[0]
+        const bookDate = new Date(date)
         const bookYear = bookDate.getFullYear()
         const bookMonth = bookDate.getMonth()
 

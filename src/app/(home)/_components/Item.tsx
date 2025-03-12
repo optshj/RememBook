@@ -1,11 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
-import Image from "next/image"
 
 import { BookType } from "@/types/AladinAPIType"
 
-import StateButton from "@/app/_components/Button/StateButton"
-import BookReportButton from "@/app/_components/Button/BookReportButton"
+import ItemImage from "@/app/_components/Items/ItemImage"
 
 export default function Item({ book }: { book: BookType }) {
     const category = book.categoryName
@@ -21,14 +19,9 @@ export default function Item({ book }: { book: BookType }) {
     }, [])
     return (
         <li className="relative flex flex-col">
-            <div className="group relative h-72 w-48">
-                <Image src={book.cover} alt={book.title} className="cursor-pointer rounded-lg" quality={100} sizes="20vw" fill={true} />
-                <div className="absolute inset-0 rounded-lg bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
-                <StateButton state={state} className="absolute right-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <BookReportButton isbn13={book.isbn13} className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-            <div className="mt-2 text-sm font-semibold text-main-gray">{categoryArray[1]}</div>
-            <div className="line-clamp-2 whitespace-normal text-base font-bold">{book.title.split("-")[0]}</div>
+            <ItemImage book={book} state={state} className="h-72 w-48" />
+            <h2 className="mt-2 text-sm text-main-gray">{categoryArray[1]}</h2>
+            <h1 className="line-clamp-2 whitespace-normal text-base font-bold">{book.title.split("-")[0]}</h1>
         </li>
     )
 }

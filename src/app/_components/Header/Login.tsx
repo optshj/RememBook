@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 
-import { useAppSelector } from "@/store/Store"
+import { useAppSelector } from "@/store/Provider"
 
 export default function Login() {
     const userData = useAppSelector(state => state.userData.userData)

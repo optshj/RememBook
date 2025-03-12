@@ -1,5 +1,3 @@
-"use client"
-import { useState } from "react"
 /**
  * @param state 현재 상태를 나타냅니다. 기본값은 `"0"`입니다.
  * - `"0"`: 시작 전 (빨간색 배경)
@@ -10,11 +8,10 @@ import { useState } from "react"
  * <StateButton state={0} />
  */
 interface StateButtonProps {
-    state?: number
     className?: string
-    onClick?: () => void
+    state?: number
 }
-export default function StateButton({ state = 0, className = "", onClick }: StateButtonProps) {
+export default function StateButton({ className, state = 0 }: StateButtonProps) {
     const getStatusProps = () => {
         switch (state) {
             case 0:
@@ -46,7 +43,7 @@ export default function StateButton({ state = 0, className = "", onClick }: Stat
 
     const { backgroundColor, circleColor, text } = getStatusProps()
     return (
-        <button className={`flex w-fit items-center gap-1 rounded-md px-1 py-0.5 ${className}`} style={{ backgroundColor }} onClick={onClick}>
+        <button className={`flex w-fit items-center gap-1 rounded-md px-1 py-0.5 ${className}`} style={{ backgroundColor }}>
             <div className="h-3 w-3 rounded-full" style={{ backgroundColor: circleColor }} />
             <div className="text-xs font-semibold text-black">{text}</div>
         </button>

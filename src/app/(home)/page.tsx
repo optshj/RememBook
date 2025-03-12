@@ -2,6 +2,8 @@ import { Suspense } from "react"
 
 import { BookType } from "@/types/AladinAPIType"
 
+import { GoPlus } from "react-icons/go"
+
 import KakaoAuthHandler from "./_components/KakaoAuthHandler"
 import Loading from "./loading"
 import Item from "./_components/Item"
@@ -37,15 +39,19 @@ async function MainItemList({ title, queryType, category = 0 }: MainItemListProp
     const data = await response.json()
     const books: BookType[] = data.item
     return (
-        <div className="relative flex flex-col gap-4">
-            <TitleText>{title}</TitleText>
-            <div className="relative">
-                <ScrollWrapper>
-                    {books.map((book: BookType) => (
-                        <Item key={book.isbn} book={book} />
-                    ))}
-                </ScrollWrapper>
+        <div className="relative mb-6 flex flex-col gap-4">
+            <div className="flex justify-between">
+                <TitleText>{title}</TitleText>
+                <button className="flex items-center gap-1 rounded-full p-2 text-sm font-black hover:bg-zinc-100">
+                    {"더보기"}
+                    <GoPlus />
+                </button>
             </div>
+            <ScrollWrapper>
+                {books.map((book: BookType) => (
+                    <Item key={book.isbn} book={book} />
+                ))}
+            </ScrollWrapper>
         </div>
     )
 }

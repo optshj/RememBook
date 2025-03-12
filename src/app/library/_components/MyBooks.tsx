@@ -4,8 +4,7 @@ import Image from "next/image"
 import { CombinedBookType } from "@/types/BookType"
 
 import TitleText from "@/app/_components/Text/TitleText"
-import StateButton from "@/app/_components/Button/StateButton"
-import BookReportButton from "@/app/_components/Button/BookReportButton"
+import ItemImage from "@/app/_components/Items/ItemImage"
 
 export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) {
     const [state, setState] = useState(3)
@@ -30,13 +29,13 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
             {bookList.length === 0 ? (
                 <div className="m-auto text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
             ) : (
-                <div className="grid grid-cols-4 gap-4">
+                <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {bookList
                         .filter(item => state === 3 || item.state === state)
                         .map(item => (
                             <Item key={item.isbn13} book={item} />
                         ))}
-                </div>
+                </ul>
             )}
         </div>
     )
@@ -44,15 +43,10 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
 
 function Item({ book }: { book: CombinedBookType }) {
     return (
-        <div className="mb-6 flex flex-col">
-            <div className="group relative h-64 w-44">
-                <Image src={book.cover} alt={book.title} className="cursor-pointer rounded-lg" quality={100} sizes="20vw" fill={true} />
-                <div className="absolute inset-0 rounded-lg bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
-                <StateButton state={book.state} className="absolute right-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <BookReportButton isbn13={book.isbn13} className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-            <div className="mt-2 line-clamp-1 whitespace-normal font-bold">{book.title.split("-")[0]}</div>
-            <div className="line-clamp-1 whitespace-normal font-semibold text-main-gray">{book.author}</div>
-        </div>
+        <li className="mb-6 flex flex-col">
+            <ItemImage book={book} state={book.state} className="h-64 w-44" />
+            <h1 className="mt-2 line-clamp-1 whitespace-normal font-bold">{book.title.split("-")[0]}</h1>1
+            <h2 className="line-clamp-1 whitespace-normal font-semibold text-main-gray">{book.author}</h2>
+        </li>
     )
 }
