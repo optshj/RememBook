@@ -3,26 +3,22 @@ import { useEffect, useState } from "react"
 
 import CommonButton from "@/app/_components/Button/CommonButton"
 import BackButton from "@/app/_components/Button/BackButton"
+import { useAppSelector } from "@/store/Provider"
 
-interface TextAreaProps {
-    isbn13: string
-}
-
-export default function TextArea({ isbn13 }: TextAreaProps) {
+export default function TextArea({ isbn13 }: { isbn13: string }) {
     const [isSaved, setIsSaved] = useState(false)
     const [text, setText] = useState("")
+    const bookData = useAppSelector(state => state.bookData)
 
     useEffect(() => {
         const localBookData = localStorage.getItem(isbn13)
         if (localBookData) {
             const parsedData = JSON.parse(localBookData)
-            setText(parsedData.text || "")
+            setText(parsedData.text)
         }
     }, [isbn13])
 
     const handleSave = () => {
-        const localBookData = localStorage.getItem(isbn13)
-        const bookData = localBookData ? JSON.parse(localBookData) : {}
         const newBookData = {
             ...bookData,
             text
@@ -39,7 +35,6 @@ export default function TextArea({ isbn13 }: TextAreaProps) {
                 }`}>
                 {"저장되었습니다!"}
             </div>
-
             <textarea
                 className="h-60 w-full resize-none rounded-lg bg-zinc-100 p-4 text-left align-top text-black"
                 placeholder="독후감을 작성해주세요. (500자 이내)"

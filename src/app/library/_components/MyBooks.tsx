@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Image from "next/image"
 
 import { CombinedBookType } from "@/types/BookType"
 
@@ -45,7 +44,7 @@ function Item({ book }: { book: CombinedBookType }) {
     return (
         <li className="mb-6 flex flex-col">
             <ItemImage book={book} state={book.state} className="h-64 w-44" />
-            <h1 className="mt-2 line-clamp-1 whitespace-normal font-bold">{book.title.split("-")[0]}</h1>1
+            <h1 className="mt-2 line-clamp-1 whitespace-normal font-bold">{book.title.split("-")[0]}</h1>
             <h2 className="line-clamp-1 whitespace-normal font-semibold text-main-gray">{book.author}</h2>
         </li>
     )

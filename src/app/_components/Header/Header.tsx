@@ -18,13 +18,13 @@ export default function Header() {
     return (
         <div className="fixed left-0 top-0 z-50 w-full bg-white shadow-sm">
             <div className="m-auto flex max-w-5xl items-center">
-                <Link href={"/"}>
+                <Link href={"/"} aria-label="home">
                     <Logo className="h-16 cursor-pointer" width={"160px"} />
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/"} aria-label="home">
                     <button className="my-2 w-28 p-2 text-center text-lg font-bold text-black">{"홈"}</button>
                 </Link>
-                <Link href={"/library"}>
+                <Link href={"/library"} aria-label="library">
                     <button className="my-2 w-28 p-2 text-center text-lg font-bold text-black">{"내서재"}</button>
                 </Link>
                 <form className="mx-4 flex w-96 items-center justify-between rounded-3xl border-2 border-solid border-mocha" onSubmit={onSubmit}>

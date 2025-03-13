@@ -11,10 +11,10 @@ import ScrollWrapper from "@/app/_components/Wrapper/ScrollWrapper"
 import TitleText from "@/app/_components/Text/TitleText"
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
-    const code = searchParams.code
+    // const code = searchParams.code
     return (
         <Suspense fallback={<Loading />}>
-            <KakaoAuthHandler code={code} />
+            {/* <KakaoAuthHandler code={code} /> */}
             <MainItemList queryType="Bestseller" title="베스트셀러! 👍" />
             <MainItemList queryType="ItemNewSpecial" title="주목할만한 신간 🔍" />
             <MainItemList queryType="BlogBest" title="블로그 베스트" />
@@ -22,6 +22,7 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
         </Suspense>
     )
 }
+
 interface MainItemListProps {
     title: string
     queryType: string

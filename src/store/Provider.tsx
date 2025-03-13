@@ -5,11 +5,13 @@ import { Provider } from "react-redux"
 
 import accessTokenSlice from "./module/accessToken"
 import userDataSlice from "./module/KakaoUserData"
+import bookDataSlice from "./module/bookData"
 
 export const store = configureStore({
     reducer: {
         accessToken: accessTokenSlice,
-        userData: userDataSlice
+        userData: userDataSlice,
+        bookData: bookDataSlice
     }
 })
 

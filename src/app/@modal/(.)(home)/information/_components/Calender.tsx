@@ -8,9 +8,15 @@ import ToggleButton from "@/app/_components/Button/ToggleButton"
 interface CalenderProps {
     className?: string
     date: string
-    setDate: Dispatch<SetStateAction<string>>
+    setData: Dispatch<
+        SetStateAction<{
+            rating: number
+            date: string
+            state: number
+        }>
+    >
 }
-export default function Calender({ className, date, setDate }: CalenderProps) {
+export default function Calender({ className, date, setData }: CalenderProps) {
     const dateformat = "yyyy.MM.dd"
 
     const [currentDate, setCurrentDate] = useState<Date>(new Date())
@@ -76,7 +82,10 @@ export default function Calender({ className, date, setDate }: CalenderProps) {
             setEndDate(date)
             dateText = date
         }
-        setDate(dateText)
+        setData(prev => ({
+            ...prev,
+            date: dateText
+        }))
     }
     return (
         <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`}>
@@ -139,7 +148,7 @@ export default function Calender({ className, date, setDate }: CalenderProps) {
                     <ToggleButton state={isEnded} />
                 </div>
             </div>
-            <div className="cursor-pointer border-t" onClick={() => setDate("")}>
+            <div className="cursor-pointer border-t" onClick={() => setData(prev => ({ ...prev, date: "" }))}>
                 <div className="m-1 rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200">{"삭제"}</div>
             </div>
         </div>

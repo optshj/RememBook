@@ -1,14 +1,22 @@
-import Tooltip from "@/app/_components/Tooltip/Tooltip"
-import { useRef } from "react"
+import { Dispatch, SetStateAction, useRef } from "react"
+
 import { FaStar } from "react-icons/fa6"
+
+import Tooltip from "@/app/_components/Tooltip/Tooltip"
 
 interface RatingProp {
     className?: string
     rating: number
-    setRating: (rating: number) => void
+    setData: Dispatch<
+        SetStateAction<{
+            rating: number
+            date: string
+            state: number
+        }>
+    >
 }
 
-export default function Rating({ className, rating, setRating }: RatingProp) {
+export default function Rating({ className, rating, setData }: RatingProp) {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -19,7 +27,10 @@ export default function Rating({ className, rating, setRating }: RatingProp) {
         const starWidth = containerRef.current.clientWidth / 5
         const newRating = Math.min(5, Math.max(1, Math.ceil(clickX / starWidth)))
 
-        setRating(newRating)
+        setData(prev => ({
+            ...prev,
+            rating: newRating
+        }))
     }
 
     return (
