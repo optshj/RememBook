@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { ResponsiveCirclePacking } from "@nivo/circle-packing"
 import TitleText from "@/app/_components/Text/TitleText"
-import { CombinedBookType } from "@/types/BookType"
+import { CombinedBookType } from "@/app/_types/BookType"
 
 export default function CircleChart({ bookList }: { bookList: CombinedBookType[] }) {
     const [categoryData, setCategoryData] = useState<any>(null)

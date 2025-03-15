@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { CombinedBookType } from "@/types/BookType"
+import { CombinedBookType } from "@/app/_types/BookType"
 
 import TitleText from "@/app/_components/Text/TitleText"
 import ItemImage from "@/app/_components/Items/ItemImage"

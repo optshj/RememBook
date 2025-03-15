@@ -1,13 +1,12 @@
 "use client"
+import { setAccessToken } from "@/app/_store/module/accessToken"
+import { setUserData } from "@/app/_store/module/KakaoUserData"
+import { useAppDispatch, useAppSelector } from "@/app/_store/Provider"
 import { useEffect } from "react"
-
-import { useAppDispatch, useAppSelector } from "@/store/Provider"
-import { setAccessToken } from "@/store/module/accessToken"
-import { setUserData } from "@/store/module/KakaoUserData"
 
 export default function KakaoAuthHandler({ code }: { code?: string }) {
     const dispatch = useAppDispatch()
-    const accessToken = useAppSelector(state => state.accessToken.accessToken)
+    const accessToken = useAppSelector(state => state.accessToken)
 
     const fetchAccessToken = async (code?: string) => {
         try {

@@ -2,7 +2,9 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 
-import { BookType } from "@/types/AladinAPIType"
+import { BookType } from "@/app/_types/AladinAPIType"
+
+import { addItem } from "@/app/_hooks/useLocalStorageBook"
 
 import { FaStar } from "react-icons/fa6"
 import { AiOutlineLoading } from "react-icons/ai"
@@ -57,25 +59,14 @@ export default function ItemList({ books }: { books: BookType[] }) {
 }
 
 function Item({ book }: { book: BookType }) {
-    const [state, setState] = useState(0)
-    const [date, setDate] = useState("")
-    const [rating, setRating] = useState(0)
-
+    const [data, setData] = useState({ rating: 0, date: "", state: 0 })
     useEffect(() => {
         const localBookData = localStorage.getItem(book.isbn13)
         if (localBookData) {
-            const { rating, date, state } = JSON.parse(localBookData)
-            setRating(rating)
-            setDate(date)
-            setState(state)
+            setData(JSON.parse(localBookData))
         }
     }, [book.isbn13])
-    const addLibrary = () => {
-        const localBookData = localStorage.getItem(book.isbn13)
-        if (!localBookData) {
-            localStorage.setItem(book.isbn13, JSON.stringify({ rating: 0, date: "", state: 0, text: "" }))
-        }
-    }
+
     return (
         <div className="flex gap-2 border-b-2">
             <div className="relative m-4 h-72 w-48 flex-shrink-0 rounded-lg">
@@ -96,15 +87,15 @@ function Item({ book }: { book: BookType }) {
                     <div className="flex flex-col">
                         <div className="flex items-center gap-1 p-1 text-yellow">
                             <FaStar />
-                            {rating || "비어있음"}
+                            {data.rating || "비어있음"}
                         </div>
-                        <div className="p-1">{date || "비어있음"}</div>
-                        <StateButton state={state} className="mx-1 my-2" />
+                        <div className="p-1">{data.date || "비어있음"}</div>
+                        <StateButton state={data.state} className="mx-1 my-2" />
                     </div>
                 </div>
             </div>
             <div className="ml-auto mr-5 flex flex-col justify-center gap-5">
-                <AddLibraryButton onClick={addLibrary} />
+                <AddLibraryButton onClick={() => addItem(book.isbn13)} />
                 <BookReportButton isbn13={book.isbn13} large={true} />
             </div>
         </div>

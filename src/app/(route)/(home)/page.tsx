@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 
-import { BookType } from "@/types/AladinAPIType"
+import { BookType } from "@/app/_types/AladinAPIType"
 
 import { GoPlus } from "react-icons/go"
 

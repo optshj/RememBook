@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 
-import { BookType } from "@/types/AladinAPIType"
+import { BookType } from "@/app/_types/AladinAPIType"
 
 import ItemImage from "@/app/_components/Items/ItemImage"
 

@@ -4,7 +4,7 @@ import "./globals.css"
 
 import Header from "@/app/_components/Header/Header"
 import React from "react"
-import Providers from "@/store/Provider"
+import Providers from "@/app/_store/Provider"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 

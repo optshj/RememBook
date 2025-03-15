@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
 
-import { LocalBookType, CombinedBookType } from "@/types/BookType"
-import { BookType } from "@/types/AladinAPIType"
+import { LocalBookType, CombinedBookType } from "@/app/_types/BookType"
+import { BookType } from "@/app/_types/AladinAPIType"
 
 import MyBooks from "./_components/MyBooks"
 import CircleChart from "./_components/CircleChart"

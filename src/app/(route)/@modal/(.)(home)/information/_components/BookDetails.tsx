@@ -7,8 +7,8 @@ import StateButton from "@/app/_components/Button/StateButton"
 import Calender from "./Calender"
 import Rating from "./Rating"
 
-import { useAppDispatch } from "@/store/Provider"
-import { setBookData } from "@/store/module/bookData"
+import { useAppDispatch } from "@/app/_store/Provider"
+import { setBookData } from "@/app/_store/module/bookData"
 
 interface BookDetailsProps {
     isbn13: string

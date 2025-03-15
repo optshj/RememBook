@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { KakaoUser } from "../../types/KakaoUserData"
+import { KakaoUser } from "../../_types/KakaoUserData"
 
 interface UserState {
     userData: KakaoUser | null
