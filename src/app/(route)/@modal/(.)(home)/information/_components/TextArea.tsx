@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 
 import CommonButton from "@/app/_components/Button/CommonButton"
 import BackButton from "@/app/_components/Button/BackButton"
-import { useAppSelector } from "@/store/Provider"
+
+import { useAppSelector } from "@/app/_store/Provider"
 
 export default function TextArea({ isbn13 }: { isbn13: string }) {
     const [isSaved, setIsSaved] = useState(false)
