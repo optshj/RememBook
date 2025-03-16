@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         google: "huSHYvBftuJFa028T6tGdShVcrWecu4qHuQWqhyKrmU"
     },
     openGraph: {
-        title: "RememBOOK:리멤북",
+        title: "RememBOOK",
         locale: "ko_KR",
         siteName: "RememBOOK",
         url: "https://remem-book.vercel.app",
