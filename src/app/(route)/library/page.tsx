@@ -91,11 +91,11 @@ export default function Library() {
 
     return (
         <div className="flex flex-col gap-6">
-            <div className="flex flex-row items-center justify-between gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row">
                 <CircleChart bookList={combinedList} />
                 <BookReport bookList={combinedList} />
             </div>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <MyBooks bookList={combinedList} />
                 <History bookList={combinedList} />
             </div>

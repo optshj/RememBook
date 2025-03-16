@@ -17,7 +17,7 @@ export default function Header() {
     }
     return (
         <div className="fixed left-0 top-0 z-50 w-full bg-white shadow-sm">
-            <div className="m-auto flex max-w-5xl items-center">
+            <div className="mx-4 flex max-w-5xl items-center lg:m-auto">
                 <Link href={"/"} aria-label="home">
                     <Logo className="h-16 cursor-pointer" width={"160px"} />
                 </Link>

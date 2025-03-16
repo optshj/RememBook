@@ -25,7 +25,7 @@ export default function ItemImage({ book, state, className }: ItemImageProps) {
     return (
         <div className={`group relative ${className} `}>
             <Link href={`/information?isbn13=${book.isbn13}`}>
-                <Image src={book.cover} alt={book.title} className="cursor-pointer rounded-lg" quality={100} sizes="20vw" fill={true} loading="eager" />
+                <Image src={book.cover} alt={book.title} className="cursor-pointer rounded-lg" objectFit="corver" quality={100} layout="fill" loading="eager" />
             </Link>
             <div className="absolute inset-0 rounded-lg bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
             <StateButton state={state} className="absolute left-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

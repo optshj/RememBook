@@ -26,9 +26,9 @@ export default function BookReport({ bookList }: { bookList: CombinedBookType[] 
     const monthPercentages = monthCount.map(count => (totalBooks === 0 ? 0 : (count / totalBooks) * 100))
 
     return (
-        <div className="flex flex-col">
+        <div className="flex w-full flex-col">
             <TitleText>{"독서 리포트📈"}</TitleText>
-            <div className="mt-4 flex flex-col gap-6">
+            <div className="mt-4 flex flex-col items-center gap-6">
                 {monthPercentages.map((percentage, index) => (
                     <Item
                         key={index}
@@ -44,17 +44,18 @@ export default function BookReport({ bookList }: { bookList: CombinedBookType[] 
 
 function Item({ month, percentage, count }: { month: number; percentage: number; count: number }) {
     return (
-        <div className="flex flex-row gap-2">
-            <div className="w-12 text-right text-lg font-bold">{`${month}월`}</div>
-            <div className="h-6 w-72 rounded-lg bg-gray-300">
+        <div className="flex w-full gap-2">
+            <div className="min-w-12 text-right text-lg font-bold">{`${month}월`}</div>
+            <div className="h-6 w-full rounded-lg bg-gray-300">
                 <div
                     className="h-full rounded-lg"
                     style={{
                         width: `${percentage}%`,
                         backgroundColor: "#8B5E3C"
-                    }}></div>
+                    }}
+                />
             </div>
-            <div className="w-8 text-right text-lg font-bold text-main-gray">{`${count}권`}</div>
+            <div className="min-w-8 text-right text-lg font-bold text-main-gray">{`${count}권`}</div>
         </div>
     )
 }

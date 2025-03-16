@@ -45,8 +45,8 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
     }, [bookList])
 
     return (
-        <div className="flex h-72 flex-1 flex-col">
-            <TitleText className="mb-4">{"선호하는 장르🔍"}</TitleText>
+        <div className="h-60 w-full font-bold sm:w-96 lg:w-full">
+            <TitleText>{"선호하는 장르🔍"}</TitleText>
             {categoryData ? (
                 <ResponsiveCirclePacking
                     data={categoryData}
@@ -58,7 +58,6 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
                     theme={{ text: { fontSize: 14 } }}
                     leavesOnly={true}
                     enableLabels={true}
-                    labelsSkipRadius={0}
                 />
             ) : (
                 <div className="m-auto text-center text-xl font-semibold text-main-gray">
