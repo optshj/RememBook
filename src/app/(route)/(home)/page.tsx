@@ -2,8 +2,6 @@ import { Suspense } from "react"
 
 import { BookType } from "@/app/_types/AladinAPIType"
 
-import { GoPlus } from "react-icons/go"
-
 import KakaoAuthHandler from "./_components/KakaoAuthHandler"
 import Loading from "./loading"
 import Item from "./_components/Item"
@@ -26,9 +24,10 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
 interface MainItemListProps {
     title: string
     queryType: string
+    loading?: "eager" | "lazy"
     category?: number
 }
-async function MainItemList({ title, queryType, category = 0 }: MainItemListProps) {
+async function MainItemList({ title, queryType, loading = "lazy", category = 0 }: MainItemListProps) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype`, {
         method: "POST",
         headers: {
@@ -41,16 +40,10 @@ async function MainItemList({ title, queryType, category = 0 }: MainItemListProp
     const books: BookType[] = data.item
     return (
         <div className="relative mb-6 flex flex-col gap-4">
-            <div className="flex justify-between">
-                <TitleText>{title}</TitleText>
-                <button className="flex items-center gap-1 rounded-full p-2 text-sm font-black hover:bg-zinc-100">
-                    {"더보기"}
-                    <GoPlus />
-                </button>
-            </div>
+            <TitleText>{title}</TitleText>
             <ScrollWrapper>
                 {books.map((book: BookType) => (
-                    <Item key={book.isbn} book={book} />
+                    <Item key={book.isbn} book={book} loading={loading} />
                 ))}
             </ScrollWrapper>
         </div>

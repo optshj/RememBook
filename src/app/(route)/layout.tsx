@@ -5,6 +5,7 @@ import "./globals.css"
 import Header from "@/app/_components/Header/Header"
 import React from "react"
 import Providers from "@/app/_store/Provider"
+import TabBar from "../_components/TabBar/TabBar"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -29,10 +30,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, modal }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-zinc-100`}>
+            <body className={`${inter.className} bg-zinc-100`} spellCheck="false">
                 <Providers>
-                    <div className="mx-6 max-w-5xl pt-24 lg:m-auto">
+                    <div className="mx-6 max-w-5xl py-24 lg:m-auto">
                         <Header />
+                        <TabBar />
                         {children}
                         {modal}
                     </div>

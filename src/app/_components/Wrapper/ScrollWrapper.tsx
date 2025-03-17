@@ -40,13 +40,13 @@ export default function ScrollWrapper({ children }: { children: React.ReactNode 
             <button
                 aria-label="scroll left"
                 onClick={() => handleScroll(false)}
-                className={`absolute -left-14 top-1/2 z-10 -translate-y-1/2 rounded-full border-2 p-2 ${isAtStart ? "cursor-default text-main-gray" : "text-black"}`}>
+                className={`absolute -left-14 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-2 p-2 ${isAtStart ? "cursor-default text-main-gray" : "text-black"} lg:inline-block`}>
                 <SlArrowLeft size={16} />
             </button>
             <button
                 aria-label="scroll right"
                 onClick={() => handleScroll(true)}
-                className={`absolute -right-14 top-1/2 z-10 -translate-y-1/2 rounded-full border-2 p-2 ${isAtEnd ? "cursor-default text-main-gray" : "text-black"}`}>
+                className={`absolute -right-14 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-2 p-2 ${isAtEnd ? "cursor-default text-main-gray" : "text-black"} lg:inline-block`}>
                 <SlArrowRight size={16} />
             </button>
             <ul

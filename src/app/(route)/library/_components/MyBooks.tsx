@@ -31,7 +31,7 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
             {bookList.length === 0 ? (
                 <div className="m-auto text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
             ) : (
-                <ul className="flex gap-4 overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-4">
+                <ul className="flex gap-4 overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-4">
                     {bookList
                         .filter(item => state === 3 || item.state === state)
                         .map(item => (

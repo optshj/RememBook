@@ -11,23 +11,25 @@ import { BiSolidBookAlt, BiSolidAddToQueue } from "react-icons/bi"
 
 import { addItem, deleteItem } from "@/app/_hooks/useLocalStorageBook"
 
-import StateButton from "@/app/_components/Button/StateButton"
+import StateButton, { StateDot } from "@/app/_components/Button/StateButton"
 import BookReportButton from "@/app/_components/Button/BookReportButton"
 
 interface ItemImageProps {
     book: BookType
     state: number
+    loading?: "eager" | "lazy"
     className?: string
 }
-export default function ItemImage({ book, state, className }: ItemImageProps) {
+export default function ItemImage({ book, state, className = "", loading = "lazy" }: ItemImageProps) {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div className={`group relative ${className} `}>
+            <Image src={book.cover} alt={book.title} className="cursor-pointer border border-zinc-300" quality={100} layout="fill" loading={loading} />
             <Link href={`/information?isbn13=${book.isbn13}`}>
-                <Image src={book.cover} alt={book.title} className="cursor-pointer rounded-lg" objectFit="corver" quality={100} layout="fill" loading="eager" />
+                <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
             </Link>
-            <div className="absolute inset-0 rounded-lg bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
+            <StateDot state={state} className="absolute left-3 top-3 z-10" />
             <StateButton state={state} className="absolute left-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <BookReportButton isbn13={book.isbn13} className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 

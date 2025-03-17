@@ -39,7 +39,6 @@ export default function TextArea({ isbn13 }: { isbn13: string }) {
             <textarea
                 className="h-60 w-full resize-none rounded-lg bg-zinc-100 p-4 text-left align-top text-black"
                 placeholder="독후감을 작성해주세요. (500자 이내)"
-                spellCheck={false}
                 value={text}
                 onChange={e => setText(e.target.value)}
             />
