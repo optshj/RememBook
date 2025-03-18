@@ -22,7 +22,7 @@ export default function Loading() {
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
                             <div key={item} className="mb-6 flex flex-col gap-2">
-                                <div className="h-64 w-44 rounded-lg bg-gray-200" />
+                                <div className="h-48 w-32 sm:h-60 sm:w-40 rounded-lg bg-gray-200" />
                                 <div className="h-6 w-40 rounded-lg bg-gray-200" />
                                 <div className="h-6 w-36 rounded-lg bg-gray-200" />
                             </div>

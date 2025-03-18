@@ -23,7 +23,7 @@ export default function Item({ book, loading = "lazy" }: ItemProps) {
 
     return (
         <li className="flex flex-col">
-            <ItemImage book={book} state={state} loading={loading} className="h-72 w-48" />
+            <ItemImage book={book} state={state} loading={loading} className="h-48 w-32 sm:h-72 sm:w-48" />
             <h2 className="mt-2 text-sm font-semibold text-zinc-500">{category}</h2>
             <h1 className="line-clamp-2 whitespace-normal text-base font-bold">{book.title.split("-")[0]}</h1>
         </li>
