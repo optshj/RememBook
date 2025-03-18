@@ -47,14 +47,14 @@ export default function ItemList({ books }: { books: BookType[] }) {
     }, [fetchMoreBooks])
 
     return (
-        <div className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2">
             {items.map((book: BookType) => (
                 <Item book={book} key={book.isbn13} />
             ))}
             <div ref={observerRef} className="flex h-20 w-full items-center justify-center">
                 {loading && <AiOutlineLoading className="h-12 w-12 animate-spin text-gray-200" />}
             </div>
-        </div>
+        </ul>
     )
 }
 
@@ -68,14 +68,14 @@ function Item({ book }: { book: BookType }) {
     }, [book.isbn13])
 
     return (
-        <div className="flex gap-2 border-b-2">
+        <li className="flex gap-2 border-b-2">
             <div className="relative m-4 h-72 w-48 flex-shrink-0 rounded-lg">
                 <Image src={book.cover} alt={book.title} className="rounded-lg" quality={100} sizes="20vw" fill={true} />
             </div>
             <div className="my-10 flex flex-col gap-2">
-                <div className="text-lg font-bold text-black">{book.title.split("-")[0]}</div>
-                <div className="font-semibold text-main-gray">{book.author}</div>
-                <div className="font-semibold text-main-gray">{book.categoryName}</div>
+                <div className="line-clamp-1 text-lg font-bold text-black">{book.title.split("-")[0]}</div>
+                <div className="line-clamp-1 font-semibold text-main-gray">{book.author}</div>
+                <div className="line-clamp-1 font-semibold text-main-gray">{book.categoryName}</div>
                 <div className="flex flex-row font-semibold text-main-gray">
                     <div className="mr-2 flex flex-col">
                         {["나의평가", "읽은기간", "상태"].map(label => (
@@ -98,6 +98,6 @@ function Item({ book }: { book: BookType }) {
                 <AddLibraryButton onClick={() => addItem(book.isbn13)} />
                 <BookReportButton isbn13={book.isbn13} large={true} />
             </div>
-        </div>
+        </li>
     )
 }
