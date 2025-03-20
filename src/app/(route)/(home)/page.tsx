@@ -10,6 +10,7 @@ import TitleText from "@/app/_components/Text/TitleText"
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     // const code = searchParams.code
+    console.log(process.env.NEXT_PUBLIC_DOMAIN)
     return (
         <Suspense fallback={<Loading />}>
             {/* <KakaoAuthHandler code={code} /> */}
@@ -29,9 +30,7 @@ interface MainItemListProps {
 async function MainItemList({ title, queryType, loading = "lazy", category = 0 }: MainItemListProps) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ queryType, category }),
         cache: "no-store"
     })

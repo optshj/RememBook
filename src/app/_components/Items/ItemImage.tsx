@@ -22,7 +22,7 @@ export default function ItemImage({ book, state, className = "", loading = "lazy
 
     return (
         <div className={`group relative ${className} `}>
-            <Image src={book.cover} alt={book.title} className="cursor-pointer border border-zinc-300" quality={100} layout="fill" loading={loading} />
+            <Image src={book.cover} alt={book.title} className="cursor-pointer border border-zinc-300" quality={100} fill={true} loading={loading} />
             <Link href={`/information?isbn13=${book.isbn13}`}>
                 <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
             </Link>
