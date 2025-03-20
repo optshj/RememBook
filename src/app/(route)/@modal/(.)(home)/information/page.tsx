@@ -8,29 +8,13 @@ import BookDetails from "./_components/BookDetails"
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     const isbn13 = searchParams.isbn13
-    let data
-    let book
-
-    try {
-        const response = await fetch(
-            `http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${process.env.NEXT_PUBLIC_ALADIN_TTB_KEY}&ItemId=${isbn13}&ItemIdType=ISBN13&cover=big&output=js`
-        )
-        data = await response.text()
-        data = data.replace(/\\[abfnrtv0'"\\]/g, "")
-        if (data.endsWith(";")) {
-            data = data.slice(0, -1)
-        }
-        const parsedData = await JSON.parse(data)
-        book = parsedData.item[0]
-    } catch (error) {
-        return (
-            <Modal>
-                <div className="rounded-lg bg-white p-8 shadow-lg">
-                    <div className="font-semibold">{"데이터를 불러오는 중 문제가 발생했습니다."}</div>
-                </div>
-            </Modal>
-        )
-    }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/searchbookItem`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isbn13 }),
+        cache: "no-store"
+    })
+    const book = await response.json()
     const category = book.categoryName.split(">")
     return (
         <Suspense fallback={<Loading />}>
