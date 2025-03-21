@@ -28,7 +28,7 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
     }, [isbn13])
 
     return (
-        <div className="z-50 flex flex-row text-sm font-semibold text-main-gray">
+        <div className="z-50 mt-4 flex flex-row text-sm font-semibold text-main-gray">
             <ul className="mr-2 flex flex-col">
                 {["나의평가", "읽은기간", "상태"].map(label => (
                     <li key={label} className="py-1">

@@ -1,29 +1,33 @@
 import { Suspense } from "react"
 
 import Loading from "./loading"
-import NoResult from "./components/NoResult"
 import ItemList from "./components/ItemList"
 
 export default async function Result({ searchParams }: { searchParams: { [key: string]: string } }) {
     const query = searchParams.query
-    let books
-    let data
-    try {
-        const response = await fetch(
-            `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.NEXT_PUBLIC_ALADIN_TTB_KEY}&Query=${query}&searchTarget=Book&output=js&Cover=big&sort=SalesPoint&MaxResults=100`
-        )
-        data = await response.text()
-        data = data.replace(/\\[abfnrtv0'"\\]/g, "")
-        if (data.endsWith(";")) data = data.slice(0, -1)
-        const parsedData = await JSON.parse(data)
-        books = parsedData.item
-    } catch (error) {
-        return (
-            <div className="mt-10 flex w-full flex-col items-center justify-center gap-1 text-xl font-semibold">
-                {"데이터를 불러오는 중 문제가 발생했습니다."}
-            </div>
-        )
-    }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/searchbook`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+        cache: "no-store"
+    })
+    const data = await response.json()
+    const books = data.item
 
-    return <Suspense fallback={<Loading />}>{books.length === 0 ? <NoResult query={query} /> : <ItemList books={books} />}</Suspense>
+    return (
+        <Suspense fallback={<Loading />}>
+            {books.length === 0 ? (
+                <div className="mt-10 flex w-full flex-col items-center justify-center gap-1 text-xl font-semibold">
+                    <div>
+                        <span className="text-red-500">{`\`${query}\``}</span>
+                        {`에 대한 검색 결과가 없습니다.`}
+                    </div>
+                    <div>{"다른 검색어를 입력하시거나"}</div>
+                    <div>{"철자와 띄어쓰기를 확인해보세요."}</div>
+                </div>
+            ) : (
+                <ItemList books={books} />
+            )}
+        </Suspense>
+    )
 }

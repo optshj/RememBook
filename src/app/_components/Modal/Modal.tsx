@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation"
 
-export default function Modal({ children }: { children: React.ReactNode }) {
+export default function Modal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     const router = useRouter()
 
     const closeModal = () => {
@@ -15,7 +15,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/50" onClick={closeModal}>
+        <div className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/50 ${className}`} onClick={closeModal}>
             <div onClick={stopPropagation}>{children}</div>
         </div>
     )

@@ -12,7 +12,7 @@ export default function BackButton({ children, color = "main-blue" }: BackButton
         router.back()
     }
     return (
-        <button className={`flex items-center gap-1 rounded-2xl py-1 text-base font-bold text-white ${bgColor} w-[100px] justify-center`} onClick={onClick}>
+        <button className={`flex items-center gap-1 rounded-lg py-1 text-base font-bold text-white ${bgColor} w-[110px] justify-center`} onClick={onClick}>
             {children}
         </button>
     )

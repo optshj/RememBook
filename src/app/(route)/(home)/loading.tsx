@@ -9,7 +9,7 @@ export default function Loading() {
                     <div className="flex gap-4 overflow-x-auto">
                         {[0, 1, 2, 3, 4].map(index => (
                             <div key={index} className="relative flex flex-col">
-                                <div className="h-72 w-48 rounded-lg bg-gray-200" />
+                                <div className="h-48 w-32 sm:h-72 sm:w-48 rounded-lg bg-gray-200" />
                                 <div className="mt-2 h-5 w-24 rounded bg-gray-200" />
                                 <div className="mt-2 h-5 w-32 rounded bg-gray-200" />
                             </div>

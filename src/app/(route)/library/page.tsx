@@ -45,7 +45,8 @@ export default function Library() {
             const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/searchbookList`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ isbn13List })
+                body: JSON.stringify({ isbn13List }),
+                cache: "no-store"
             })
             const data = await response.json()
             return data
