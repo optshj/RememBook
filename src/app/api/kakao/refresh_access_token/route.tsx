@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
         const body = await request.json()
         const refreshToken = body.refreshToken
         const response = await fetch(
-            `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}&refresh_token=${refreshToken}`,
+            `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.KAKAO_REST_KEY}&refresh_token=${refreshToken}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" }

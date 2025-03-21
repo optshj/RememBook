@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server"
 
 export async function POST(request: NextRequest) {
     try {
+        console.log(process.env.NEXT_PUBLIC_DOMAIN)
         const body = await request.json()
         const queryType = body.queryType
         const category = body.category
