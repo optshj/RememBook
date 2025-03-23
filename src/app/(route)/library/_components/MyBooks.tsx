@@ -9,7 +9,7 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
     const [state, setState] = useState(3)
 
     return (
-        <div className="flex flex-1 flex-col gap-6">
+        <div className="flex flex-col gap-6">
             <div className="flex justify-between gap-6 sm:justify-start">
                 <TitleText>{"내가 저장한 책📚"}</TitleText>
                 <div className="hidden gap-6 sm:flex">
@@ -29,9 +29,9 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
                 <button className="font-semibold text-zinc-500 sm:hidden">{"전체보기"}</button>
             </div>
             {bookList.length === 0 ? (
-                <div className="m-auto text-xl font-semibold text-main-gray h-64">{"책장이 비어있네요!"}</div>
+                <div className="m-auto h-64 text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
             ) : (
-                <ul className="flex gap-4 overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-4">
+                <ul className="flex flex-wrap gap-4 overflow-x-auto">
                     {bookList
                         .filter(item => state === 3 || item.state === state)
                         .map(item => (
@@ -45,7 +45,7 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
 
 function Item({ book }: { book: CombinedBookType }) {
     return (
-        <li className="mb-6 flex w-40 flex-col">
+        <li className="mb-6 flex w-32 flex-col sm:w-40">
             <ItemImage book={book} state={book.state} className="h-48 w-32 sm:h-60 sm:w-40" />
             <h1 className="mt-2 line-clamp-1 whitespace-normal font-bold">{book.title.split("-")[0]}</h1>
             <h2 className="line-clamp-1 whitespace-normal font-semibold text-main-gray">{book.author}</h2>

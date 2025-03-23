@@ -17,7 +17,7 @@ export default async function Result({ searchParams }: { searchParams: { [key: s
     return (
         <Suspense fallback={<Loading />}>
             {books.length === 0 ? (
-                <div className="mt-10 flex w-full flex-col items-center justify-center gap-1 text-xl font-semibold">
+                <div className="text-md mt-10 flex w-full flex-col items-center justify-center gap-1 font-semibold sm:text-xl">
                     <div>
                         <span className="text-red-500">{`\`${query}\``}</span>
                         {`에 대한 검색 결과가 없습니다.`}
