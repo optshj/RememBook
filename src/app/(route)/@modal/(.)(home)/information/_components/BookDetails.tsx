@@ -56,12 +56,13 @@ export default function BookDetails({ isbn13 }: BookDetailsProps) {
                 {/* calender select */}
                 <li
                     className={`relative ${open == 2 && "shadow-lg"}`}
+                    onClick={() => setOpen(prev => (prev == 2 ? 0 : 2))}
                     tabIndex={0}
-                    onBlur={() => setOpen(0)}
-                    onClick={() => setOpen(prev => (prev == 2 ? 0 : 2))}>
+                    onBlur={() => setOpen(0)}>
                     <div className="cursor-pointer rounded-md p-1 hover:bg-zinc-100">{data.date || "비어있음"}</div>
                     <Calender
                         date={data.date}
+                        setOpen={setOpen}
                         setData={setData}
                         className={`transition-all duration-300 ${open == 2 ? "visible opacity-100" : "invisible opacity-0"} `}
                     />

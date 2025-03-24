@@ -19,6 +19,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
     })
     const book: BookType = await response.json()
     const shortCategory = book.categoryName.split(">").slice(-1)[0]
+
     return (
         <Suspense fallback={<Loading />}>
             <Modal>

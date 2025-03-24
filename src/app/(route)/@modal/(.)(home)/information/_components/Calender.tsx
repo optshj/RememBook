@@ -8,6 +8,7 @@ import ToggleButton from "@/app/_components/Button/ToggleButton"
 interface CalenderProps {
     className?: string
     date: string
+    setOpen: Dispatch<SetStateAction<number>>
     setData: Dispatch<
         SetStateAction<{
             rating: number
@@ -16,7 +17,7 @@ interface CalenderProps {
         }>
     >
 }
-export default function Calender({ className, date, setData }: CalenderProps) {
+export default function Calender({ className, date, setOpen, setData }: CalenderProps) {
     const dateformat = "yyyy.MM.dd"
 
     const [currentDate, setCurrentDate] = useState<Date>(new Date())
@@ -88,7 +89,7 @@ export default function Calender({ className, date, setData }: CalenderProps) {
         }))
     }
     return (
-        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`}>
+        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`} tabIndex={0} onBlur={() => setOpen(0)}>
             <div className="p-2">
                 {isEnded ? (
                     <div className="mb-2 flex flex-row justify-center gap-2">
@@ -148,7 +149,12 @@ export default function Calender({ className, date, setData }: CalenderProps) {
                     <ToggleButton state={isEnded} />
                 </div>
             </div>
-            <div className="cursor-pointer border-t" onClick={() => setData(prev => ({ ...prev, date: "" }))}>
+            <div
+                className="cursor-pointer border-t"
+                onClick={() => {
+                    setData(prev => ({ ...prev, date: "" }))
+                    setOpen(0)
+                }}>
                 <div className="m-1 rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200">{"삭제"}</div>
             </div>
         </div>

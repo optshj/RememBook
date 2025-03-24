@@ -10,7 +10,7 @@ export default function Loading() {
                     <div className="flex justify-center">
                         <div className="relative mt-10 h-72 w-48 flex-shrink-0 rounded-lg bg-gray-200 sm:mt-0" />
                     </div>
-                    <div className="mt-10 flex flex-col justify-center gap-2">
+                    <div className="mt-10 flex flex-col justify-center gap-2 sm:pl-4">
                         <div className="mt-2 h-7 w-48 rounded bg-gray-200" />
                         <div className="mt-2 h-4 w-36 rounded bg-gray-200" />
                         <div className="mt-2 h-4 w-40 rounded bg-gray-200" />
