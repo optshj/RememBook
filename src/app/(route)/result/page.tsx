@@ -18,12 +18,12 @@ export default async function Result({ searchParams }: { searchParams: { [key: s
         <Suspense fallback={<Loading />}>
             {books.length === 0 ? (
                 <div className="text-md mt-10 flex w-full flex-col items-center justify-center gap-1 font-semibold sm:text-xl">
-                    <div>
+                    <p>
                         <span className="text-red-500">{`\`${query}\``}</span>
                         {`에 대한 검색 결과가 없습니다.`}
-                    </div>
-                    <div>{"다른 검색어를 입력하시거나"}</div>
-                    <div>{"철자와 띄어쓰기를 확인해보세요."}</div>
+                    </p>
+                    <p>{"다른 검색어를 입력하시거나"}</p>
+                    <p>{"철자와 띄어쓰기를 확인해보세요."}</p>
                 </div>
             ) : (
                 <ItemList books={books} />

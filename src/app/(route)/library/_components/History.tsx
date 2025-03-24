@@ -3,7 +3,7 @@ import { CombinedBookType } from "@/app/_types/BookType"
 import TitleText from "@/app/_components/Text/TitleText"
 
 export default function History({ bookList }: { bookList: CombinedBookType[] }) {
-    const sortedBookList = [...bookList].sort((a, b) => b.date.localeCompare(a.date))
+    const sortedBookList = [...bookList].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6)
     return (
         <div className="flex flex-grow-0 flex-col gap-6">
             <TitleText>{"최근 독서기록🧾"}</TitleText>
