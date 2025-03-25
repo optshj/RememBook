@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react"
 
-export function useRipple<T extends HTMLElement>(ref: React.RefObject<T>) {
+/**
+ *
+ * @param ref : React.RefObject<T>
+ * @param color : string
+ * @returns
+ */
+export function useRipple<T extends HTMLElement>(ref: React.RefObject<T>, color: string = "#ffffff") {
     const [ripples, setRipples] = useState<{ left: number; top: number; id: number }[]>([])
 
     useEffect(() => {
@@ -17,6 +23,7 @@ export function useRipple<T extends HTMLElement>(ref: React.RefObject<T>) {
             }
 
             element.addEventListener("click", handleClick)
+            setTimeout(() => setRipples([]), 3000)
             return () => element.removeEventListener("click", handleClick)
         }
         return () => {}
@@ -25,10 +32,11 @@ export function useRipple<T extends HTMLElement>(ref: React.RefObject<T>) {
     return ripples.map(({ left, top, id }) => (
         <span
             key={id}
-            className="absolute -translate-x-1/2 -translate-y-1/2 animate-ripple overflow-hidden rounded-full bg-white"
+            className={`absolute -translate-x-1/2 -translate-y-1/2 animate-ripple overflow-hidden rounded-full`}
             style={{
                 left,
-                top
+                top,
+                backgroundColor: color
             }}
         />
     ))

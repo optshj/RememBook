@@ -18,16 +18,18 @@ export default function Header() {
     }
     return (
         <div className="fixed left-0 top-0 z-50 w-full bg-white shadow-sm">
-            <div className="mx-4 hidden max-w-5xl items-center sm:flex lg:m-auto">
-                <Link href={"/"} aria-label="home">
-                    <Logo className="h-16 w-48 cursor-pointer" />
-                </Link>
-                <Link href={"/"} aria-label="home">
-                    <button className="my-2 w-28 p-2 text-center text-lg font-bold text-black">{"홈"}</button>
-                </Link>
-                <Link href={"/library"} aria-label="library">
-                    <button className="my-2 w-28 p-2 text-center text-lg font-bold text-black">{"내서재"}</button>
-                </Link>
+            <div className="mx-4 hidden max-w-5xl items-center justify-between sm:flex lg:m-auto">
+                <div className="flex items-center text-center text-xl font-bold text-black">
+                    <Link href={"/"} aria-label="home">
+                        <Logo className="h-16 w-48 cursor-pointer" />
+                    </Link>
+                    <Link href={"/"} aria-label="home">
+                        <button className="my-2 w-28 p-2">{"홈"}</button>
+                    </Link>
+                    <Link href={"/library"} aria-label="library">
+                        <button className="my-2 w-28 p-2">{"내서재"}</button>
+                    </Link>
+                </div>
                 <form className="mx-2 flex max-w-96 items-center justify-between rounded-full border border-solid border-mocha" onSubmit={onSubmit}>
                     <input
                         className="mx-4 my-1 placeholder:text-sm"

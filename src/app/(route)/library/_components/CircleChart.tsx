@@ -6,8 +6,11 @@ import { CombinedBookType } from "@/app/_types/BookType"
 import TitleText from "@/app/_components/Text/TitleText"
 
 export default function CircleChart({ bookList }: { bookList: CombinedBookType[] }) {
-    const [categoryData, setCategoryData] = useState<any>(null)
-
+    const [categoryData, setCategoryData] = useState<{ name: string; color: string; children: { name: any; loc: number }[] }>({
+        name: "genre",
+        color: "#d9d9d9",
+        children: []
+    })
     useEffect(() => {
         const categoryCount: Record<string, number> = {}
         bookList.forEach(book => {
@@ -35,8 +38,7 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
             }))
 
             setCategoryData({
-                name: "genre",
-                color: "#d9d9d9",
+                ...categoryData,
                 children: topCategories
             })
         }
@@ -47,7 +49,13 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
     return (
         <div className="h-60 w-full font-bold sm:w-96 lg:w-full">
             <TitleText>{"선호하는 장르🔍"}</TitleText>
-            {categoryData ? (
+            {categoryData.children.length === 0 ? (
+                <div className="m-auto mt-10 text-center text-xl font-semibold text-main-gray">
+                    {"좀 더 기록해주시면"}
+                    <br />
+                    {"성향을 알 수 있을 것 같아요!"}
+                </div>
+            ) : (
                 <ResponsiveCirclePacking
                     data={categoryData}
                     id="name"
@@ -55,16 +63,10 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
                     colors={["#A57865", "#E4C7B9", "#F0F0E4", "#BAAA91", "#A28776"]}
                     colorBy="id"
                     padding={2}
-                    theme={{ text: { fontSize: 14 } }}
+                    theme={{ text: { fontSize: 12 } }}
                     leavesOnly={true}
                     enableLabels={true}
                 />
-            ) : (
-                <div className="m-auto text-center text-xl font-semibold text-main-gray">
-                    {"좀 더 기록해주시면"}
-                    <br />
-                    {"성향을 알 수 있을 것 같아요!"}
-                </div>
             )}
         </div>
     )

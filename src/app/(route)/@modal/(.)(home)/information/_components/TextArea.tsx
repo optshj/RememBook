@@ -1,15 +1,14 @@
 "use client"
 import { useEffect, useState } from "react"
-
-import CommonButton from "@/app/_components/Button/CommonButton"
-import BackButton from "@/app/_components/Button/BackButton"
+import { useRouter } from "next/navigation"
 
 import { useAppSelector } from "@/app/_store/Provider"
 
-export default function TextArea({ isbn13 }: { isbn13: string }) {
+export default function TextArea({ isbn13, className = "" }: { isbn13: string; className: string }) {
     const [isSaved, setIsSaved] = useState(false)
     const [text, setText] = useState("")
     const bookData = useAppSelector(state => state.bookData)
+    const router = useRouter()
 
     useEffect(() => {
         const localBookData = localStorage.getItem(isbn13)
@@ -26,10 +25,11 @@ export default function TextArea({ isbn13 }: { isbn13: string }) {
         }
         localStorage.setItem(isbn13, JSON.stringify(newBookData))
         setIsSaved(true)
+        setTimeout(() => setIsSaved(false), 1000)
     }
 
     return (
-        <div className="relative">
+        <div className={`relative ${className}`}>
             <div
                 className={`pointer-events-none absolute bottom-1/2 left-1/2 -translate-x-1/2 transform rounded-lg bg-mocha px-4 py-2 text-sm font-bold text-white transition-all duration-500 ${
                     isSaved ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
@@ -42,9 +42,13 @@ export default function TextArea({ isbn13 }: { isbn13: string }) {
                 value={text}
                 onChange={e => setText(e.target.value)}
             />
-            <div className="mt-2 flex justify-center gap-2">
-                <CommonButton onClick={handleSave}>{"저장하기"}</CommonButton>
-                <BackButton color="main-gray">{"닫기"}</BackButton>
+            <div className="mt-2 flex justify-center gap-2 font-bold text-white">
+                <button className={`flex w-24 items-center justify-center rounded-lg bg-mocha py-1`} onClick={handleSave}>
+                    {"저장"}
+                </button>
+                <button className={`flex w-24 items-center justify-center rounded-lg bg-main-gray py-1`} onClick={() => router.back()}>
+                    {"닫기"}
+                </button>
             </div>
         </div>
     )

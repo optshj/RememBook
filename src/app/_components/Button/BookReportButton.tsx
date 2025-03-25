@@ -16,13 +16,13 @@ export default function BookReportButton({ isbn13, className, large = false }: B
     const ripples = useRipple(contentRef)
 
     return (
-        <Link href={`/information?isbn13=${isbn13}`}>
+        <Link href={`/information?isbn13=${isbn13}`} scroll={false}>
             <button
-                className={`${large ? "relative h-10 w-40 text-base" : "absolute bottom-2 right-2 px-2 py-1 text-sm"} z-10 flex items-center justify-center gap-1 overflow-hidden rounded-lg bg-button-black font-semibold text-white ${className}`}
+                className={`${large ? "relative h-10 w-40 text-base" : "absolute bottom-2 right-2 px-2 py-1 text-sm"} z-10 flex items-center justify-center gap-0.5 overflow-hidden rounded-lg bg-button-black font-semibold text-white ${className}`}
                 ref={contentRef}>
                 <HiPencil />
                 {ripples}
-                {"독후감 작성"}
+                {"기록하기"}
             </button>
         </Link>
     )

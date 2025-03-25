@@ -28,7 +28,7 @@ export default function BookReport({ bookList }: { bookList: CombinedBookType[] 
     return (
         <div className="flex w-full flex-col">
             <TitleText>{"독서 리포트📈"}</TitleText>
-            <div className="mt-4 flex flex-col items-center gap-6">
+            <div className="mt-8 flex flex-col items-center gap-6">
                 {monthPercentages.map((percentage, index) => (
                     <Item
                         key={index}

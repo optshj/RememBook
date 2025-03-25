@@ -10,7 +10,6 @@ import TitleText from "@/app/_components/Text/TitleText"
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     // const code = searchParams.code
-    console.log(process.env.NEXT_PUBLIC_DOMAIN)
     return (
         <Suspense fallback={<Loading />}>
             {/* <KakaoAuthHandler code={code} /> */}
