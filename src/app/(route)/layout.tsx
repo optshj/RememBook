@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     keywords: "독서 기록 저장 리멤북 책 베스트셀러 추천",
     description: "리멤북으로 읽은 책을 기록해 보세요",
     robots: "index, follow",
+    icons: {
+        icon: "/favicon.ico"
+    },
 
     verification: {
         google: "huSHYvBftuJFa028T6tGdShVcrWecu4qHuQWqhyKrmU"
