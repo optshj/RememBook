@@ -13,7 +13,6 @@ export default async function Result({ searchParams }: { searchParams: { [key: s
     })
     const data = await response.json()
     const books = data.item
-
     return (
         <Suspense fallback={<Loading />}>
             {books.length === 0 ? (
