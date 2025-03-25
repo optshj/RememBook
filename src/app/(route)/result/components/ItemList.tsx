@@ -18,6 +18,7 @@ export default function ItemList({ books }: { books: BookType[] }) {
     const [loading, setLoading] = useState(false)
     const observerRef = useRef<HTMLDivElement | null>(null)
     const pageRef = useRef(1)
+    const hasMore = items.length < books.length
 
     const fetchMoreBooks = useCallback(() => {
         if (loading) return
@@ -34,6 +35,7 @@ export default function ItemList({ books }: { books: BookType[] }) {
     }, [books, loading])
 
     useEffect(() => {
+        if (!hasMore) return
         const observer = new IntersectionObserver(
             entries => {
                 if (entries[0].isIntersecting) {
@@ -44,11 +46,11 @@ export default function ItemList({ books }: { books: BookType[] }) {
         )
         if (observerRef.current) observer.observe(observerRef.current)
         return () => observer.disconnect()
-    }, [fetchMoreBooks])
+    }, [fetchMoreBooks, hasMore])
 
     return (
-        <ul className="xs:w-[512px] 2xs:w-[416px] m-auto w-[312px] sm:flex sm:w-auto sm:flex-col sm:flex-nowrap sm:gap-2">
-            <div className="text-2xl font-semibold">
+        <ul className="xs:w-[512px] 2xs:w-[416px] m-auto w-[312px] sm:flex sm:w-auto sm:flex-col sm:gap-2">
+            <div className="text-2xl font-semibold sm:ml-4">
                 <span>{"도서 "}</span>
                 <span className="text-xl text-mocha">{books.length}</span>
             </div>
@@ -79,20 +81,18 @@ function Item({ book }: { book: BookType }) {
                 <div className="line-clamp-1 whitespace-normal">{book.author}</div>
                 <div className="line-clamp-1 hidden whitespace-normal sm:inline-block">{book.categoryName}</div>
                 <div className="mt-6 hidden flex-row sm:flex">
-                    <div className="mr-2 flex flex-col">
+                    <div className="mr-2 flex flex-col gap-2">
                         {["나의평가", "읽은기간", "상태"].map(label => (
-                            <div key={label} className="py-1">
-                                {label}
-                            </div>
+                            <div key={label}>{label}</div>
                         ))}
                     </div>
-                    <div className="flex flex-col">
-                        <div className="flex items-center gap-1 p-1 text-yellow">
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-1 text-yellow">
                             <FaStar />
                             {data.rating || "비어있음"}
                         </div>
-                        <div className="p-1">{data.date || "비어있음"}</div>
-                        <StateButton state={data.state} className="mx-1 my-2" />
+                        <div>{data.date || "비어있음"}</div>
+                        <StateButton state={data.state} />
                     </div>
                 </div>
             </div>
