@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -16,21 +16,30 @@ export default function Header() {
         e.preventDefault()
         if (search.trim() !== "") router.push(`/result?query=${search}`)
     }
+    useEffect(() => {
+        const disableContextMenu = (e: MouseEvent) => {
+            e.preventDefault()
+        }
+        window.addEventListener("contextmenu", disableContextMenu)
+        return () => {
+            window.removeEventListener("contextmenu", disableContextMenu)
+        }
+    }, [])
     return (
         <div className="fixed left-0 top-0 z-50 w-full bg-white py-3 shadow-sm sm:p-0">
             <div className="mx-4 flex max-w-5xl items-center justify-between lg:m-auto">
                 <div className="flex items-center text-center text-xl font-bold text-black">
                     <Link href={"/"} aria-label="home">
                         <LogoWord className="mr-2 h-10 w-10 cursor-pointer sm:hidden" />
-                        <Logo className="hidden h-16 w-48 cursor-pointer sm:inline" />
+                        <Logo className="hidden h-16 w-48 cursor-pointer sm:inline-block" />
                     </Link>
-                    <Link className="hidden sm:inline" href={"/"} aria-label="home">
+                    <Link className="hidden sm:inline-block" href={"/"} aria-label="home">
                         <button className="my-2 w-28 p-2">{"홈"}</button>
                     </Link>
-                    <Link className="hidden sm:inline" href={"/library"} aria-label="library">
+                    <Link className="hidden sm:inline-block" href={"/library"} aria-label="library">
                         <button className="my-2 w-28 p-2">{"내서재"}</button>
                     </Link>
-                    <Link className="hidden sm:inline" href={"/recommend"} aria-label="recommend">
+                    <Link className="hidden sm:inline-block" href={"/recommend"} aria-label="recommend">
                         <button className="my-2 w-28 p-2">{"책추천"}</button>
                     </Link>
                 </div>

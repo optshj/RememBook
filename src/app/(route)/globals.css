@@ -33,3 +33,6 @@ textarea{
   border: none;
   outline: none;
 }
+button{
+  white-space: nowrap;
+}

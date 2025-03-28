@@ -46,22 +46,22 @@ export default function Recommend() {
     return (
         <>
             {book ? (
-                <div className="fixed inset-0 top-12 mb-16 flex w-screen overflow-y-auto bg-white p-10 font-semibold sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:shadow-lg">
+                <div className="fixed inset-0 top-16 mb-16 flex w-screen overflow-y-auto bg-white p-4 font-semibold sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:p-10 sm:shadow-lg">
                     <button
                         className="absolute right-5 top-10 z-10 flex items-center gap-2 rounded-full bg-mocha p-2 text-white"
                         onClick={() => setRand(Math.floor(Math.random() * maxResults))}>
                         <MdOutlineRefresh className="h-6 w-6" />
-                        <span className="hidden sm:inline">{"새로고침"}</span>
+                        <span className="hidden sm:inline-block">{"새로고침"}</span>
                     </button>
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                         <div className="flex justify-center bg-cover" style={{ backgroundImage: `url(${book.cover})` }}>
-                            <div className="absolute inset-0 z-0 backdrop-blur-3xl sm:backdrop-blur-none" />
+                            <div className="absolute inset-0 backdrop-blur-3xl sm:backdrop-blur-none" />
                             <ItemImage book={book} state={0} className="h-72 w-48 flex-shrink-0 sm:h-96 sm:w-64" />
                         </div>
                         <div className="z-10 mt-4 flex w-full flex-col gap-1 text-lg">
                             <p className="line-clamp-1 text-2xl">{book.title.split("-")[0]}</p>
                             <p className="line-clamp-1 text-main-gray">{book.author}</p>
-                            <p className="line-clamp-2 hidden text-main-gray sm:inline">{book.categoryName}</p>
+                            <p className="line-clamp-2 hidden text-main-gray sm:inline-block">{book.categoryName}</p>
                             <p className="text-main-gray sm:hidden">{shortCategory}</p>
                             <p className="line-clamp-1 font-normal text-main-gray">
                                 {book.publisher} · {book.pubDate}
