@@ -49,7 +49,7 @@ export default function ItemList({ books }: { books: BookType[] }) {
     }, [fetchMoreBooks, hasMore])
 
     return (
-        <ul className="xs:w-[512px] 2xs:w-[416px] m-auto w-[312px] sm:flex sm:w-auto sm:flex-col sm:gap-2">
+        <ul className="m-auto w-[312px] 2xs:w-[416px] xs:w-[512px] sm:flex sm:w-auto sm:flex-col sm:gap-2">
             <div className="text-2xl font-semibold sm:ml-4">
                 <span>{"도서 "}</span>
                 <span className="text-xl text-mocha">{books.length}</span>
@@ -74,8 +74,8 @@ function Item({ book }: { book: BookType }) {
     }, [book.isbn13])
 
     return (
-        <li className="xs:w-[120px] m-1 my-3 inline-block w-24 sm:flex sm:w-auto sm:flex-row sm:gap-2 sm:border-b-2">
-            <ItemImage book={book} state={data.state} className="xs:h-44 xs:w-[120px] h-36 w-24 flex-shrink-0 sm:m-4 sm:h-72 sm:w-48" />
+        <li className="m-1 my-3 inline-block w-24 xs:w-[120px] sm:flex sm:w-auto sm:flex-row sm:gap-2 sm:border-b-2">
+            <ItemImage book={book} state={data.state} className="h-36 w-24 flex-shrink-0 xs:h-44 xs:w-[120px] sm:m-4 sm:h-72 sm:w-48" />
             <div className="flex flex-col text-sm font-semibold text-main-gray sm:my-10 sm:gap-2">
                 <div className="line-clamp-1 whitespace-normal text-base font-bold text-black sm:text-lg">{book.title.split("-")[0]}</div>
                 <div className="line-clamp-1 whitespace-normal">{book.author}</div>

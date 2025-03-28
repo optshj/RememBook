@@ -72,6 +72,7 @@ export default function Library() {
             // Step 2: Fetch book data from API
             const isbn13List = localList.map(item => item.isbn13)
             const books: BookType[] = await fetchBook(isbn13List)
+
             // Step 3: Combine local and API data
             const mergedList = localList
                 .map(isbnItem => {

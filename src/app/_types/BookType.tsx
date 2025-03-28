@@ -5,6 +5,7 @@ export interface LocalBookType {
     state: number
     rating: number
     date: string
+    searchCategoryId?: number
 }
 
 export interface CombinedBookType extends LocalBookType, BookType {}
