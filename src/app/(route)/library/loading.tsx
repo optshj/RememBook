@@ -8,7 +8,7 @@ export default function Loading() {
                     <div className="m-auto h-48 w-48 rounded-full bg-gray-200" />
                 </div>
                 {/* <BarChart bookList={combinedList} /> */}
-                <div className="flex flex-col">
+                <div className="mt-10 flex w-full flex-col">
                     <div className="h-8 w-60 rounded-lg bg-gray-200" />
                     <div className="mx-8 mt-8 flex flex-col items-center gap-6">
                         <div className="h-6 w-full rounded-lg bg-gray-200" />
@@ -33,7 +33,7 @@ export default function Loading() {
                 </div>
                 {/* <History bookList={combinedList} /> */}
                 <div className="flex w-60 flex-col gap-6">
-                    <div className="h-8 w-60 rounded-lg bg-gray-200" />
+                    <div className="h-8 w-56 rounded-lg bg-gray-200" />
                     <ul className="flex flex-col gap-3">
                         {[1, 2, 3].map(item => (
                             <li className="flex flex-col gap-2" key={item}>

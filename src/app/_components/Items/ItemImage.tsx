@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { useLongPress } from "use-long-press"
 
@@ -24,9 +24,6 @@ export default function ItemImage({ book, state, className = "", loading = "lazy
     const onLongPress = useLongPress(() => {
         setIsOpen(true)
     })
-    useEffect(() => {
-        console.log("isOpen changed:", isOpen)
-    }, [isOpen])
 
     return (
         <div className={`group relative ${className} `}>
@@ -38,7 +35,7 @@ export default function ItemImage({ book, state, className = "", loading = "lazy
             <StateButton state={state} className="absolute left-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <BookReportButton isbn13={book.isbn13} className="hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 xs:flex" />
             <div className="absolute right-1 top-1 z-50 rounded-full" tabIndex={0} onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
-                <HiOutlineDotsVertical className="hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-[rgba(255,255,255,0.2)] group-hover:opacity-100 xs:inline" />
+                <HiOutlineDotsVertical className="hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-[rgba(255,255,255,0.2)] group-hover:opacity-100 xs:inline-block" />
                 <DropDown isOpen={isOpen} isbn13={book.isbn13} />
             </div>
         </div>
