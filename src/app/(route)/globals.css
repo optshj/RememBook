@@ -17,6 +17,9 @@
 }
 body{
   -ms-overflow-style: none;
+  -webkit-touch-callout: none !important;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 ::-webkit-scrollbar {

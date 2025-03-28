@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { useRipple } from "@/app/_hooks/useRipple"
 
 import { BiSolidHome, BiSolidBook } from "react-icons/bi"
-import { RiMenuSearchLine } from "react-icons/ri"
+import { FaStar } from "react-icons/fa"
 
 export default function TabBar() {
     return (
@@ -17,11 +17,11 @@ export default function TabBar() {
             </Item>
             <Item href={"/library"}>
                 <BiSolidBook />
-                <span className="mt-1 text-xs">{"내 서재"}</span>
+                <span className="mt-1 text-xs">{"내서재"}</span>
             </Item>
-            <Item href={"/search"}>
-                <RiMenuSearchLine />
-                <span className="mt-1 text-xs">{"검색"}</span>
+            <Item href={"/recommend"}>
+                <FaStar />
+                <span className="mt-1 text-xs">{"책추천"}</span>
             </Item>
         </div>
     )
