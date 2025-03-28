@@ -12,7 +12,7 @@ export default function Header() {
     const router = useRouter()
     const [search, setSearch] = useState<string>("")
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
         if (search.trim() !== "") router.push(`/result?query=${search}`)
     }
@@ -53,7 +53,9 @@ export default function Header() {
                         value={search}
                         spellCheck={false}
                     />
-                    <IoIosSearch className="mx-4 h-6 w-6 cursor-pointer text-mocha" />
+                    <div onClick={onSubmit}>
+                        <IoIosSearch className="mx-4 h-6 w-6 cursor-pointer text-mocha" />
+                    </div>
                 </form>
             </div>
             {/* <Login /> */}

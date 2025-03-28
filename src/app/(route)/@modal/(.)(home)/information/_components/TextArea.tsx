@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 import { useAppSelector } from "@/app/_store/Provider"
+import ShowMessage from "@/app/_components/Text/ShowMessage"
 
 export default function TextArea({ isbn13, className = "" }: { isbn13: string; className: string }) {
     const [isSaved, setIsSaved] = useState(false)
@@ -25,17 +26,11 @@ export default function TextArea({ isbn13, className = "" }: { isbn13: string; c
         }
         localStorage.setItem(isbn13, JSON.stringify(newBookData))
         setIsSaved(true)
-        setTimeout(() => setIsSaved(false), 1000)
     }
 
     return (
         <div className={`relative ${className}`}>
-            <div
-                className={`pointer-events-none absolute bottom-1/2 left-1/2 -translate-x-1/2 transform rounded-lg bg-mocha px-4 py-2 text-sm font-bold text-white transition-all duration-500 ${
-                    isSaved ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-                }`}>
-                {"저장되었습니다!"}
-            </div>
+            <ShowMessage message={"저장되었습니다."} isActive={isSaved} setIsActive={setIsSaved} />
             <textarea
                 className="h-60 w-full resize-none rounded-lg bg-zinc-100 p-4 text-left align-top text-black"
                 placeholder="독후감을 작성해주세요. (500자 이내)"
