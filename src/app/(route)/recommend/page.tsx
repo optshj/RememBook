@@ -15,12 +15,11 @@ export default function Recommend() {
     const [book, setBook] = useState<BookType | null>()
 
     const fetchBook = async () => {
-        const response = await fetch("/api/aladin/querytype", {
-            method: "POST",
+        const response = await fetch(`/api/aladin/querytype?queryType=Bestseller&maxResults=${maxResults}`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ queryType: "Bestseller", maxResults: maxResults }),
             cache: "no-cache"
         })
         const data = await response.json()

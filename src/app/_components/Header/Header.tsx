@@ -16,15 +16,15 @@ export default function Header() {
         e.preventDefault()
         if (search.trim() !== "") router.push(`/result?query=${search}`)
     }
-    useEffect(() => {
-        const disableContextMenu = (e: MouseEvent) => {
-            e.preventDefault()
-        }
-        window.addEventListener("contextmenu", disableContextMenu)
-        return () => {
-            window.removeEventListener("contextmenu", disableContextMenu)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const disableContextMenu = (e: MouseEvent) => {
+    //         e.preventDefault()
+    //     }
+    //     window.addEventListener("contextmenu", disableContextMenu)
+    //     return () => {
+    //         window.removeEventListener("contextmenu", disableContextMenu)
+    //     }
+    // }, [])
     return (
         <div className="fixed left-0 top-0 z-50 w-full bg-white py-3 shadow-sm sm:p-0">
             <div className="mx-4 flex max-w-5xl items-center justify-between lg:m-auto">

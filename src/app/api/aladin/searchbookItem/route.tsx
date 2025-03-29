@@ -1,9 +1,10 @@
 import { NextResponse, NextRequest } from "next/server"
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
     try {
-        const body = await request.json()
-        const isbn13 = body.isbn13
+        const { searchParams } = request.nextUrl
+
+        const isbn13 = searchParams.get("isbn13")
         const response = await fetch(
             `http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${process.env.ALADIN_TTB_KEY}&ItemId=${isbn13}&ItemIdType=ISBN13&cover=big&output=js&version=20131101`
         )
