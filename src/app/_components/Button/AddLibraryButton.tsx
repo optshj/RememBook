@@ -2,18 +2,21 @@
 import { useRef, useState } from "react"
 
 import { useRipple } from "@/app/_hooks/useRipple"
-
-import { BiSolidAddToQueue } from "react-icons/bi"
-import ShowMessage from "../Text/ShowMessage"
 import { addItem } from "@/app/_hooks/useLocalStorageBook"
 
-export default function AddLibraryButton({ isbn13 }: { isbn13: string }) {
+import { BookType } from "@/app/_types/AladinAPIType"
+
+import { BiSolidAddToQueue } from "react-icons/bi"
+
+import ShowMessage from "../Text/ShowMessage"
+
+export default function AddLibraryButton({ book }: { book: BookType }) {
     const contentRef = useRef<HTMLButtonElement>(null)
     const ripples = useRipple(contentRef)
     const [isActive, setIsActive] = useState(false)
     const onClick = () => {
         setIsActive(true)
-        addItem(isbn13)
+        addItem(book)
     }
     return (
         <>

@@ -9,7 +9,7 @@ export default function History({ bookList }: { bookList: CombinedBookType[] }) 
             <TitleText>{"최근 독서기록🧾"}</TitleText>
             <ul className="flex flex-col gap-3">
                 {sortedBookList.length === 0 ? (
-                    <div className="m-auto text-center text-xl font-semibold text-main-gray">
+                    <div className="m-auto whitespace-nowrap text-center text-xl font-semibold text-main-gray">
                         {"아직 기록이 없네요!"}
                         <br />
                         {"지금부터 시작해보세요!"}

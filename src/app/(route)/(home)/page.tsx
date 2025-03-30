@@ -28,7 +28,7 @@ interface MainItemListProps {
     loading?: "eager" | "lazy"
     category?: number
 }
-async function MainItemList({ title, queryType, loading = "lazy", category = 0 }: MainItemListProps) {
+async function MainItemList({ title, queryType, loading = "lazy", category }: MainItemListProps) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype?queryType=${queryType}&category=${category}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },

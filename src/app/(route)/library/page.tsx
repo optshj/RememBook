@@ -16,25 +16,22 @@ export default function Library() {
 
     // Fetch data from localStorage
     const getIsbnItems = (): LocalBookType[] => {
-        return Object.keys(localStorage)
-            .filter(key => !isNaN(Number(key)))
-            .map(key => {
-                const value = localStorage.getItem(key)
-                if (value) {
-                    try {
-                        const parsedValue = JSON.parse(value)
-                        return {
-                            isbn13: key,
-                            state: parsedValue.state,
-                            rating: parsedValue.rating,
-                            date: parsedValue.date
-                        }
-                    } catch (error) {
-                        console.error("localStorage parsing error", error)
-                        return null
+        return Object.entries(localStorage)
+            .filter(([key]) => !isNaN(Number(key)))
+            .map(([key, value]) => {
+                try {
+                    const parsedValue = JSON.parse(value)
+                    return {
+                        isbn13: key,
+                        state: parsedValue.state,
+                        rating: parsedValue.rating,
+                        date: parsedValue.date,
+                        categoryId: parsedValue.categoryId
                     }
+                } catch (error) {
+                    console.error("localStorage parsing error", error)
+                    return null
                 }
-                return null
             })
             .filter((item): item is LocalBookType => item !== null)
     }

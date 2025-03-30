@@ -36,7 +36,7 @@ export default function ItemImage({ book, state, className = "", loading = "lazy
             <BookReportButton isbn13={book.isbn13} className="hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 xs:flex" />
             <div className="absolute right-1 top-1 z-50 rounded-full" tabIndex={0} onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
                 <HiOutlineDotsVertical className="hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-[rgba(255,255,255,0.2)] group-hover:opacity-100 xs:inline-block" />
-                <DropDown isOpen={isOpen} isbn13={book.isbn13} />
+                <DropDown isOpen={isOpen} book={book} />
             </div>
         </div>
     )

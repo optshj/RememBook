@@ -50,7 +50,7 @@ export default function CircleChart({ bookList }: { bookList: CombinedBookType[]
         <div className="h-60 w-full font-bold sm:w-96 lg:w-full">
             <TitleText>{"선호하는 장르🔍"}</TitleText>
             {categoryData.children.length === 0 ? (
-                <div className="m-auto mt-10 text-center text-xl font-semibold text-main-gray">
+                <div className="m-auto mt-16 whitespace-nowrap text-center text-xl font-semibold text-main-gray">
                     {"좀 더 기록해주시면"}
                     <br />
                     {"성향을 알 수 있을 것 같아요!"}

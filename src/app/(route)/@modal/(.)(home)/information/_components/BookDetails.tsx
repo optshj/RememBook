@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 
 import { FaStar } from "react-icons/fa6"
 
+import { BookType } from "@/app/_types/AladinAPIType"
+
 import StateButton from "@/app/_components/Button/StateButton"
 import Calender from "./Calender"
 import Rating from "./Rating"
@@ -10,22 +12,20 @@ import Rating from "./Rating"
 import { useAppDispatch } from "@/app/_store/Provider"
 import { setBookData } from "@/app/_store/module/bookData"
 
-interface BookDetailsProps {
-    isbn13: string
-}
-export default function BookDetails({ isbn13 }: BookDetailsProps) {
-    const [data, setData] = useState({ rating: 0, date: "", state: 0 })
+export default function BookDetails({ book }: { book: BookType }) {
+    const title = book.title.split("-")[0]
+    const [data, setData] = useState({ rating: 0, date: "", state: 0, categoryId: book.categoryId, title: title, author: book.author })
     const [open, setOpen] = useState(0) // 0 : close, 1 : rating, 2 : calender, 3 : state
     const dispatch = useAppDispatch()
     dispatch(setBookData(data))
 
     useEffect(() => {
-        const localBookData = localStorage.getItem(isbn13)
+        const localBookData = localStorage.getItem(book.isbn13)
         if (localBookData) {
-            const { rating, date, state } = JSON.parse(localBookData)
-            setData({ rating, date, state })
+            const { rating, date, state, categoryId, title, author } = JSON.parse(localBookData)
+            setData({ rating, date, state, categoryId, title, author })
         }
-    }, [isbn13])
+    }, [book.isbn13])
 
     return (
         <div className="z-50 mt-4 flex flex-row text-sm font-semibold text-main-gray">

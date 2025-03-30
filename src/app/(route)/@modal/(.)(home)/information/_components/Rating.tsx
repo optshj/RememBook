@@ -12,6 +12,9 @@ interface RatingProp {
             rating: number
             date: string
             state: number
+            categoryId: number
+            title: string
+            author: string
         }>
     >
 }

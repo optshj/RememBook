@@ -40,7 +40,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                                 {book.categoryName || "카테고리 미정"}
                             </div>
                             <div className="whitespace-normal break-words text-sm font-semibold sm:hidden">{shortCategory || "카테고리 미정"}</div>
-                            <BookDetails isbn13={isbn13} />
+                            <BookDetails book={book} />
                         </div>
                     </div>
                     <TextArea isbn13={isbn13} className="mt-6 border-t pt-6" />
