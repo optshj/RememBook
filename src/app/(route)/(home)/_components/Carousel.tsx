@@ -42,7 +42,6 @@ export default function Carousel() {
         </>
     )
 }
-
 function Item({ src }: { src: string }) {
     return (
         <li className="w-full flex-shrink-0">
