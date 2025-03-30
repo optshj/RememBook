@@ -11,10 +11,9 @@ import BackArrow from "@/app/_components/Button/BackArrow"
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     const isbn13 = searchParams.isbn13
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/searchbookItem`, {
-        method: "POST",
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/searchbookItem?isbn13=${isbn13}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isbn13 }),
         cache: "no-store"
     })
     const book: BookType = await response.json()
@@ -41,7 +40,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                                 {book.categoryName || "카테고리 미정"}
                             </div>
                             <div className="whitespace-normal break-words text-sm font-semibold sm:hidden">{shortCategory || "카테고리 미정"}</div>
-                            <BookDetails isbn13={isbn13} />
+                            <BookDetails book={book} />
                         </div>
                     </div>
                     <TextArea isbn13={isbn13} className="mt-6 border-t pt-6" />

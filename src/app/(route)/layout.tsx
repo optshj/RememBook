@@ -35,7 +35,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
         <html lang="en">
             <body className={`${inter.className} bg-zinc-100`} spellCheck="false">
                 <Providers>
-                    <div className="mx-6 max-w-5xl py-24 lg:m-auto">
+                    <div className="mx-6 max-w-5xl py-16 sm:py-24 lg:m-auto">
                         <Header />
                         <TabBar />
                         {children}

@@ -9,7 +9,7 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
     const [state, setState] = useState(3)
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 sm:mr-8">
             <div className="flex justify-between gap-10 sm:justify-start">
                 <TitleText>{"내가 저장한 책📚"}</TitleText>
                 <div className="hidden gap-8 text-lg font-bold text-main-gray sm:flex">

@@ -7,12 +7,14 @@ import Loading from "./loading"
 import Item from "./_components/Item"
 import ScrollWrapper from "@/app/_components/Wrapper/ScrollWrapper"
 import TitleText from "@/app/_components/Text/TitleText"
+import Carousel from "./_components/Carousel"
 
 export default function Home({ searchParams }: { searchParams: { [key: string]: string } }) {
     // const code = searchParams.code
     return (
         <Suspense fallback={<Loading />}>
             {/* <KakaoAuthHandler code={code} /> */}
+            <Carousel />
             <MainItemList queryType="Bestseller" title="베스트셀러! 👍" />
             <MainItemList queryType="ItemNewSpecial" title="주목할만한 신간 🔍" />
             <MainItemList queryType="BlogBest" title="블로그 베스트" />
@@ -26,11 +28,10 @@ interface MainItemListProps {
     loading?: "eager" | "lazy"
     category?: number
 }
-async function MainItemList({ title, queryType, loading = "lazy", category = 0 }: MainItemListProps) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype`, {
-        method: "POST",
+async function MainItemList({ title, queryType, loading = "lazy", category }: MainItemListProps) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/aladin/querytype?queryType=${queryType}&category=${category}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ queryType, category }),
         cache: "no-store"
     })
     const data = await response.json()
