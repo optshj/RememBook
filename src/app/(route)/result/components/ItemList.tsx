@@ -97,7 +97,7 @@ function Item({ book }: { book: BookType }) {
                 </div>
             </div>
             <div className="ml-auto mr-5 hidden flex-col justify-center gap-5 sm:flex">
-                <AddLibraryButton isbn13={book.isbn13} />
+                <AddLibraryButton book={book} />
                 <BookReportButton isbn13={book.isbn13} large={true} />
             </div>
         </li>
