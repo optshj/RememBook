@@ -5,7 +5,7 @@ import TitleText from "@/app/_components/Text/TitleText"
 export default function History({ bookList }: { bookList: CombinedBookType[] }) {
     const sortedBookList = [...bookList].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6)
     return (
-        <div className="flex flex-grow flex-col gap-6">
+        <div className="mb-10 flex flex-grow flex-col gap-6">
             <TitleText>{"최근 독서기록🧾"}</TitleText>
             <ul className="flex flex-col gap-3">
                 {sortedBookList.length === 0 ? (

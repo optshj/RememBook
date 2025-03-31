@@ -19,7 +19,10 @@ export const metadata: Metadata = {
     },
 
     verification: {
-        google: "huSHYvBftuJFa028T6tGdShVcrWecu4qHuQWqhyKrmU"
+        google: "huSHYvBftuJFa028T6tGdShVcrWecu4qHuQWqhyKrmU",
+        other: {
+            "naver-site-verification": "f937b54a380a929498fe45404504dabea4f393f1"
+        }
     },
     openGraph: {
         title: "RememBOOK",
