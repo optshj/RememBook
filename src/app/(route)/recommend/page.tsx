@@ -1,5 +1,4 @@
 "use client"
-import Loading from "./loading"
 import { useEffect, useState } from "react"
 
 import { MdOutlineRefresh } from "react-icons/md"
@@ -8,6 +7,7 @@ import { BookType } from "@/app/_types/AladinAPIType"
 import { LocalBookType } from "@/app/_types/BookType"
 
 import ItemImage from "@/app/_components/Items/ItemImage"
+import Loading from "./loading"
 
 const encodeHTML = (str: string) => {
     const parser = new DOMParser()
@@ -15,7 +15,7 @@ const encodeHTML = (str: string) => {
     return encodedString
 }
 export default function Recommend() {
-    const maxResults = 50
+    const maxResults = 20
     const [rand, setRand] = useState(Math.floor(Math.random() * maxResults))
     const [books, setBooks] = useState<BookType[]>([])
     const [book, setBook] = useState<BookType | null>()
@@ -70,7 +70,6 @@ export default function Recommend() {
         }
         setBook(books[rand])
     }, [])
-
     // if rand changes, set book
     useEffect(() => {
         setBook(books[rand])
@@ -99,11 +98,11 @@ export default function Recommend() {
                                 </div>
                             )}
                             <p className="line-clamp-1 text-2xl">{book.title.split("-")[0]}</p>
-                            <p className="line-clamp-1 text-main-gray">{book.author}</p>
-                            <p className="line-clamp-2 hidden text-main-gray sm:inline-block">{book.categoryName}</p>
-                            <p className="text-main-gray sm:hidden">{shortCategory}</p>
-                            <p className="line-clamp-1 font-normal text-main-gray">
-                                {book.publisher} · {book.pubDate}
+                            <p className="line-clamp-1 text-main-gray">{book.author || "작가 미상"}</p>
+                            <p className="line-clamp-2 hidden text-main-gray sm:inline-block">{book.categoryName || "카테고리 없음"}</p>
+                            <p className="text-main-gray sm:hidden">{shortCategory || "카테고리 없음"}</p>
+                            <p className="line-clamp-1 text-main-gray">
+                                {book.publisher || "출판사 미정"} · {book.pubDate || "출판일 미정"}
                             </p>
                             <p className="mt-4 sm:line-clamp-3">{encodeHTML(book.description)}</p>
                         </div>

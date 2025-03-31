@@ -14,8 +14,15 @@ interface DropDownProps {
     isOpen: boolean
     book: BookType
 }
+interface BeautifulProps {
+    name: string
+    age: string
+    phone: string
+}
+
 export default function DropDown({ isOpen, book }: DropDownProps) {
     const [isActive, setIsActive] = useState(false)
+
     const handleAdd = () => {
         addItem(book)
         setIsActive(true)
@@ -37,9 +44,11 @@ export default function DropDown({ isOpen, book }: DropDownProps) {
                     <BiSolidAddToQueue />
                     {"서재에 담기"}
                 </li>
-                <li className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-gray-100">
-                    <BiSolidBookAlt />
-                    {"책 정보"}
+                <li>
+                    <Link href={`/book?isbn13=${book.isbn13}`} className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-gray-100">
+                        <BiSolidBookAlt />
+                        {"책 정보"}
+                    </Link>
                 </li>
                 <li className="flex cursor-pointer items-center gap-2 rounded-b-lg px-4 py-2 hover:bg-gray-100" onClick={() => deleteItem(book.isbn13)}>
                     <HiTrash />

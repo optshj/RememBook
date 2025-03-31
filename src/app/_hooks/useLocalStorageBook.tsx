@@ -6,7 +6,7 @@ export function addItem(book: BookType) {
     if (!item)
         localStorage.setItem(
             book.isbn13,
-            JSON.stringify({ rating: 0, date: "", state: 0, text: "", categoryId: book.categoryId, title: book.title, author: book.author })
+            JSON.stringify({ rating: 0, date: "", state: 0, text: "", categoryId: book.categoryId, title: title, author: book.author })
         )
 }
 export function deleteItem(isbn13: string) {
