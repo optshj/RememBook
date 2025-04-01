@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useState } from "react"
 
 import { CombinedBookType } from "@/app/_types/BookType"
@@ -7,6 +8,7 @@ import ItemImage from "@/app/_components/Items/ItemImage"
 
 export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) {
     const [state, setState] = useState(3)
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div className="flex flex-col gap-6 sm:mr-8">
@@ -26,12 +28,14 @@ export default function MyBooks({ bookList }: { bookList: CombinedBookType[] }) 
                         {"완료"}
                     </button>
                 </div>
-                <button className="font-semibold text-zinc-500 sm:hidden">{"전체보기"}</button>
+                <button className="font-semibold text-zinc-500 sm:hidden" onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? "접기" : "전체보기"}
+                </button>
             </div>
             {bookList.length === 0 ? (
                 <div className="m-auto my-32 text-xl font-semibold text-main-gray">{"책장이 비어있네요!"}</div>
             ) : (
-                <ul className="flex gap-2 overflow-x-auto sm:flex-wrap">
+                <ul className={`flex gap-2 sm:flex-wrap ${isOpen ? "flex-wrap" : "overflow-x-auto"}`}>
                     {bookList
                         .filter(item => state === 3 || item.state === state)
                         .map(item => (
