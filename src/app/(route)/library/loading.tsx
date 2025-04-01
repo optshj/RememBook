@@ -3,7 +3,7 @@ export default function Loading() {
         <div className="flex animate-pulse flex-col gap-6">
             <div className="flex flex-col justify-between gap-4 sm:flex-row">
                 {/* <CircleChart bookList={combinedList} /> */}
-                <div className="flex h-72 flex-1 flex-col">
+                <div className="mt-10 flex h-72 flex-1 flex-col">
                     <div className="mb-4 h-8 w-60 rounded-lg bg-gray-200" />
                     <div className="m-auto h-48 w-48 rounded-full bg-gray-200" />
                 </div>

@@ -20,22 +20,29 @@ interface ItemImageProps {
     className?: string
 }
 export default function ItemImage({ book, state, className = "", loading = "lazy" }: ItemImageProps) {
+    const transitionClass = "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
     const [isOpen, setIsOpen] = useState(false)
+
     const onLongPress = useLongPress(() => {
         setIsOpen(true)
     })
 
     return (
-        <div className={`group relative ${className} `}>
-            <Image src={book.cover} alt={book.title} className="cursor-pointer border border-zinc-300" quality={100} fill={true} loading={loading} />
+        <div className={`group relative ${className}`}>
+            <Image src={book.cover} alt={book.title} className="border border-zinc-300" quality={100} fill={true} loading={loading} />
+
             <Link href={`/information?isbn13=${book.isbn13}`} scroll={false} {...onLongPress()} onBlur={() => setIsOpen(false)}>
-                <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30" />
+                <div className={`absolute inset-0 bg-black/50 ${transitionClass}`} />
             </Link>
+
             <StateDot state={state} className="absolute left-3 top-3" />
-            <StateButton state={state} className="absolute left-2 top-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <BookReportButton isbn13={book.isbn13} className="hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 xs:flex" />
-            <div className="absolute right-1 top-1 z-50 rounded-full" tabIndex={0} onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
-                <HiOutlineDotsVertical className="hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-[rgba(255,255,255,0.2)] group-hover:opacity-100 xs:inline-block" />
+            <StateButton state={state} className={`absolute left-2 top-2 ${transitionClass}`} />
+            <BookReportButton isbn13={book.isbn13} className={`hidden xs:flex ${transitionClass}`} />
+
+            <div className="absolute right-1 top-1 z-50" onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
+                <HiOutlineDotsVertical
+                    className={`hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white hover:bg-[rgba(255,255,255,0.2)] xs:inline-block ${transitionClass}`}
+                />
                 <DropDown isOpen={isOpen} book={book} />
             </div>
         </div>

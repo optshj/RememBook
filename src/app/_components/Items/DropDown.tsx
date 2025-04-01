@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Link from "next/link"
+import { addItem, deleteItem } from "@/app/_hooks/useLocalStorageBook"
 
 import { HiPencil, HiTrash } from "react-icons/hi2"
 import { BiSolidBookAlt, BiSolidAddToQueue } from "react-icons/bi"
@@ -7,26 +8,19 @@ import { MdCancel } from "react-icons/md"
 
 import { BookType } from "@/app/_types/AladinAPIType"
 
-import { addItem, deleteItem } from "@/app/_hooks/useLocalStorageBook"
 import ShowMessage from "../Text/ShowMessage"
 
 interface DropDownProps {
     isOpen: boolean
     book: BookType
 }
-interface BeautifulProps {
-    name: string
-    age: string
-    phone: string
-}
-
 export default function DropDown({ isOpen, book }: DropDownProps) {
     const [isActive, setIsActive] = useState(false)
-
     const handleAdd = () => {
         addItem(book)
         setIsActive(true)
     }
+
     return (
         <>
             <ShowMessage message={"서재에 담겼습니다"} isActive={isActive} setIsActive={setIsActive} />

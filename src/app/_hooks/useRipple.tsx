@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
 
 /**
+ * parent components should have relative,overflow-hidden
  *
  * @param ref : React.RefObject<T>
  * @param color : string
+ *
  * @returns
  */
 export function useRipple<T extends HTMLElement>(ref: React.RefObject<T>, color: string = "#ffffff") {

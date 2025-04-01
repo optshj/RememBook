@@ -80,7 +80,7 @@ export default function Recommend() {
             {book ? (
                 <div className="fixed inset-0 top-16 mb-16 flex w-screen overflow-y-auto bg-white p-4 font-semibold sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:p-10 sm:shadow-lg">
                     <button
-                        className="absolute right-5 top-10 z-10 flex items-center gap-2 rounded-full bg-mocha p-2 text-white"
+                        className="absolute right-5 top-10 flex items-center gap-2 rounded-full bg-mocha p-2 text-white"
                         onClick={() => setRand(Math.floor(Math.random() * maxResults))}>
                         <MdOutlineRefresh className="h-6 w-6" />
                         <span className="hidden sm:inline-block">{"새로고침"}</span>
