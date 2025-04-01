@@ -78,33 +78,33 @@ export default function Recommend() {
     return (
         <>
             {book ? (
-                <div className="fixed inset-0 top-16 mb-16 flex w-screen overflow-y-auto bg-white p-4 font-semibold sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:p-10 sm:shadow-lg">
+                <div className="relative -mx-6 flex h-[calc(100vh-134px)] w-screen overflow-y-auto bg-white font-semibold sm:mx-0 sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:p-10 sm:shadow-lg">
                     <button
-                        className="absolute right-5 top-10 flex items-center gap-2 rounded-full bg-mocha p-2 text-white"
+                        className="absolute right-5 top-10 z-10 flex items-center gap-2 rounded-full bg-mocha p-2 text-white"
                         onClick={() => setRand(Math.floor(Math.random() * maxResults))}>
                         <MdOutlineRefresh className="h-6 w-6" />
                         <span className="hidden sm:inline-block">{"새로고침"}</span>
                     </button>
                     <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center">
-                        <div className="mt-10 flex justify-center bg-cover" style={{ backgroundImage: `url(${book.cover})` }}>
+                        <div className="flex justify-center bg-cover py-10 sm:p-0" style={{ backgroundImage: `url(${book.cover})` }}>
                             <div className="absolute inset-0 backdrop-blur-2xl sm:backdrop-blur-none" />
                             <ItemImage book={book} state={0} className="h-72 w-48 flex-shrink-0 sm:h-96 sm:w-64" />
                         </div>
-                        <div className="z-10 mt-4 flex w-full flex-col gap-1 text-lg">
+                        <div className="z-10 flex w-full flex-col gap-1 p-4 text-lg">
                             {localBookName && ( // if localBookName exists, show it
-                                <div className="line-clamp-1 sm:text-xl">
+                                <div className="line-clamp-1 text-xl">
                                     <span className="font-bold text-mocha">{localBookName}</span>
                                     {" 랑 비슷한 장르!"}
                                 </div>
                             )}
-                            <p className="line-clamp-1 text-2xl">{book.title.split("-")[0]}</p>
+                            <p className="line-clamp-2 text-2xl">{book.title.split("-")[0]}</p>
                             <p className="line-clamp-1 text-main-gray">{book.author || "작가 미상"}</p>
                             <p className="line-clamp-2 hidden text-main-gray sm:inline-block">{book.categoryName || "카테고리 없음"}</p>
-                            <p className="text-main-gray sm:hidden">{shortCategory || "카테고리 없음"}</p>
+                            <p className="text-main-gray sm:hidden">장르 : {shortCategory || "카테고리 없음"}</p>
                             <p className="line-clamp-1 text-main-gray">
                                 {book.publisher || "출판사 미정"} · {book.pubDate || "출판일 미정"}
                             </p>
-                            <p className="mt-4 sm:line-clamp-3">{encodeHTML(book.description)}</p>
+                            <p className="mt-4">{encodeHTML(book.description) || "책 소개가 비어있어요"}</p>
                         </div>
                     </div>
                 </div>

@@ -1,19 +1,33 @@
+import BackArrow from "@/app/_components/Button/BackArrow"
+import Modal from "@/app/_components/Modal/Modal"
+
 export default function Loading() {
     return (
-        <div className="fixed inset-0 top-12 flex h-screen w-screen overflow-y-auto bg-white p-10 font-semibold sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:shadow-lg">
-            <div className="absolute right-5 top-10 z-10 flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-200 p-2 sm:w-28" />
-            <div className="flex w-full animate-pulse flex-col gap-4 sm:flex-row sm:items-center">
-                <div className="flex justify-center">
-                    <div className="h-72 w-48 flex-shrink-0 rounded-lg bg-gray-200 sm:h-96 sm:w-64" />
+        <Modal>
+            <div className="flex h-[100vh] w-[100vw] flex-col gap-6 bg-white p-4 shadow-lg sm:h-auto sm:w-[calc(100vw-64px)] sm:rounded-lg sm:p-8 md:w-[750px]">
+                <BackArrow className="absolute left-2 top-2 z-20 h-6 w-6 sm:hidden" />
+                <div className="flex animate-pulse flex-col sm:flex-row">
+                    <div className="flex justify-center">
+                        <div className="relative mt-10 h-72 w-48 flex-shrink-0 rounded-lg bg-gray-200 sm:mt-0" />
+                    </div>
+                    <div className="mt-10 flex flex-col justify-center gap-2 sm:pl-4">
+                        <div className="mt-2 h-7 w-48 rounded bg-gray-200" />
+                        <div className="mt-2 h-4 w-36 rounded bg-gray-200" />
+                        <div className="mt-2 h-4 w-40 rounded bg-gray-200" />
+                        <div className="mt-4">
+                            <div className="mt-2 h-4 w-44 rounded bg-gray-200" />
+                            <div className="mt-2 h-4 w-44 rounded bg-gray-200" />
+                            <div className="mt-2 h-4 w-44 rounded bg-gray-200" />
+                        </div>
+                    </div>
                 </div>
-                <div className="z-10 mt-4 flex w-full flex-col gap-2">
-                    <div className="h-8 w-64 rounded-lg bg-gray-200" />
-                    <div className="h-6 w-44 rounded-lg bg-gray-200" />
-                    <div className="h-6 w-32 rounded-lg bg-gray-200" />
-                    <div className="h-6 w-36 rounded-lg bg-gray-200" />
-                    <div className="mt-4 h-28 w-full rounded-lg bg-gray-200" />
+                <div className="flex animate-pulse flex-col border-t pt-6">
+                    <div className="h-60 w-full rounded-lg bg-gray-200 p-4" />
+                    <div className="mt-2 flex flex-row items-center justify-center gap-2">
+                        <div className="h-8 w-24 rounded-lg bg-gray-200" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Modal>
     )
 }

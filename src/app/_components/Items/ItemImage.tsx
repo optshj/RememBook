@@ -39,7 +39,7 @@ export default function ItemImage({ book, state, className = "", loading = "lazy
             <StateButton state={state} className={`absolute left-2 top-2 ${transitionClass}`} />
             <BookReportButton isbn13={book.isbn13} className={`hidden xs:flex ${transitionClass}`} />
 
-            <div className="absolute right-1 top-1 z-50" onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
+            <div className="absolute right-1 top-1" onClick={() => setIsOpen(prev => !prev)} onBlur={() => setIsOpen(false)}>
                 <HiOutlineDotsVertical
                     className={`hidden h-10 w-10 cursor-pointer rounded-full p-2 text-white hover:bg-[rgba(255,255,255,0.2)] xs:inline-block ${transitionClass}`}
                 />

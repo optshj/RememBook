@@ -24,8 +24,8 @@ export default function Carousel() {
     }, [])
 
     return (
-        <>
-            <ul className="relative -mx-8 mb-8 hidden overflow-hidden sm:mx-0 sm:flex sm:w-full sm:rounded-xl">
+        <div className="-mx-8 mb-8 sm:mx-0 sm:w-full">
+            <ul className="relative hidden overflow-hidden rounded-xl sm:flex">
                 <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     <Item src={BigImage1.src} />
                     <Item src={BigImage2.src} />
@@ -36,7 +36,7 @@ export default function Carousel() {
                     {currentIndex + 1}/{imageCnt}
                 </div>
             </ul>
-            <ul className="relative -mx-8 mb-8 flex overflow-hidden sm:mx-0 sm:hidden sm:w-full sm:rounded-xl">
+            <ul className="relative flex overflow-hidden sm:hidden">
                 <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     <Item src={SmallImage1.src} />
                     <Item src={SmallImage2.src} />
@@ -47,7 +47,7 @@ export default function Carousel() {
                     {currentIndex + 1}/{imageCnt}
                 </div>
             </ul>
-        </>
+        </div>
     )
 }
 function Item({ src }: { src: string }) {
