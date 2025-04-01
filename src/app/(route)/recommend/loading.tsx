@@ -1,6 +1,6 @@
 export default function Loading() {
     return (
-        <div className="relative -mx-6 flex h-[calc(100vh-134px)] w-screen bg-white sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:shadow-lg">
+        <div className="relative -mx-6 flex h-[calc(100vh-134px)] w-screen bg-white sm:relative sm:h-[calc(100vh-220px)] sm:w-auto sm:rounded-2xl sm:p-10 sm:shadow-lg">
             <div className="absolute right-5 top-10 z-10 flex h-10 w-10 animate-pulse items-center rounded-full bg-gray-200 p-2 sm:w-28" />
             <div className="flex w-full animate-pulse flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="flex justify-center py-10">
