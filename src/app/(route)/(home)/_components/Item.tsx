@@ -22,10 +22,10 @@ export default function Item({ book, loading = "lazy" }: ItemProps) {
     }, [book.isbn13])
 
     return (
-        <li className="flex flex-col">
+        <li>
             <ItemImage book={book} state={state} loading={loading} className="h-48 w-32 sm:h-72 sm:w-48" />
             <h2 className="mt-2 text-sm font-semibold text-zinc-500">{category}</h2>
-            <h1 className="line-clamp-2 whitespace-normal text-base font-bold">{book.title.split("-")[0]}</h1>
+            <h1 className="line-clamp-2 font-bold">{book.title.split("-")[0]}</h1>
         </li>
     )
 }

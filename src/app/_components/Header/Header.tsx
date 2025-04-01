@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -16,17 +16,8 @@ export default function Header() {
         e.preventDefault()
         if (search.trim() !== "") router.push(`/result?query=${search}`)
     }
-    // useEffect(() => {
-    //     const disableContextMenu = (e: MouseEvent) => {
-    //         e.preventDefault()
-    //     }
-    //     window.addEventListener("contextmenu", disableContextMenu)
-    //     return () => {
-    //         window.removeEventListener("contextmenu", disableContextMenu)
-    //     }
-    // }, [])
     return (
-        <div className="fixed left-0 top-0 z-50 w-full bg-white py-3 shadow-sm sm:p-0">
+        <div className="fixed left-0 top-0 z-50 w-full border-b border-zinc-200 bg-white py-3 shadow-sm sm:p-0">
             <div className="mx-4 flex max-w-5xl items-center justify-between lg:m-auto">
                 <div className="flex items-center text-center text-xl font-bold text-black">
                     <Link href={"/"} aria-label="home">
@@ -43,9 +34,7 @@ export default function Header() {
                         <button className="my-2 w-28 p-2">{"책추천"}</button>
                     </Link>
                 </div>
-                <form
-                    className="mx-2 flex w-full min-w-56 max-w-72 items-center justify-between rounded-full border border-solid border-mocha"
-                    onSubmit={onSubmit}>
+                <form className="mx-2 flex w-full min-w-56 max-w-72 items-center justify-between rounded-full border border-mocha" onSubmit={onSubmit}>
                     <input
                         className="my-1 ml-4 w-full placeholder:text-sm"
                         placeholder={"책 제목을 입력해주세요"}

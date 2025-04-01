@@ -33,13 +33,11 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                             </div>
                         </div>
 
-                        <div className="z-10 mt-10 flex w-full flex-col justify-center gap-2 text-main-gray sm:pl-4">
+                        <div className="z-10 mt-10 flex w-full flex-col justify-center gap-2 text-sm font-semibold text-main-gray sm:pl-4">
                             <div className="line-clamp-2 whitespace-normal text-xl font-bold text-black">{book.title.split("-")[0]}</div>
-                            <div className="line-clamp-1 whitespace-normal text-sm font-semibold">{book.author || "저자 미상"}</div>
-                            <div className="hidden whitespace-normal break-words text-sm font-semibold sm:inline-block">
-                                {book.categoryName || "카테고리 미정"}
-                            </div>
-                            <div className="whitespace-normal break-words text-sm font-semibold sm:hidden">{shortCategory || "카테고리 미정"}</div>
+                            <div className="line-clamp-1 whitespace-normal">{book.author || "저자 미상"}</div>
+                            <div className="hidden whitespace-normal break-words sm:inline-block">{book.categoryName || "카테고리 미정"}</div>
+                            <div className="whitespace-normal break-words sm:hidden">{shortCategory || "카테고리 미정"}</div>
                             <BookDetails book={book} />
                         </div>
                     </div>

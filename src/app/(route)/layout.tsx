@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
+import PreventPress from "../_utils/PreventPress"
+
 import Header from "@/app/_components/Header/Header"
 import React from "react"
 import Providers from "@/app/_store/Provider"
@@ -37,6 +39,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
     return (
         <html lang="en">
             <body className={`${inter.className} bg-zinc-100`} spellCheck="false">
+                <PreventPress />
                 <Providers>
                     <div className="mx-6 max-w-5xl py-16 sm:py-24 lg:m-auto">
                         <Header />

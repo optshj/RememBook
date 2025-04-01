@@ -1,16 +1,14 @@
 "use client"
 import { useState, useEffect } from "react"
+import { useAppDispatch } from "@/app/_store/Provider"
+import { setBookData } from "@/app/_store/module/bookData"
 
-import { FaStar } from "react-icons/fa6"
-
+import { BiSolidStar } from "react-icons/bi"
 import { BookType } from "@/app/_types/AladinAPIType"
 
 import StateButton from "@/app/_components/Button/StateButton"
 import Calender from "./Calender"
 import Rating from "./Rating"
-
-import { useAppDispatch } from "@/app/_store/Provider"
-import { setBookData } from "@/app/_store/module/bookData"
 
 export default function BookDetails({ book }: { book: BookType }) {
     const title = book.title.split("-")[0]
@@ -44,7 +42,7 @@ export default function BookDetails({ book }: { book: BookType }) {
                     onClick={() => setOpen(prev => (prev == 1 ? 0 : 1))}
                     onBlur={() => setOpen(0)}>
                     <div className="flex cursor-pointer items-center gap-1 rounded-md p-1 text-yellow hover:bg-zinc-100">
-                        <FaStar />
+                        <BiSolidStar />
                         {data.rating || "비어있음"}
                     </div>
                     <Rating
@@ -54,11 +52,7 @@ export default function BookDetails({ book }: { book: BookType }) {
                     />
                 </li>
                 {/* calender select */}
-                <li
-                    className={`relative ${open == 2 && "shadow-lg"}`}
-                    onClick={() => setOpen(prev => (prev == 2 ? 0 : 2))}
-                    tabIndex={0}
-                    onBlur={() => setOpen(0)}>
+                <li className={`relative ${open == 2 && "shadow-lg"}`} onClick={() => setOpen(2)}>
                     <div className="cursor-pointer rounded-md p-1 hover:bg-zinc-100">{data.date || "비어있음"}</div>
                     <Calender
                         date={data.date}
