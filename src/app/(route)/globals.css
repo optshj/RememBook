@@ -21,6 +21,7 @@ body{
   -ms-overflow-style: none;
   -webkit-touch-callout: none !important;
   user-select: none;
+  overflow-x: hidden;
   -webkit-user-select: none;
 }
 
