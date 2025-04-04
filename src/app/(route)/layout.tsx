@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, modal }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-zinc-100`} spellCheck="false">
+            <body className={`${inter.className} overflow-hidden bg-zinc-100`} spellCheck="false">
                 <PreventPress />
                 <Providers>
                     <div className="mx-6 max-w-5xl py-16 sm:py-24 lg:m-auto">
