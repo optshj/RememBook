@@ -29,7 +29,7 @@ export default function Carousel() {
     }, [])
 
     return (
-        <div className="-mx-8 mb-8 sm:mx-0 sm:w-full">
+        <div className="-mx-6 mb-8 sm:mx-0 sm:w-full">
             <ul className="relative hidden overflow-hidden rounded-xl sm:flex">
                 <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {bigImages.map((image, index) => (
