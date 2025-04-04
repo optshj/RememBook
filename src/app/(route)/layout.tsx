@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
@@ -11,10 +11,16 @@ import TabBar from "../_components/TabBar/TabBar"
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false
+}
 export const metadata: Metadata = {
     title: "RememBOOK",
+    description: "RememBOOK은 독서 기록을 저장하고 관리하는 웹 애플리케이션입니다. 책을 읽고 나서 간단한 메모를 남기고, 나중에 다시 확인할 수 있습니다.",
     keywords: "독서 기록 저장 리멤북 책 베스트셀러 추천",
-    description: "리멤북으로 읽은 책을 기록해 보세요",
     robots: "index, follow",
     icons: {
         icon: "/favicon.ico"

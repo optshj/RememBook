@@ -42,10 +42,17 @@ const config: Config = {
                         height: "400px",
                         opacity: "0"
                     }
+                },
+                "fade-up-down": {
+                    "0%": { opacity: "0", marginTop: "8px" },
+                    "25%": { opacity: "1", marginTop: "0" },
+                    "75%": { opacity: "1", marginTop: "0" },
+                    "100%": { opacity: "0", marginTop: "8px" }
                 }
             },
             animation: {
-                ripple: "ripple 1s ease-out"
+                ripple: "ripple 1s ease-out",
+                "fade-up-down": "fade-up-down 1s ease-out forwards"
             }
         }
     },

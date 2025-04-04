@@ -1,6 +1,6 @@
 export default function Loading() {
     return (
-        <div className="space-y-4 overflow-y-clip">
+        <div className="space-y-4 overflow-hidden">
             {[0, 1, 2].map(i => (
                 <div key={i} className="relative flex animate-pulse flex-col gap-4">
                     {/* title */}
