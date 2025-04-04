@@ -23,7 +23,7 @@ export default function History({ bookList }: { bookList: CombinedBookType[] }) 
 }
 function Item({ book }: { book: CombinedBookType }) {
     return (
-        <li className="flex max-w-96 flex-col">
+        <li className="flex min-w-60 flex-col">
             <div className="line-clamp-1 whitespace-normal text-lg font-bold">{book.title.split("-")[0]}</div>
             <div className="line-clamp-1 whitespace-normal font-semibold text-main-gray">{book.date ? book.date : "비어있음"}</div>
         </li>
