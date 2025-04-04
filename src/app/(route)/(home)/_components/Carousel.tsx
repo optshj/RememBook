@@ -56,7 +56,7 @@ export default function Carousel() {
 function Item({ src }: { src: string }) {
     return (
         <li className="w-full flex-shrink-0">
-            <Image src={src} alt="frame" width={1500} height={600} quality={100} />
+            <Image src={src} alt="frame" width={1500} height={600} quality={100} loading="eager" />
         </li>
     )
 }
