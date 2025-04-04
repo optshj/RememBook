@@ -17,6 +17,7 @@
 }
 body{
   margin:0;
+  padding: 0;
   -ms-overflow-style: none;
   -webkit-touch-callout: none !important;
   user-select: none;
