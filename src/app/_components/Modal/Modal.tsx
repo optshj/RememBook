@@ -1,8 +1,17 @@
 "use client"
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
 export default function Modal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     const router = useRouter()
+    useEffect(() => {
+        const originalOverflow = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = originalOverflow
+        }
+    }, [])
 
     const closeModal = () => {
         router.back()
