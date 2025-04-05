@@ -53,7 +53,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
     const [prev, setPrev] = useState<string>(format(currentDate, dateformat))
     const [startDate, setStartDate] = useState<string>(format(currentDate, dateformat))
     const [endDate, setEndDate] = useState<string>(format(currentDate, dateformat))
-
+    const [change, setChange] = useState(false)
     useEffect(() => {
         if (!date) return
         const dateList = date.split(" ~ ")
@@ -67,20 +67,30 @@ export default function Calender({ className, date, setOpen, setData }: Calender
     const handleDateClick = (date: string) => {
         let dateText
         if (isEnded) {
-            const end = prev
-            const newEndDate = new Date(end)
             const clickedDate = new Date(date)
 
-            if (clickedDate < newEndDate) {
-                setStartDate(date)
-                setEndDate(end)
-                dateText = `${date} ~ ${end}`
+            if (change) {
+                const start = new Date(startDate)
+                if (clickedDate < start) {
+                    setStartDate(date)
+                    setEndDate(startDate)
+                    dateText = `${date} ~ ${startDate}`
+                } else {
+                    setEndDate(date)
+                    dateText = `${startDate} ~ ${date}`
+                }
             } else {
-                setStartDate(end)
-                setEndDate(date)
-                dateText = `${end} ~ ${date}`
+                const end = new Date(endDate)
+                if (clickedDate > end) {
+                    setEndDate(date)
+                    setStartDate(endDate)
+                    dateText = `${endDate} ~ ${date}`
+                } else {
+                    setStartDate(date)
+                    dateText = `${date} ~ ${endDate}`
+                }
             }
-            setPrev(date)
+            setChange(prev => !prev)
         } else {
             setStartDate(date)
             setEndDate(date)
@@ -92,7 +102,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
         }))
     }
     return (
-        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`} tabIndex={0} onBlur={() => setOpen(0)}>
+        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`}>
             <div className="p-2">
                 {isEnded ? (
                     <div className="mb-2 flex flex-row justify-center gap-2">
@@ -117,7 +127,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                 </div>
                 <div className="grid grid-cols-[repeat(7,auto)] justify-items-center">
                     {weeks.map(week => (
-                        <div key={week} className="flex h-8 w-9 items-center justify-center border border-transparent text-main-gray">
+                        <div key={week} className="flex h-6 w-7 items-center justify-center border border-transparent text-main-gray sm:h-8 sm:w-9">
                             {week}
                         </div>
                     ))}
@@ -131,7 +141,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                         return (
                             <div
                                 key={index}
-                                className={`flex h-8 w-9 cursor-pointer items-center justify-center rounded-md border-2 border-transparent text-black hover:border-blue-500 ${isInRange && "rounded-none bg-blue-200"} ${date.date === startDate || (isEnded && date.date === endDate) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} ${currentMonth != parseInt(date.month) && "text-main-gray"} `}
+                                className={`flex h-6 w-7 cursor-pointer items-center justify-center rounded-md border-2 border-transparent text-black hover:border-blue-500 sm:h-8 sm:w-9 ${isInRange && "rounded-none bg-blue-200"} ${date.date === startDate || (isEnded && date.date === endDate) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} ${currentMonth != parseInt(date.month) && "text-main-gray"} `}
                                 onClick={() => {
                                     handleDateClick(date.date)
                                     handleDate(currentMonth - parseInt(date.month))
@@ -147,6 +157,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                     className="m-1 flex items-center justify-between rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200"
                     onClick={() => {
                         setIsEnded(prev => !prev)
+                        setData(prev => ({ ...prev, date: isEnded ? startDate : `${startDate} ~ ${endDate}` }))
                     }}>
                     {"종료일"}
                     <ToggleButton state={isEnded} />

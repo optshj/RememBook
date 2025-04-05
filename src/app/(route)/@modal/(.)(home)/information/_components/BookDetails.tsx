@@ -52,7 +52,7 @@ export default function BookDetails({ book }: { book: BookType }) {
                     />
                 </li>
                 {/* calender select */}
-                <li className={`relative ${open == 2 && "shadow-lg"}`} onClick={() => setOpen(2)}>
+                <li className={`relative ${open == 2 && "shadow-lg"}`} onClick={() => setOpen(2)} tabIndex={0} onBlur={() => setOpen(0)}>
                     <div className="cursor-pointer rounded-md p-1 hover:bg-zinc-100">{data.date || "비어있음"}</div>
                     <Calender
                         date={data.date}
