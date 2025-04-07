@@ -1,7 +1,7 @@
 "use client"
-
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
+
 import ItemList from "./components/ItemList"
 import Loading from "./loading"
 
