@@ -41,7 +41,7 @@ export default function Recommend() {
             .filter((item): item is LocalBookType => item !== null)
     }
 
-    const fetchBookList = async (queryType: string, category?: string) => {
+    const fetchBookList = async (queryType: string, category?: number) => {
         const response = await fetch(`/api/aladin/querytype?queryType=${queryType}&maxResults=${maxResults}&category=${category}`, {
             method: "GET",
             headers: {
@@ -73,7 +73,7 @@ export default function Recommend() {
         if (localList.length > 0) {
             const randomItem = getWeightedRandom(localList)
             setLocalBookName(randomItem.title)
-            fetchBookList("ItemEditorChoice", randomItem.categoryId.toString())
+            fetchBookList("ItemEditorChoice", randomItem.categoryId)
         } else {
             fetchBookList("Bestseller")
         }
