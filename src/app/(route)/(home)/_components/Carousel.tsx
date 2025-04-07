@@ -30,26 +30,26 @@ export default function Carousel() {
 
     return (
         <div className="-mx-6 mb-8 sm:mx-0 sm:w-full">
-            <ul className="relative hidden overflow-hidden rounded-xl sm:flex">
-                <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+            <div className="relative hidden overflow-hidden rounded-xl sm:flex">
+                <ul className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {bigImages.map((image, index) => (
                         <Item key={index} src={image.src} />
                     ))}
-                </div>
+                </ul>
                 <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm font-semibold text-white">
                     {currentIndex + 1}/{imageCnt}
                 </div>
-            </ul>
-            <ul className="relative flex overflow-hidden sm:hidden">
-                <div className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+            </div>
+            <div className="relative flex overflow-hidden sm:hidden">
+                <ul className="flex transition-transform duration-1000" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {smallImages.map((image, index) => (
                         <Item key={index} src={image.src} />
                     ))}
-                </div>
+                </ul>
                 <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm font-semibold text-white">
                     {currentIndex + 1}/{imageCnt}
                 </div>
-            </ul>
+            </div>
         </div>
     )
 }

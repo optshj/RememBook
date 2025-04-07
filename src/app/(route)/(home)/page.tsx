@@ -15,7 +15,7 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
         <Suspense fallback={<Loading />}>
             {/* <KakaoAuthHandler code={code} /> */}
             <Carousel />
-            <MainItemList queryType="Bestseller" title="베스트셀러!" />
+            <MainItemList queryType="Bestseller" title="베스트셀러!" loading="eager" />
             <MainItemList queryType="ItemNewSpecial" title="읽어볼 만한 따끈따끈한 신간" />
             <MainItemList queryType="BlogBest" title="이달의 눈여겨볼 책" />
             <MainItemList queryType="ItemNewAll" title="새롭게 선보이는 책들" />
