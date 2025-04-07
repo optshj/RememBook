@@ -36,7 +36,7 @@ export default function Carousel() {
                         <Item key={index} src={image.src} />
                     ))}
                 </div>
-                <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm text-white">
+                <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm font-semibold text-white">
                     {currentIndex + 1}/{imageCnt}
                 </div>
             </ul>
@@ -46,7 +46,7 @@ export default function Carousel() {
                         <Item key={index} src={image.src} />
                     ))}
                 </div>
-                <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm text-white">
+                <div className="absolute bottom-4 right-6 rounded-full bg-black/50 px-4 py-1 text-sm font-semibold text-white">
                     {currentIndex + 1}/{imageCnt}
                 </div>
             </ul>

@@ -22,7 +22,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
     return (
         <Suspense fallback={<Loading />}>
             <Modal>
-                <div className="h-[100vh] w-[100vw] flex-col gap-6 overflow-y-auto bg-white p-4 shadow-lg sm:h-auto sm:w-[calc(100vw-64px)] sm:rounded-lg sm:p-8 md:w-[750px]">
+                <div className="h-[100vh] w-[100vw] flex-col gap-6 overflow-y-auto bg-white p-4 pb-10 shadow-lg sm:h-auto sm:w-[calc(100vw-64px)] sm:rounded-lg sm:p-8 md:w-[750px]">
                     <BackArrow className="absolute left-2 top-2 z-20 h-6 w-6 sm:hidden" />
 
                     <div className="flex flex-col sm:flex-row">

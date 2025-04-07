@@ -43,7 +43,7 @@ interface StateButtonProps {
 export default function StateButton({ className = "", state = 0 }: StateButtonProps) {
     const { backgroundColor, circleColor, text } = getStatusProps(state)
     return (
-        <button className={`${className} flex items-center gap-1 rounded-md px-1 py-0.5`} style={{ backgroundColor }}>
+        <button className={`${className} flex w-fit items-center gap-1 rounded-md px-1 py-0.5`} style={{ backgroundColor }}>
             <div className="h-3 w-3 rounded-full" style={{ backgroundColor: circleColor }} />
             <div className="text-xs font-semibold text-black">{text}</div>
         </button>
