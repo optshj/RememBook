@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Analytics } from "@vercel/analytics/react"
 
 import PreventPress from "../_utils/PreventPress"
 
@@ -47,6 +48,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
         <html lang="en">
             <body className={`${inter.className} bg-zinc-100`} spellCheck="false">
                 <PreventPress />
+                <Analytics />
                 <Providers>
                     <div className="mx-6 max-w-5xl py-16 sm:py-24 lg:m-auto">
                         <Header />
