@@ -52,6 +52,7 @@ export default function Recommend() {
         const data = await response.json()
         setBooks(data.item)
     }
+
     function getWeightedRandom(items: LocalBookType[]) {
         const totalWeight = items.reduce((sum, item) => sum + (item.rating || 1), 0)
         const rand = Math.random() * totalWeight
@@ -63,7 +64,7 @@ export default function Recommend() {
                 return item
             }
         }
-        console.log(items[items.length - 1])
+        console.log("local", items[items.length - 1])
         return items[items.length - 1] // fallback
     }
 
