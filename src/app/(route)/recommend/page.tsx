@@ -19,6 +19,7 @@ export default function Recommend() {
     const shortCategory = book?.categoryName ? book.categoryName.split(">").slice(-1)[0] : ""
 
     const getIsbnItems = (): LocalBookType[] => {
+        if (typeof window === "undefined") return []
         return Object.entries(localStorage)
             .filter(([key]) => !isNaN(Number(key)))
             .map(([key, value]) => {
@@ -58,6 +59,7 @@ export default function Recommend() {
     }
 
     const getWeightedRandom = (items: LocalBookType[]) => {
+        if (!items || items.length === 0) return null
         const totalWeight = items.reduce((sum, item) => sum + (item.rating || 1), 0)
         const rand = Math.random() * totalWeight
         let accum = 0
@@ -68,16 +70,20 @@ export default function Recommend() {
                 return item
             }
         }
-        return items[items.length - 1] // fa    llback
+        return items[items.length - 1]
     }
 
     //fetchbook
     useEffect(() => {
         const localList = getIsbnItems()
-        if (localList) {
+        if (localList.length > 0) {
             const randomItem = getWeightedRandom(localList)
-            setLocalBookName(randomItem.title)
-            fetchBookList("ItemEditorChoice", randomItem.categoryId)
+            if (randomItem) {
+                setLocalBookName(randomItem.title)
+                fetchBookList("ItemEditorChoice", randomItem.categoryId)
+            } else {
+                fetchBookList("Bestseller")
+            }
         } else {
             fetchBookList("Bestseller")
         }
