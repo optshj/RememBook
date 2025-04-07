@@ -16,7 +16,7 @@ export default function Recommend() {
     const [books, setBooks] = useState<BookType[]>([])
     const [book, setBook] = useState<BookType | null>()
     const [localBookName, setLocalBookName] = useState<string>("")
-    const shortCategory = book?.categoryName.split(">").slice(-1)[0]
+    const shortCategory = book?.categoryName ? book.categoryName.split(">").slice(-1)[0] : ""
 
     const getIsbnItems = (): LocalBookType[] => {
         return Object.entries(localStorage)
@@ -42,18 +42,22 @@ export default function Recommend() {
     }
 
     const fetchBookList = async (queryType: string, category?: number) => {
-        const response = await fetch(`/api/aladin/querytype?queryType=${queryType}&maxResults=${maxResults}&category=${category}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            cache: "no-cache"
-        })
-        const data = await response.json()
-        setBooks(data.item)
+        try {
+            const response = await fetch(`/api/aladin/querytype?queryType=${queryType}&maxResults=${maxResults}&category=${category}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                cache: "no-cache"
+            })
+            const data = await response.json()
+            setBooks(data.item)
+        } catch (err) {
+            console.error("Error fetching book list:", err)
+        }
     }
 
-    function getWeightedRandom(items: LocalBookType[]) {
+    const getWeightedRandom = (items: LocalBookType[]) => {
         const totalWeight = items.reduce((sum, item) => sum + (item.rating || 1), 0)
         const rand = Math.random() * totalWeight
         let accum = 0
@@ -64,8 +68,7 @@ export default function Recommend() {
                 return item
             }
         }
-        console.log("local", items[items.length - 1])
-        return items[items.length - 1] // fallback
+        return items[items.length - 1] // fa    llback
     }
 
     //fetchbook
@@ -78,12 +81,10 @@ export default function Recommend() {
         } else {
             fetchBookList("Bestseller")
         }
-        setBook(books[rand])
     }, [])
 
     // if rand changes, set book
     useEffect(() => {
-        console.log(books.length)
         if (books.length > 0) {
             setBook(books[rand])
         }
