@@ -82,7 +82,9 @@ export default function Recommend() {
 
     // if rand changes, set book
     useEffect(() => {
-        setBook(books[rand])
+        if (books.length > 0) {
+            setBook(books[rand])
+        }
     }, [rand, books])
 
     return (
