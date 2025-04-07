@@ -2,7 +2,7 @@ export default function Loading() {
     return (
         <div className="space-y-4 overflow-hidden">
             {[0, 1, 2].map(i => (
-                <div key={i} className="relative flex animate-pulse flex-col gap-4">
+                <div key={i} className="relative flex animate-pulse flex-col gap-6">
                     {/* title */}
                     <div className="mt-2 h-8 max-w-60 rounded bg-gray-200" />
                     {/* images */}

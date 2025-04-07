@@ -37,7 +37,7 @@ export default function TextArea({ isbn13, className = "" }: { isbn13: string; c
                     value={text}
                     onChange={e => setText(e.target.value)}
                 />
-                <div className="mt-2 flex justify-center gap-2 font-bold text-white">
+                <div className="mb-10 mt-5 flex justify-center gap-2 font-bold text-white">
                     <button className={`flex w-24 items-center justify-center rounded-lg bg-mocha py-1`} onClick={handleSave} ref={buttonRef}>
                         {"저장"}
                     </button>

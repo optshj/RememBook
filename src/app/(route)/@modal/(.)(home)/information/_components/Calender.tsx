@@ -22,7 +22,6 @@ interface CalenderProps {
 }
 export default function Calender({ className, date, setOpen, setData }: CalenderProps) {
     const dateformat = "yyyy.MM.dd"
-
     const [currentDate, setCurrentDate] = useState<Date>(new Date())
     const currentMonth = currentDate.getMonth() + 1
     const weeks = ["일", "월", "화", "수", "목", "금", "토"]
@@ -50,49 +49,45 @@ export default function Calender({ className, date, setOpen, setData }: Calender
     }
 
     const [isEnded, setIsEnded] = useState(false)
-    const [prev, setPrev] = useState<string>(format(currentDate, dateformat))
     const [startDate, setStartDate] = useState<string>(format(currentDate, dateformat))
     const [endDate, setEndDate] = useState<string>(format(currentDate, dateformat))
+    const [selectedDates, setSelectedDates] = useState<string[]>([])
 
     useEffect(() => {
         if (!date) return
         const dateList = date.split(" ~ ")
         setCurrentDate(new Date(dateList[0]))
-        setIsEnded(dateList.length > 1)
-        setPrev(dateList[0])
         setStartDate(dateList[0])
         setEndDate(dateList.length > 1 ? dateList[1] : date)
     }, [date])
 
     const handleDateClick = (date: string) => {
-        let dateText
-        if (isEnded) {
-            const end = prev
-            const newEndDate = new Date(end)
-            const clickedDate = new Date(date)
+        let updatedDates: string[]
 
-            if (clickedDate < newEndDate) {
-                setStartDate(date)
-                setEndDate(end)
-                dateText = `${date} ~ ${end}`
-            } else {
-                setStartDate(end)
-                setEndDate(date)
-                dateText = `${end} ~ ${date}`
-            }
-            setPrev(date)
+        if (!isEnded) {
+            updatedDates = [date]
         } else {
-            setStartDate(date)
-            setEndDate(date)
-            dateText = date
+            updatedDates = [...selectedDates, date]
+            if (updatedDates.length > 2) {
+                updatedDates = updatedDates.slice(1)
+            }
         }
+
+        const sortedDates = [...updatedDates].sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+        const [start, end] = sortedDates.length === 2 ? sortedDates : [sortedDates[0], sortedDates[0]]
+
+        setSelectedDates(updatedDates)
+        setStartDate(start)
+        setEndDate(end)
+
         setData(prev => ({
             ...prev,
-            date: dateText
+            date: start === end ? start : `${start} ~ ${end}`
         }))
     }
+
     return (
-        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`} tabIndex={0} onBlur={() => setOpen(0)}>
+        <div className={`absolute z-50 rounded-md bg-white font-normal text-black shadow-lg ${className}`}>
             <div className="p-2">
                 {isEnded ? (
                     <div className="mb-2 flex flex-row justify-center gap-2">
@@ -117,7 +112,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                 </div>
                 <div className="grid grid-cols-[repeat(7,auto)] justify-items-center">
                     {weeks.map(week => (
-                        <div key={week} className="flex h-8 w-9 items-center justify-center border border-transparent text-main-gray">
+                        <div key={week} className="flex h-6 w-7 items-center justify-center border border-transparent text-main-gray sm:h-8 sm:w-9">
                             {week}
                         </div>
                     ))}
@@ -131,7 +126,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                         return (
                             <div
                                 key={index}
-                                className={`flex h-8 w-9 cursor-pointer items-center justify-center rounded-md border-2 border-transparent text-black hover:border-blue-500 ${isInRange && "rounded-none bg-blue-200"} ${date.date === startDate || (isEnded && date.date === endDate) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} ${currentMonth != parseInt(date.month) && "text-main-gray"} `}
+                                className={`flex h-6 w-7 cursor-pointer items-center justify-center rounded-md border-2 border-transparent text-black hover:border-blue-500 sm:h-8 sm:w-9 ${isInRange && "rounded-none bg-blue-200"} ${date.date === startDate || (isEnded && date.date === endDate) ? "bg-blue-500 text-white" : "hover:bg-blue-100"} ${currentMonth != parseInt(date.month) && "text-main-gray"} `}
                                 onClick={() => {
                                     handleDateClick(date.date)
                                     handleDate(currentMonth - parseInt(date.month))
@@ -147,6 +142,7 @@ export default function Calender({ className, date, setOpen, setData }: Calender
                     className="m-1 flex items-center justify-between rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200"
                     onClick={() => {
                         setIsEnded(prev => !prev)
+                        setData(prev => ({ ...prev, date: isEnded ? startDate : `${startDate} ~ ${endDate}` }))
                     }}>
                     {"종료일"}
                     <ToggleButton state={isEnded} />
@@ -154,11 +150,20 @@ export default function Calender({ className, date, setOpen, setData }: Calender
             </div>
             <div
                 className="cursor-pointer border-t"
-                onClick={() => {
+                onClick={e => {
                     setData(prev => ({ ...prev, date: "" }))
+                    e.stopPropagation()
                     setOpen(0)
                 }}>
                 <div className="m-1 rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200">{"삭제"}</div>
+            </div>
+            <div
+                className="cursor-pointer border-t"
+                onClick={e => {
+                    e.stopPropagation()
+                    setOpen(0)
+                }}>
+                <div className="m-1 rounded-lg p-1 pl-2 hover:bg-zinc-100 active:bg-zinc-200">{"닫기"}</div>
             </div>
         </div>
     )

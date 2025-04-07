@@ -3,8 +3,6 @@ import { useState, useEffect, useRef, useCallback } from "react"
 
 import { BookType } from "@/app/_types/AladinAPIType"
 
-import { addItem } from "@/app/_hooks/useLocalStorageBook"
-
 import { FaStar } from "react-icons/fa6"
 import { AiOutlineLoading } from "react-icons/ai"
 
@@ -87,7 +85,7 @@ function Item({ book }: { book: BookType }) {
                         ))}
                     </div>
                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-1 text-yellow">
+                        <div className="flex items-center text-yellow">
                             <FaStar />
                             {data.rating || "비어있음"}
                         </div>

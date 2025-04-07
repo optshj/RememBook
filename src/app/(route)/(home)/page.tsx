@@ -15,9 +15,10 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
         <Suspense fallback={<Loading />}>
             {/* <KakaoAuthHandler code={code} /> */}
             <Carousel />
-            <MainItemList queryType="Bestseller" title="베스트셀러! 👍" />
-            <MainItemList queryType="ItemNewSpecial" title="주목할만한 신간 🔍" />
-            <MainItemList queryType="BlogBest" title="블로그 베스트" />
+            <MainItemList queryType="Bestseller" title="베스트셀러!" />
+            <MainItemList queryType="ItemNewSpecial" title="읽어볼 만한 따끈따끈한 신간" />
+            <MainItemList queryType="BlogBest" title="이달의 눈여겨볼 책" />
+            <MainItemList queryType="ItemNewAll" title="새롭게 선보이는 책들" />
         </Suspense>
     )
 }
@@ -37,7 +38,7 @@ async function MainItemList({ title, queryType, loading = "lazy", category }: Ma
     const data = await response.json()
     const books: BookType[] = data.item
     return (
-        <div className="relative mb-6 flex flex-col gap-4">
+        <div className="relative mb-10 flex flex-col gap-4">
             <TitleText>{title}</TitleText>
             <ScrollWrapper>
                 {books.map((book: BookType) => (

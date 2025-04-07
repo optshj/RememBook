@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import Image from "next/image"
+import { decode } from "he"
 
 import { BookType } from "@/app/_types/AladinAPIType"
 
@@ -41,7 +42,10 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                             <div className="line-clamp-1 text-main-gray">
                                 {book.publisher || "출판사 미상"} · {book.pubDate || "출판일 미상"}
                             </div>
-                            <div className="mt-4">{book.description || "책 소개가 비어있어요"}</div>
+                            <div className="mt-4 text-xl">{"도서소개"}</div>
+                            <div className="font-normal text-zinc-700">
+                                {decode(book.description) || "아직 소개가 준비되지 않았어요. 조만간 이야기를 들려줄게요."}
+                            </div>
                         </div>
                     </div>
                     <CloseButton />

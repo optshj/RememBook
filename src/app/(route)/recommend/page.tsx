@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
+import { decode } from "he"
 
 import { MdOutlineRefresh } from "react-icons/md"
 
@@ -9,11 +10,6 @@ import { LocalBookType } from "@/app/_types/BookType"
 import ItemImage from "@/app/_components/Items/ItemImage"
 import Loading from "./loading"
 
-const encodeHTML = (str: string) => {
-    const parser = new DOMParser()
-    const encodedString = parser.parseFromString(str, "text/html").documentElement.textContent
-    return encodedString
-}
 export default function Recommend() {
     const maxResults = 20
     const [rand, setRand] = useState(Math.floor(Math.random() * maxResults))
@@ -57,12 +53,25 @@ export default function Recommend() {
         setBooks(data.item)
         setBook(data.item[rand])
     }
+    function getWeightedRandom(items: LocalBookType[]) {
+        const totalWeight = items.reduce((sum, item) => sum + (item.rating || 1), 0)
+        const rand = Math.random() * totalWeight
+        let accum = 0
+
+        for (const item of items) {
+            accum += item.rating || 1
+            if (rand < accum) {
+                return item
+            }
+        }
+        return items[items.length - 1] // fallback
+    }
 
     //fetchbook
     useEffect(() => {
         const localList = getIsbnItems()
         if (localList.length > 0) {
-            const randomItem = localList[Math.floor(Math.random() * localList.length)]
+            const randomItem = getWeightedRandom(localList)
             setLocalBookName(randomItem.title)
             fetchBookList("ItemEditorChoice", randomItem.categoryId.toString())
         } else {
@@ -70,10 +79,11 @@ export default function Recommend() {
         }
         setBook(books[rand])
     }, [])
+
     // if rand changes, set book
     useEffect(() => {
         setBook(books[rand])
-    }, [rand])
+    }, [rand, books])
 
     return (
         <>
@@ -104,7 +114,10 @@ export default function Recommend() {
                             <p className="line-clamp-1 text-main-gray">
                                 {book.publisher || "출판사 미정"} · {book.pubDate || "출판일 미정"}
                             </p>
-                            <p className="mt-4">{encodeHTML(book.description) || "책 소개가 비어있어요"}</p>
+                            <div className="mt-4 text-xl">{"도서소개"}</div>
+                            <div className="font-normal text-zinc-700">
+                                {decode(book.description) || "아직 소개가 준비되지 않았어요. 조만간 이야기를 들려줄게요."}
+                            </div>
                         </div>
                     </div>
                 </div>

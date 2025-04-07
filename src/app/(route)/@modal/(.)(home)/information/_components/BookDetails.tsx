@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useAppDispatch } from "@/app/_store/Provider"
 import { setBookData } from "@/app/_store/module/bookData"
 
@@ -16,6 +16,30 @@ export default function BookDetails({ book }: { book: BookType }) {
     const [open, setOpen] = useState(0) // 0 : close, 1 : rating, 2 : calender, 3 : state
     const dispatch = useAppDispatch()
     dispatch(setBookData(data))
+
+    const ratingRef = useRef<HTMLLIElement>(null)
+    const calendeRef = useRef<HTMLLIElement>(null)
+    const stateRef = useRef<HTMLLIElement>(null)
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                calendeRef.current &&
+                !calendeRef.current.contains(event.target as Node) &&
+                ratingRef.current &&
+                !ratingRef.current.contains(event.target as Node) &&
+                stateRef.current &&
+                !stateRef.current.contains(event.target as Node)
+            ) {
+                setOpen(0)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
 
     useEffect(() => {
         const localBookData = localStorage.getItem(book.isbn13)
@@ -36,12 +60,8 @@ export default function BookDetails({ book }: { book: BookType }) {
             </ul>
             <ul className="flex w-full flex-col">
                 {/* rating select */}
-                <li
-                    className={`relative rounded-lg ${open == 1 && "shadow-lg"}`}
-                    tabIndex={0}
-                    onClick={() => setOpen(prev => (prev == 1 ? 0 : 1))}
-                    onBlur={() => setOpen(0)}>
-                    <div className="flex cursor-pointer items-center gap-1 rounded-md p-1 text-yellow hover:bg-zinc-100">
+                <li className={`relative rounded-lg ${open == 1 && "shadow-lg"}`} onClick={() => setOpen(prev => (prev == 1 ? 0 : 1))} ref={ratingRef}>
+                    <div className="flex cursor-pointer items-center rounded-md p-1 text-yellow hover:bg-zinc-100">
                         <BiSolidStar />
                         {data.rating || "비어있음"}
                     </div>
@@ -52,7 +72,7 @@ export default function BookDetails({ book }: { book: BookType }) {
                     />
                 </li>
                 {/* calender select */}
-                <li className={`relative ${open == 2 && "shadow-lg"}`} onClick={() => setOpen(2)}>
+                <li className={`relative ${open == 2 && "shadow-lg"}`} onClick={() => setOpen(2)} ref={calendeRef}>
                     <div className="cursor-pointer rounded-md p-1 hover:bg-zinc-100">{data.date || "비어있음"}</div>
                     <Calender
                         date={data.date}
@@ -62,12 +82,8 @@ export default function BookDetails({ book }: { book: BookType }) {
                     />
                 </li>
                 {/* state select */}
-                <li className={`relative ${open == 3 && "shadow-lg"}`}>
-                    <div
-                        className={`cursor-pointer rounded-md p-1 hover:bg-zinc-100`}
-                        onClick={() => setOpen(prev => (prev == 3 ? 0 : 3))}
-                        tabIndex={0}
-                        onBlur={() => setOpen(0)}>
+                <li className={`relative ${open == 3 && "shadow-lg"}`} onClick={() => setOpen(prev => (prev == 3 ? 0 : 3))} ref={stateRef}>
+                    <div className={`cursor-pointer rounded-md p-1 hover:bg-zinc-100`}>
                         <StateButton state={data.state} />
                     </div>
                     <div

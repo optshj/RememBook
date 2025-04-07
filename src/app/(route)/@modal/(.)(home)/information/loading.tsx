@@ -23,7 +23,7 @@ export default function Loading() {
                 </div>
                 <div className="flex animate-pulse flex-col border-t pt-6">
                     <div className="h-60 w-full rounded-lg bg-gray-200 p-4" />
-                    <div className="mt-2 flex flex-row items-center justify-center gap-2">
+                    <div className="mb-10 mt-5 flex flex-row items-center justify-center gap-2">
                         <div className="h-8 w-24 rounded-lg bg-gray-200" />
                         <div className="h-8 w-24 rounded-lg bg-gray-200" />
                     </div>
