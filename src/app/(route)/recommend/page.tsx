@@ -51,7 +51,6 @@ export default function Recommend() {
         })
         const data = await response.json()
         setBooks(data.item)
-        setBook(data.item[rand])
     }
     function getWeightedRandom(items: LocalBookType[]) {
         const totalWeight = items.reduce((sum, item) => sum + (item.rating || 1), 0)
