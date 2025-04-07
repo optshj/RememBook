@@ -48,7 +48,7 @@ export default function ItemList({ books }: { books: BookType[] }) {
 
     return (
         <ul className="m-auto w-[312px] 2xs:w-[416px] xs:w-[512px] sm:flex sm:w-auto sm:flex-col sm:gap-2">
-            <div className="text-2xl font-semibold sm:ml-4">
+            <div className="pt-6 text-2xl font-semibold sm:ml-4">
                 <span>{"도서 "}</span>
                 <span className="text-xl text-mocha">{books.length}</span>
             </div>
