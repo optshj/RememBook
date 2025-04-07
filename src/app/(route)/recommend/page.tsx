@@ -63,6 +63,7 @@ export default function Recommend() {
                 return item
             }
         }
+        console.log(items[items.length - 1])
         return items[items.length - 1] // fallback
     }
 
@@ -81,6 +82,7 @@ export default function Recommend() {
 
     // if rand changes, set book
     useEffect(() => {
+        console.log(books.length)
         if (books.length > 0) {
             setBook(books[rand])
         }
