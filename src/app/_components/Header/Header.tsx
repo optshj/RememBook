@@ -42,9 +42,9 @@ export default function Header() {
                         value={search}
                         spellCheck={false}
                     />
-                    <div onClick={onSubmit}>
+                    <button type={"submit"}>
                         <IoIosSearch className="mx-4 h-6 w-6 cursor-pointer text-mocha" />
-                    </div>
+                    </button>
                 </form>
             </div>
             {/* <Login /> */}
