@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -11,11 +11,16 @@ import LogoWord from "@/../public/svg/logoWord.svg"
 export default function Header() {
     const router = useRouter()
     const [search, setSearch] = useState<string>("")
+    const inputRef = useRef<HTMLInputElement>(null) // input 요소 참조
 
     const onSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
-        if (search.trim() !== "") router.push(`/result?query=${search}`)
+        if (search.trim() !== "") {
+            router.push(`/result?query=${search}`)
+            inputRef.current?.blur() // 포커스 해제
+        }
     }
+
     return (
         <div className="fixed left-0 top-0 z-50 w-full border-b border-zinc-200 bg-white py-3 shadow-sm sm:p-0">
             <div className="mx-4 flex max-w-5xl items-center justify-between lg:m-auto">
@@ -36,15 +41,16 @@ export default function Header() {
                 </div>
                 <form className="mx-2 flex w-full min-w-56 max-w-72 items-center justify-between rounded-full border border-mocha" onSubmit={onSubmit}>
                     <input
+                        ref={inputRef} // ref 연결
                         className="my-1 ml-4 w-full placeholder:text-sm"
                         placeholder={"책 제목을 입력해주세요"}
                         onChange={e => setSearch(e.target.value)}
                         value={search}
                         spellCheck={false}
                     />
-                    <div onClick={onSubmit}>
+                    <button type="submit">
                         <IoIosSearch className="mx-4 h-6 w-6 cursor-pointer text-mocha" />
-                    </div>
+                    </button>
                 </form>
             </div>
             {/* <Login /> */}
