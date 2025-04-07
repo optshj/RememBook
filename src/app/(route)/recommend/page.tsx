@@ -69,7 +69,7 @@ export default function Recommend() {
     //fetchbook
     useEffect(() => {
         const localList = getIsbnItems()
-        if (localList.length > 0) {
+        if (localList) {
             const randomItem = getWeightedRandom(localList)
             setLocalBookName(randomItem.title)
             fetchBookList("ItemEditorChoice", randomItem.categoryId)
