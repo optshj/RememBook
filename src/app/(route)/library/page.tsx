@@ -26,7 +26,9 @@ export default function Library() {
                         state: parsedValue.state,
                         rating: parsedValue.rating,
                         date: parsedValue.date,
-                        categoryId: parsedValue.categoryId
+                        categoryId: parsedValue.categoryId,
+                        title: parsedValue.title,
+                        author: parsedValue.author
                     }
                 } catch (error) {
                     console.error("localStorage parsing error", error)
