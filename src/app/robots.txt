@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://remem-book.vercel.app/sitemap.xml
