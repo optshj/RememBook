@@ -1,5 +1,5 @@
 User-Agent: *
-Allow: /
 
 Host: https://remem-book.vercel.app
+
 Sitemap: https://remem-book.vercel.app/sitemap.xml
