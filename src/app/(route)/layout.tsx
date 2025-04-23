@@ -21,9 +21,10 @@ export const viewport: Viewport = {
     userScalable: false
 }
 export const metadata: Metadata = {
-    title: "Remembook | 리멤북",
-    description: "Remembook은 독서 기록을 저장하고 관리하는 웹페이지입니다. 책을 읽고 나서 간단한 메모를 남기고, 나중에 다시 확인할 수 있습니다.",
-    keywords: "독서,기록,저장,리멤북,책,베스트셀러,추천,독후감,메모,",
+    title: "Remembook | 독서기록의 시작 리멤북",
+    description:
+        "Remembook은 독서 기록을 저장하고 관리하는 웹페이지입니다. 책을 읽고 나서 간단한 메모를 남기고, 나중에 다시 확인할 수 있습니다. 독서에 대한 여러가지 통계와, 읽었던 책과 비슷한 종류의 책을 추천받을 수 있습니다.",
+    keywords: "독서,기록하기,서재에서,자기개발,저장,리멤북,책,베스트셀러,추천,독후감,메모",
     robots: "index, follow",
     icons: {
         icon: "/favicon.ico"
