@@ -21,9 +21,9 @@ export const viewport: Viewport = {
     userScalable: false
 }
 export const metadata: Metadata = {
-    title: "RememBOOK",
-    description: "RememBOOK은 독서 기록을 저장하고 관리하는 웹 애플리케이션입니다. 책을 읽고 나서 간단한 메모를 남기고, 나중에 다시 확인할 수 있습니다.",
-    keywords: "독서 기록 저장 리멤북 책 베스트셀러 추천",
+    title: "Remembook | 리멤북",
+    description: "Remembook은 독서 기록을 저장하고 관리하는 웹페이지입니다. 책을 읽고 나서 간단한 메모를 남기고, 나중에 다시 확인할 수 있습니다.",
+    keywords: "독서,기록,저장,리멤북,책,베스트셀러,추천,독후감,메모,",
     robots: "index, follow",
     icons: {
         icon: "/favicon.ico"
@@ -52,7 +52,7 @@ export default function RootLayout({ children, modal }: Readonly<{ children: Rea
                 <Analytics />
                 <SpeedInsights />
                 <Providers>
-                    <div className="mx-6 max-w-5xl py-16 sm:py-24 lg:m-auto">
+                    <div className="max-w-5xl py-16 mx-6 sm:py-24 lg:m-auto">
                         <Header />
                         <TabBar />
                         {children}
